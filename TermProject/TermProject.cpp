@@ -51,9 +51,7 @@ public:
 	{
 		return email;
 	}
-	
-
-	//no
+	//yes
 };
 
 
