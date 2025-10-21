@@ -131,6 +131,9 @@
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="TermProject.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Account.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
