@@ -52,7 +52,7 @@ public:
 		return email;
 	}
 	
-	//did it work
+	//did it work?
 };
 
 
