@@ -47,9 +47,9 @@ public:
 	{
 		return phone;
 	}
-	string get() const
+	string getEmail() const
 	{
-		return fname;
+		return email;
 	}
 
 };
