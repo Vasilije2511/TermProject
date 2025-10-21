@@ -1,52 +1,75 @@
 #include "Account.h"
 #include<string>
+#include <iomanip>
+#include <iostream>
 
-class Customer
-{
+
 	string fname, lname, address, phone, email;
-
-public:
-	void setFname(string _fname) //maybe find a way to validate the strings
+	Customer::Customer()
+	{
+		fname = "";
+		lname = "";
+		address = "";
+		phone = "";
+		email = "";
+	}
+	Customer::Customer(string _fname, string _lname, string _address, string _phone, string _email)
+	{
+		setAll(_fname, _lname, _address, _phone, _email);
+	}
+	void Customer:: setFname(string _fname) //maybe find a way to validate the strings
 	{
 		fname = _fname;
 	}
-	void setLname(string _lname)
+	void Customer::setLname(string _lname)
 	{
 		lname = _lname;
 
 	}
-	void setAddress(string _address)
+	void Customer::setAddress(string _address)
 	{
 		address + _address;
 
 	}
-	void setPhone(string _phone)
+	void Customer::setPhone(string _phone)
 	{
 		phone = _phone;
 	}
-	void setemail(string _email)
+	void Customer::setemail(string _email)
 	{
 		email = _email;
 	}
-	string getFname() const
+	string Customer::getFname() const
 	{
 		return fname;
 	}
-	string getLname() const
+	string Customer::getLname() const
 	{
 		return lname;
 	}
-	string getAddress() const
+	string Customer::getAddress() const
 	{
 		return address;
 	}
-	string getPhone() const
+	string Customer::getPhone() const
 	{
 		return phone;
 	}
-	string getEmail() const
+	string Customer::getEmail() const
 	{
 		return email;
 	}
-	//yes
-};
+	void Customer::setAll(string _fname, string _lname, string _address, string _phone, string _email)
+	{
+		fname = _fname;
+		lname = _lname;
+		address = _address;
+		phone = _phone;
+		email = _email;
+	}
+	void Customer:: printInfo()
+	{
+		cout << setw(15) << "First Name:" << setw(15) << "Last Name" << setw(25) << "Address" << setw(15) << "Phone #" << setw(15) << "Email" << endl;
+		cout << setw(15) << fname << setw(15) << lname << setw(25) << address << setw(15) << phone << setw(15) << email<<endl;
+	}
+
