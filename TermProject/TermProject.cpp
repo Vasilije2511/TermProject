@@ -52,15 +52,6 @@ public:
 		return email;
 	}
 	
-	//hello
-
-
-
-
-
-
-
-	///NEw change
 };
 
 
