@@ -51,13 +51,7 @@ public:
 	{
 		return email;
 	}
-	
-	//did it work?
-	//how about now 
-	//this is dumb
-	//adslkfjalksdflkasfdkfjd//dfd
-	//Hi my name is nicole 
-	//hi hi hi hi hi
+	//last try
 };
 
 
