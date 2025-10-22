@@ -4,7 +4,6 @@
 #include <iostream>
 
 
-	string fname, lname, address, phone, email;
 	Customer::Customer()
 	{
 		fname = "";
