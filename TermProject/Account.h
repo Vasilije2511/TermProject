@@ -45,6 +45,9 @@ public:
 	int getWithdrawlCounter() const;
 	int getDepositsCounter() const;
 	double setBalance() const;
+	void depositMoney(double _ammount);
+	void withdrawMoney(double _ammount);
+	void printInfo();
 
 
 

@@ -41,23 +41,23 @@ void Account::setID(int _id)
 void Account:: setWithdrawlCounter(int _withdrawlCounter)
 {
 	if (_withdrawlCounter > 0)
-		withdrawlCounter = _withdrawlCounter; //need to check back if we just update the value of the counter or completely over rides with new val...
+		withdrawlCounter = withdrawlCounter+ _withdrawlCounter; //need to check back if we just update the value of the counter or completely over rides with new val...
 	else
 		withdrawlCounter = 0;
 }
 void Account::setDepositCounter(int _depositCounter)
 {
 	if (_depositCounter > 0)
-		depositsCounter = _depositCounter; //need to check back if we just update the value of the counter or completely over rides with new val...
+		depositsCounter = depositsCounter +_depositCounter; 
 	else
 		depositsCounter = 0;
 }
 void Account::setBalance(double _balance)
 {
 	if (_balance > 0)
-		balance = _balance;
+		balance =  _balance;
 	else
-		balance = 0; //to prevent negative balances, but need to come back to check if balance can actually be negative
+		balance = 0; //to prevent negative balances
 }
 Customer* Account::getAccountCustomer() const
 {
@@ -78,4 +78,33 @@ int Account::getDepositsCounter() const
 double Account::setBalance() const
 {
 	return balance;
+}
+
+void Account ::depositMoney(double _ammount)
+{
+	if (_ammount > 0)
+	{
+		balance = balance + _ammount;
+		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
+	}
+	
+	else
+		cout << "Invalid Amount" << endl;
+}
+void Account::withdrawMoney(double _ammount)
+{
+	if(balance>0&& balance>=_ammount&& _ammount >0)
+	{
+			balance = balance - _ammount;
+			setWithdrawlCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
+	}
+	else
+		cout << "An Error has occured with the balance or ammount" << endl;
+}
+void Account::printInfo()
+{
+	cout << "____________________________________________________________________________________________________________________________________________\n";
+	(*accountCustomer).printInfo();
+	cout << endl << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22)<<"Number of Deposits"<<endl;
+	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << endl;
 }
