@@ -1,11 +1,8 @@
 #include<iostream>
 #include<string>
 #include "Account.h"
-
+#include"Customer.h"
 using namespace std;
-
-
-
 
 
 
