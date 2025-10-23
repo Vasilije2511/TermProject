@@ -2,7 +2,6 @@
 #include<string>
 #include <iomanip>
 #include <iostream>
-
 using namespace std;
 Account::Account()
 {
@@ -18,7 +17,6 @@ Account::Account( Customer *_accountCustomer, int _id, int _withdrawlCounter=0, 
 
 
 }
-
 void Account:: setAll(Customer* _accountCustomer, int _id, int _withdrawlCounter=0, int _depositsCounter=0, double _balance) 
 {
 	setAccountCustomer(_accountCustomer);
@@ -82,7 +80,6 @@ double Account::setBalance() const
 {
 	return balance;
 }
-
 void Account ::depositMoney(double _ammount)
 {
 	if (_ammount > 0)

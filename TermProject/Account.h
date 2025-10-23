@@ -1,9 +1,7 @@
 #pragma once
 #ifndef ACCOUNT
 #define ACCOUNT
-#include <string>
 #include "Customer.h"
-using namespace std;
 
 
 class Account
