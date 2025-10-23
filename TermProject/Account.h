@@ -14,8 +14,8 @@ class Account
 
 public:
 	Account();
-	Account(Customer* _accountCustomer, int _id, int _withdrawlCounter,int _depositsCounter, double _balance );
-	void setAll(Customer* _accountCustomer, int _id, int _withdrawlCounter, int _depositsCounter, double _balance);
+	Account(Customer* _accountCustomer, int _id, int _withdrawlCounter=0,int _depositsCounter=0, double _balance );
+	void setAll(Customer* _accountCustomer, int _id, int _withdrawlCounter=0, int _depositsCounter=0, double _balance);
 	void setAccountCustomer(Customer* _accountCustomer);
 	void setID(int _id);
 	void setWithdrawlCounter(int _withDrawlCounter);

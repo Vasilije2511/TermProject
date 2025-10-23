@@ -12,11 +12,14 @@ Account::Account()
 	depositsCounter = 0;
 	balance=0;
 }
-Account::Account( Customer *_accountCustomer, int _id, int _withdrawlCounter, int _depositsCounter, double _balance)
+Account::Account( Customer *_accountCustomer, int _id, int _withdrawlCounter=0, int _depositsCounter=0, double _balance)
 {
 	Account::setAll( _accountCustomer, _id, _withdrawlCounter, _depositsCounter, _balance);
+
+
 }
-void Account:: setAll(Customer* _accountCustomer, int _id, int _withdrawlCounter, int _depositsCounter, double _balance) 
+
+void Account:: setAll(Customer* _accountCustomer, int _id, int _withdrawlCounter=0, int _depositsCounter=0, double _balance) 
 {
 	setAccountCustomer(_accountCustomer);
 

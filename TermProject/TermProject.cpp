@@ -2,6 +2,7 @@
 #include<string>
 #include "Account.h"
 #include"Customer.h"
+#include "CheckingAccount.h"
 using namespace std;
 
 
@@ -9,6 +10,8 @@ using namespace std;
 int main()
 {
 	int choice;
+	CheckingAccount s1;
+
 	cout << "1: creating a checking account\n2: create a saving account\n3: view account information\n4: Modify Account \n5: Delete an account\n6: transferring money between accounts\n7: Exit Program";
 	cout << "Select an option: ";
 	cin >> choice;
