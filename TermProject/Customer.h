@@ -1,6 +1,7 @@
 #pragma once
 #ifndef CUSTOMER
 #define CUSTOMER
+#include <string>
 class Customer
 {
 	string fname, lname, address, phone, email;

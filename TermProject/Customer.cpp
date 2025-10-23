@@ -2,7 +2,7 @@
 #include<string>
 #include <iomanip>
 #include <iostream>
-
+using namespace std;
 
 	Customer::Customer()
 	{
