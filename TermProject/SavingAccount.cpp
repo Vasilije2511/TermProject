@@ -1,4 +1,5 @@
 #include "Account.h"
+#include "Customer.h"
 #include "SavingAccount.h"
 #include<string>
 #include <iomanip>
@@ -22,10 +23,11 @@ void SavingAccount:: setInterestRate(double rate)
 {
 	interestRate = rate;
 }
-void SavingAccount::setAll(int id, double balance, double interestRate, Customer* customerInfo) :Account(customerInfo, id, balance)
+void SavingAccount::setAll(int id, double balance, double interestRate, Customer* customerInfo) : Account(customerInfo, id, balance)
 {
 	setInterestRate(interestRate);
 }
+
 void SavingAccount::payInterest()
 {
 	double interest = getBalance() * (interestRate / 100);
