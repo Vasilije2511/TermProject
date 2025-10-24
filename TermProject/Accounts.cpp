@@ -76,7 +76,7 @@ int Account::getDepositsCounter() const
 {
 	return depositsCounter;
 }
-double Account::setBalance() const
+double Account::getBalance() const
 {
 	return balance;
 }

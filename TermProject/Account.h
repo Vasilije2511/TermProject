@@ -23,7 +23,7 @@ public:
 	int getID() const;
 	int getWithdrawlCounter() const;
 	int getDepositsCounter() const;
-	double setBalance() const;
+	double getBalance() const;
 	void depositMoney(double _ammount);
 	void withdrawMoney(double _ammount);
 	void printInfo();
