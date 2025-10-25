@@ -125,7 +125,7 @@ void Account ::depositMoney(double _ammount)
 	{
 		balance = balance + _ammount;
 		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1
-		totalDeposits = totalDeposits + _ammount;
+		setTotaldeposits( _ammount);
 	}
 	
 	else
@@ -137,7 +137,7 @@ void Account::withdrawMoney(double _ammount)
 	{
 			balance = balance - _ammount;
 			setWithdrawlCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
-			totalWitdrawl = totalWitdrawl + _ammount;
+			setWithdrawlCounter( _ammount);
 	}
 	else
 		cout << "An Error has occured with the balance or ammount" << endl;

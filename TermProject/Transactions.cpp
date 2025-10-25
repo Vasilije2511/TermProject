@@ -7,18 +7,13 @@ using namespace std;
 
 class TransactionHistory:public SavingAccount,CheckingAccount
 {
-	double totalWitdrawl;
-	double totalDeposits;
-	double totalTranfer;
+	//no instance variables at this time 
 public:
-
-	TransactionHistory():SavingAccount(),CheckingAccount()
+	void DisplayTansactions()
 	{
-		
-	
-	}
-	TransactionHistory() :SavingAccount(), CheckingAccount()
-	{
+		cout << "Total Balance:" << SavingAccount::getBalance() << SavingAccount::getDepositsCounter();
 
-	}
+	} //not sure may need to say balance for each account then depending on account type display the deatils for # of each type of transaction and the total balance of the transactions
+
+
 };
