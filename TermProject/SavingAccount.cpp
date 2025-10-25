@@ -21,7 +21,10 @@ double SavingAccount:: getInterestRate() const
 }
 void SavingAccount:: setInterestRate(double _rate)
 {
-	interestRate = _rate;
+	if (_rate > 0)
+		interestRate = _rate;
+	else
+		interestRate = 0;
 }
 void SavingAccount::setAll(int _id, double _balance, double _interestRate, Customer* _customerInfo)
 {
