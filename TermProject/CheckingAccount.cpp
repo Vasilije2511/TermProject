@@ -5,8 +5,6 @@
 using namespace std;
 
 
-
-
 CheckingAccount::CheckingAccount(): Account()
 {
 	overDraftLimit = 0;
@@ -54,10 +52,11 @@ void CheckingAccount::withdrawMoney(double _wAmmount)
 				double newbal = getBalance() - _wAmmount - 20;
 				setBalance(newbal);
 				setWithdrawlCounter(1);
+				setOverDraftLimit(_wAmmount - overDraftLimit);
 			}
 			else
 			{
-
+				cout << "Cannot allow withdrawl.Overdraft limit exceeded" << endl;
 			}
 		}
 	}
