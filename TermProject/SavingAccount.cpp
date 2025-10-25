@@ -23,7 +23,7 @@ void SavingAccount:: setInterestRate(double rate)
 {
 	interestRate = rate;
 }
-void SavingAccount::setAll(int id, double balance, double interestRate, Customer* customerInfo) : Account(customerInfo, id, balance)
+void SavingAccount::setAll(int id, double balance, double interestRate, Customer* customerInfo) 
 {
 	Account::setAll(customerInfo, id, 0, 0, balance);
 	setInterestRate(interestRate);
