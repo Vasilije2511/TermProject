@@ -14,6 +14,7 @@ public:
 	void setOverDraftLimit(double _overDraftLimit);
 	double getOverDraftLimit()const;
 	void setAll(int _id, double _balance, double _overDraftLimit, Customer* _customerInfo);
+	void withdrawMoney(double _ammount);
 
 
 

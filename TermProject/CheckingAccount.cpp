@@ -1,5 +1,5 @@
 #include "CheckingAccount.h"
-
+#include<cmath>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -36,4 +36,29 @@ double CheckingAccount::getOverDraftLimit()const
 {
 	return overDraftLimit;
 
+}
+void CheckingAccount::withdrawMoney(double _wAmmount)
+{
+	if (_wAmmount > 0)
+	{
+		if ( getBalance() >= _wAmmount)
+		{
+			double newbal = getBalance() - _wAmmount;
+			setBalance(newbal);
+			setWithdrawlCounter(1);
+		}
+		else
+		{
+			if (abs(getBalance() - _wAmmount) >= overDraftLimit)
+			{
+				double newbal = getBalance() - _wAmmount - 20;
+				setBalance(newbal);
+				setWithdrawlCounter(1);
+			}
+			else
+			{
+
+			}
+		}
+	}
 }
