@@ -43,6 +43,8 @@ void SavingAccount::transfer(double _amount, SavingAccount* _destinationAccount)
 	{
 		withdrawMoney(_amount);
 		(*_destinationAccount).depositMoney(_amount);
+		setTransferCounter(1);
+		
 	}
 	else
 	{

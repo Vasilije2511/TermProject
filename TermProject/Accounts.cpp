@@ -10,21 +10,21 @@ Account::Account()
 	withdrawlCounter = 0;
 	depositsCounter = 0;
 	balance=0;
+	totalDeposits = 0;
+	totalWitdrawl = 0;
 }
-Account::Account( Customer *_accountCustomer, int _id, int _withdrawlCounter=0, int _depositsCounter=0, double _balance)
+Account::Account( Customer *_accountCustomer, int _id, double _balance)
 {
-	Account::setAll( _accountCustomer, _id, _withdrawlCounter, _depositsCounter, _balance);
+	Account::setAll( _accountCustomer, _id, _balance);
 
 
 }
-void Account:: setAll(Customer* _accountCustomer, int _id, int _withdrawlCounter=0, int _depositsCounter=0, double _balance) 
+void Account:: setAll(Customer* _accountCustomer, int _id, double _balance) 
 {
 	setAccountCustomer(_accountCustomer);
 
 	setID(_id);
 
-	setWithdrawlCounter(_withdrawlCounter);
-	setDepositCounter(_depositsCounter);
 	setBalance(_balance);
 }
 void Account::setAccountCustomer(Customer* _accountCustomer)
@@ -43,15 +43,13 @@ void Account:: setWithdrawlCounter(int _withdrawlCounter)
 {
 	if (_withdrawlCounter > 0)
 		withdrawlCounter = withdrawlCounter+ _withdrawlCounter; //need to check back if we just update the value of the counter or completely over rides with new val...
-	else
-		withdrawlCounter = 0;
+	
 }
 void Account::setDepositCounter(int _depositCounter)
 {
 	if (_depositCounter > 0)
 		depositsCounter = depositsCounter +_depositCounter; 
-	else
-		depositsCounter = 0;
+
 }
 void Account::setBalance(double _balance)
 {
@@ -60,6 +58,37 @@ void Account::setBalance(double _balance)
 	else
 		balance = 0; //to prevent negative balances
 }
+void Account::setTotalTransfers(double _transferAmmount)
+{
+	if (_transferAmmount > 0)
+		totaltransfers = totaltransfers + _transferAmmount;
+}
+double Account::getTotalTransfers() const
+{
+	return totaltransfers;
+}
+
+void Account::setTotaldeposits(double _depositAmmount)
+{
+	if (_depositAmmount > 0)
+		totalDeposits = totalDeposits + _depositAmmount;
+}
+double Account::getTotaldeposits() const
+{
+	return totalDeposits;
+}
+
+
+void Account::setTotalWithdrawls(double _withdrawlAmmount)
+{
+	if (_withdrawlAmmount > 0)
+		totalWitdrawl = totalWitdrawl + _withdrawlAmmount;
+}
+double Account::getTotalWithdrawls() const
+{
+	return totalWitdrawl;
+}
+
 Customer* Account::getAccountCustomer() const
 {
 	return accountCustomer;
@@ -76,6 +105,16 @@ int Account::getDepositsCounter() const
 {
 	return depositsCounter;
 }
+void Account::setTransferCounter(int _transferCounter)
+{
+	if (_transferCounter > 0)
+		transferCount = _transferCounter;
+
+}
+int Account:: getTransferCounter() const
+{
+	return transferCount;
+}
 double Account::getBalance() const
 {
 	return balance;
@@ -85,7 +124,8 @@ void Account ::depositMoney(double _ammount)
 	if (_ammount > 0)
 	{
 		balance = balance + _ammount;
-		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
+		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1
+		totalDeposits = totalDeposits + _ammount;
 	}
 	
 	else
@@ -97,6 +137,7 @@ void Account::withdrawMoney(double _ammount)
 	{
 			balance = balance - _ammount;
 			setWithdrawlCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
+			totalWitdrawl = totalWitdrawl + _ammount;
 	}
 	else
 		cout << "An Error has occured with the balance or ammount" << endl;

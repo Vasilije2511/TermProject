@@ -132,6 +132,7 @@
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="SavingAccount.cpp" />
     <ClCompile Include="TermProject.cpp" />
+    <ClCompile Include="Transactions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
