@@ -19,9 +19,14 @@ double SavingAccount:: getInterestRate() const
 {
 	return interestRate;
 }
-void SavingAccount:: setInterestRate(double rate)
+void SavingAccount:: setInterestRate(double _rate)
 {
-	interestRate = rate;
+	interestRate = _rate;
+}
+void SavingAccount::setAll(int _id, double _balance, double _interestRate, Customer* _customerInfo)
+{
+	Account::setAll(_customerInfo, _id, _balance);
+	setInterestRate(_interestRate);
 }
 void SavingAccount::setAll(int id, double balance, double interestRate, Customer* customerInfo) : Account(customerInfo, id, balance)
 {
@@ -37,10 +42,10 @@ void SavingAccount::payInterest()
 }
 void SavingAccount::transfer(double amount, SavingAccount& destinationAccount)
 {
-	if (amount > 0 && amount <= getBalance())
+	if (_amount > 0 && _amount <= getBalance())
 	{
-		withdrawMoney(amount);
-		destinationAccount.depositMoney(amount);
+		withdrawMoney(_amount);
+		_destinationAccount.depositMoney(_amount);
 	}
 	else
 	{
