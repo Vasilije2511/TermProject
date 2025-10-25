@@ -34,12 +34,12 @@ void SavingAccount::payInterest()
 	double interest = getBalance() * (interestRate / 100);
 	depositMoney(interest);
 }
-void SavingAccount::transfer(double _amount, SavingAccount& _destinationAccount)
+void SavingAccount::transfer(double _amount, SavingAccount* _destinationAccount)
 {
 	if (_amount > 0 && _amount <= getBalance())
 	{
 		withdrawMoney(_amount);
-		_destinationAccount.depositMoney(_amount);
+		(*_destinationAccount).depositMoney(_amount);
 	}
 	else
 	{
