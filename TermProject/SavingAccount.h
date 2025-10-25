@@ -11,12 +11,12 @@ private:
 
 public:
     SavingAccount();
-    SavingAccount(int id, double balance, double interestRate, Customer* customerInfo);
+    SavingAccount(int _id, double _balance, double _interestRate, Customer* _customerInfo);
     double getInterestRate() const;
-    void setInterestRate(double rate);
-    void setAll(int id, double balance, double interestRate, Customer* customerInfo);
+    void setInterestRate(double _rate);
+    void setAll(int _id, double _balance, double _interestRate, Customer* _customerInfo);
     void payInterest();
-    void transfer(double amount, SavingAccount& destinationAccount);
+    void transfer(double _amount, SavingAccount& _destinationAccount);
 };
 
 #endif
