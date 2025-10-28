@@ -119,6 +119,29 @@ double Account::getBalance() const
 {
 	return balance;
 }
+
+void Account::settransferAmmounts(double _transferAmmount)
+{
+	transferAmmounts[transferCount - 1] = _transferAmmount;
+}
+
+double Account::recieveTransferAmmount(int i)
+{
+	return transferAmmounts[i];
+}
+
+
+void Account::setwithdrawlAmmounts(double _withdrawlAmmount)
+{
+	withdrawlAmmounts[withdrawlCounter - 1] = _withdrawlAmmount;
+}
+
+double Account::recievewithdrawlAmmount(int i)
+{
+	return withdrawlAmmounts[i];
+}
+//Add additional array setter and getters
+
 void Account ::depositMoney(double _ammount)
 {
 	if (_ammount > 0)
@@ -126,6 +149,7 @@ void Account ::depositMoney(double _ammount)
 		balance = balance + _ammount;
 		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1
 		setTotaldeposits( _ammount);
+
 	}
 	
 	else

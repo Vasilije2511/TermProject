@@ -14,6 +14,10 @@ class Account
 	double totalWitdrawl=0;
 	double totalDeposits=0;
 	double totaltransfers = 0;
+	
+	double transferAmmounts[50];
+	double depositAmmounts[50];
+	double withdrawlAmmounts[50];
 
 
 public:
@@ -47,8 +51,11 @@ public:
 	void withdrawMoney(double _ammount);
 	void printInfo();
 
+	void settransferAmmounts(double _transferAmmount);
+	double recieveTransferAmmount(int i);
 
-
+	void setwithdrawlAmmounts(double _withdrawlAmmount);
+	double recievewithdrawlAmmount(int i);
 
 };
 

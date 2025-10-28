@@ -8,6 +8,9 @@ using namespace std;
 class TransactionHistory:public SavingAccount,CheckingAccount
 {
 	//no instance variables at this time 
+	double transferAmmounts[50];
+	double depositAmmounts[50];
+	double withdrawlAmmounts[50];
 public:
 	void DisplayTansactions()
 	{
