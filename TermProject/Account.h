@@ -20,6 +20,7 @@ class Account
 	double withdrawlAmmounts[50];
 
 
+
 public:
 	Account();
 	Account(Customer* _accountCustomer, int _id, double _balance );
@@ -56,6 +57,16 @@ public:
 
 	void setwithdrawlAmmounts(double _withdrawlAmmount);
 	double recievewithdrawlAmmount(int i);
+
+	void setDepositAmmounts(double _depositAmmount);
+	double recieveDepositAmmount(int i);
+
+	void displayAllTransactions();
+
+	void displayDeposits();
+
+	void displayWithdrawls();
+	void displaytransfers()
 
 };
 

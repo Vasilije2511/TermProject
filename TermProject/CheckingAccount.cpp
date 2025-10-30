@@ -44,6 +44,7 @@ void CheckingAccount::withdrawMoney(double _wAmmount)
 			double newbal = getBalance() - _wAmmount;
 			setBalance(newbal);
 			setWithdrawlCounter(1);
+			setwithdrawlAmmounts(_wAmmount);
 		}
 		else
 		{
@@ -52,6 +53,7 @@ void CheckingAccount::withdrawMoney(double _wAmmount)
 				double newbal = getBalance() - _wAmmount - 20;
 				setBalance(newbal);
 				setWithdrawlCounter(1);
+				setwithdrawlAmmounts(_wAmmount);
 				setOverDraftLimit(_wAmmount - overDraftLimit);
 			}
 			else

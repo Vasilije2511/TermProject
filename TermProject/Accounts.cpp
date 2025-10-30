@@ -16,6 +16,12 @@ Account::Account()
 Account::Account( Customer *_accountCustomer, int _id, double _balance)
 {
 	Account::setAll( _accountCustomer, _id, _balance);
+	for (int i = 0; i < 50; i++)
+	{
+		depositAmmounts[i] = 0;
+		transferAmmounts[i] = 0;
+		withdrawlAmmounts[i] = 0;
+	}
 
 
 }
@@ -127,7 +133,7 @@ void Account::settransferAmmounts(double _transferAmmount)
 
 double Account::recieveTransferAmmount(int i)
 {
-	return transferAmmounts[i];
+	return transferAmmounts[i-1];
 }
 
 
@@ -138,7 +144,16 @@ void Account::setwithdrawlAmmounts(double _withdrawlAmmount)
 
 double Account::recievewithdrawlAmmount(int i)
 {
-	return withdrawlAmmounts[i];
+	return withdrawlAmmounts[i-1];
+}
+void Account::setDepositAmmounts(double _depositAmmount)
+{
+	depositAmmounts[depositsCounter - 1] = _depositAmmount;
+}
+
+double Account::recieveDepositAmmount(int i)
+{
+	return depositAmmounts[i-1];
 }
 //Add additional array setter and getters
 
@@ -172,4 +187,47 @@ void Account::printInfo()
 	(*accountCustomer).printInfo();
 	cout << endl << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22)<<"Number of Deposits"<<endl;
 	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << endl;
+}
+void Account::displayDeposits()
+{
+	cout << "____________________________________________________________________________________________________________________________________________\n";
+	cout << setw(40) << "Deposits";
+	cout << endl << "Number of Deposits" << setw(22) << depositsCounter<< endl;
+	int i = 0;
+	while (recieveDepositAmmount(i)>0)
+	{
+		cout << "Deposit #" << i + 1 << setw(20) << "Ammount Deposited $" << recieveDepositAmmount(i);
+		i++;
+	}
+	
+}
+void Account::displayWithdrawls()
+{
+	cout << "____________________________________________________________________________________________________________________________________________\n";
+	cout << endl << "Number of withdrawls" << setw(22) << withdrawlCounter << endl;
+	int	i = 0;
+	while (recievewithdrawlAmmount(i) > 0)
+	{
+		cout << "Withdrawl #" << i + 1 << setw(20) << "Ammount Withdrawed $" << recievewithdrawlAmmount(i);
+		i++;
+	} 
+}
+
+void Account::displaytransfers()
+{
+	cout << "____________________________________________________________________________________________________________________________________________\n";
+	cout << endl << "Number of transfers" << setw(22) << transferCount << endl;
+	int	i = 0;
+	while (recieveTransferAmmount(i) > 0)
+	{
+		cout << "Transfer #" << i + 1 << setw(20) << "Ammount Transfered $" << recieveTransferAmmount(i);
+		i++;
+	}
+}
+
+void Account::displayAllTransactions()
+{
+	displayDeposits();
+	displayWithdrawls();
+	displaytransfers();
 }

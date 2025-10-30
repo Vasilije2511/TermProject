@@ -36,6 +36,7 @@ void SavingAccount::payInterest()
 {
 	double interest = getBalance() * (interestRate / 100);
 	depositMoney(interest);
+	setDepositAmmounts(interest);
 }
 void SavingAccount::transfer(double _amount, SavingAccount* _destinationAccount)
 {
@@ -44,6 +45,7 @@ void SavingAccount::transfer(double _amount, SavingAccount* _destinationAccount)
 		withdrawMoney(_amount);
 		(*_destinationAccount).depositMoney(_amount);
 		setTransferCounter(1);
+		settransferAmmounts(_amount);
 		
 	}
 	else
