@@ -125,6 +125,60 @@ int main()
 		}
 		case 4: //Modify Account
 		{
+			int accountId;
+			cout << "Enter account ID to modify: ";
+			cin >> accountId;
+
+			bool found = false;
+			for (int i = 0; i < savingAccounts.size(); i++) {
+				if (savingAccounts[i]->getID() == accountId) {
+					string fname, lname, address, phone, email;
+					cout << "Enter new customer details: "<<endl;
+					cout << "First Name: ";
+					cin >> fname;
+					cout << "Last Name: ";
+					cin >> lname;
+					cout << "Address: ";
+					cin.ignore();
+					getline(cin, address);
+					cout << "Phone: ";
+					cin >> phone;
+					cout << "Email: ";
+					cin >> email;
+
+					savingAccounts[i]->getAccountCustomer()->setAll(fname, lname, address, phone, email);
+					found = true;
+					cout << "Account modified successfully!"<<endl;
+					break;
+				}
+			}
+
+			for (int i = 0; i < savingAccounts.size(); i++) {
+				if (savingAccounts[i]->getID() == accountId) {
+					string fname, lname, address, phone, email;
+					cout << "Enter new customer details: "<<endl;
+					cout << "First Name: ";
+					cin >> fname;
+					cout << "Last Name: ";
+					cin >> lname;
+					cout << "Address: ";
+					cin.ignore();
+					getline(cin, address);
+					cout << "Phone: ";
+					cin >> phone;
+					cout << "Email: ";
+					cin >> email;
+
+					savingAccounts[i]->getAccountCustomer()->setAll(fname, lname, address, phone, email);
+					found = true;
+					cout << "Account modified successfully!"<<endl;
+					break;
+				}
+			}
+
+			if (!found) {
+				cout << "Account not found!"<<endl;
+			}
 			break;
 		}
 		case 5://Delete an account
