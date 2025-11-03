@@ -16,9 +16,6 @@ Account::Account()
 Account::Account( Customer *_accountCustomer, int _id, double _balance)
 {
 	Account::setAll( _accountCustomer, _id, _balance);
-
-
-
 }
 void Account:: setAll(Customer* _accountCustomer, int _id, double _balance) 
 {
