@@ -2,6 +2,8 @@
 #include<string>
 #include <iomanip>
 #include <iostream>
+#include <vector>
+#include <cstdlib>
 using namespace std;
 Account::Account()
 {
@@ -30,120 +32,119 @@ void Account::setAccountCustomer(Customer* _accountCustomer)
 	accountCustomer = _accountCustomer;
 
 }
-void Account::setID(int _id)
+void Account::setID(int _id) //set the id value 
 {
 	if (_id > 0)//maybe check val against other ids to prevent duplicates
 		ID = _id;
 	else
 		ID = 0;
 }
-void Account:: setWithdrawlCounter(int _withdrawlCounter)
+void Account:: setWithdrawlCounter(int _withdrawlCounter)//increment the withdrawl counter
 {
 	if (_withdrawlCounter > 0)
-		withdrawlCounter = withdrawlCounter+ _withdrawlCounter; //need to check back if we just update the value of the counter or completely over rides with new val...
-	
+		withdrawlCounter = withdrawlCounter+ _withdrawlCounter; 
 }
-void Account::setDepositCounter(int _depositCounter)
+void Account::setDepositCounter(int _depositCounter) //increment the deposit counter
 {
 	if (_depositCounter > 0)
 		depositsCounter = depositsCounter +_depositCounter; 
 
 }
-void Account::setBalance(double _balance)
+void Account::setBalance(double _balance) //set the total balance for the account
 {
 	if (_balance > 0)
 		balance =  _balance;
 	else
 		balance = 0; //to prevent negative balances
 }
-void Account::setTotalTransfers(double _transferAmmount)
+void Account::setTotalTransfers(double _transferAmmount) //increment the transfer ammount counter
 {
 	if (_transferAmmount > 0)
 		totaltransfers = totaltransfers + _transferAmmount;
 }
-double Account::getTotalTransfers() const
+double Account::getTotalTransfers() const //return the total ammount transfered
 {
 	return totaltransfers;
 }
 
-void Account::setTotaldeposits(double _depositAmmount)
+void Account::setTotaldeposits(double _depositAmmount) //increment the total deposits counter
 {
 	if (_depositAmmount > 0)
 		totalDeposits = totalDeposits + _depositAmmount;
 }
-double Account::getTotaldeposits() const
+double Account::getTotaldeposits() const //returnt he total deposits ammount
 {
 	return totalDeposits;
 }
 
 
-void Account::setTotalWithdrawls(double _withdrawlAmmount)
+void Account::setTotalWithdrawls(double _withdrawlAmmount) //increment the withdrawl counter
 {
 	if (_withdrawlAmmount > 0)
 		totalWitdrawl = totalWitdrawl + _withdrawlAmmount;
 }
-double Account::getTotalWithdrawls() const
+double Account::getTotalWithdrawls() const //return the total ammount withdrawn 
 {
 	return totalWitdrawl;
 }
 
-Customer* Account::getAccountCustomer() const
+Customer* Account::getAccountCustomer() const //return the account customer object
 {
 	return accountCustomer;
 }
-int Account::getID() const
+int Account::getID() const //return the ID
 {
 	return ID;
 }
-int Account::getWithdrawlCounter() const
+int Account::getWithdrawlCounter() const //return the withdrawl counter
 {
 	return withdrawlCounter;
 }
-int Account::getDepositsCounter() const
+int Account::getDepositsCounter() const //return the deposit counter
 {
 	return depositsCounter;
 }
-void Account::setTransferCounter(int _transferCounter)
+void Account::setTransferCounter(int _transferCounter) //increment the counter
 {
 	if (_transferCounter > 0)
-		transferCount = _transferCounter;
+		transferCount = transferCount + _transferCounter;
 
 }
-int Account:: getTransferCounter() const
+int Account:: getTransferCounter() const //return the transfer count
 {
 	return transferCount;
 }
-double Account::getBalance() const
+double Account::getBalance() const //return the balance
 {
 	return balance;
 }
 
-void Account::settransferAmmounts(double _transferAmmount)
+void Account::settransferAmmounts(double _transferAmmount) //add ammount to vector
 {
-	transferAmmounts[transferCount - 1] = _transferAmmount;
+	transferAmmounts.push_back(_transferAmmount);  
 }
 
-double Account::recieveTransferAmmount(int i)
+double Account::recieveTransferAmmount(int i) //get an individual ammount from the vector
 {
 	return transferAmmounts[i-1];
 }
 
 
-void Account::setwithdrawlAmmounts(double _withdrawlAmmount)
+void Account::setwithdrawlAmmounts(double _withdrawlAmmount) //add ammount to vector
 {
-	withdrawlAmmounts[withdrawlCounter - 1] = _withdrawlAmmount;
+	withdrawlAmmounts.push_back(_withdrawlAmmount);
 }
 
-double Account::recievewithdrawlAmmount(int i)
+double Account::recievewithdrawlAmmount(int i) //get an individual ammount from the vector
 {
 	return withdrawlAmmounts[i-1];
 }
-void Account::setDepositAmmounts(double _depositAmmount)
+void Account::setDepositAmmounts(double _depositAmmount) //add ammount to vector
 {
-	depositAmmounts[depositsCounter - 1] = _depositAmmount;
+	depositAmmounts.push_back(_depositAmmount); 
 }
 
-double Account::recieveDepositAmmount(int i)
+double Account::recieveDepositAmmount(int i) //get an individual ammount from the vector
 {
 	return depositAmmounts[i-1];
 }
@@ -156,7 +157,7 @@ void Account ::depositMoney(double _ammount)
 		balance = balance + _ammount;
 		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1
 		setTotaldeposits( _ammount);
-
+		setDepositAmmounts(_ammount);
 	}
 	
 	else
@@ -168,7 +169,8 @@ void Account::withdrawMoney(double _ammount)
 	{
 			balance = balance - _ammount;
 			setWithdrawlCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
-			setWithdrawlCounter( _ammount);
+			setTotalWithdrawls(_ammount);
+			setwithdrawlAmmounts(_ammount);
 	}
 	else
 		cout << "An Error has occured with the balance or ammount" << endl;
@@ -185,11 +187,10 @@ void Account::displayDeposits()
 	cout << "____________________________________________________________________________________________________________________________________________\n";
 	cout << setw(40) << "Deposits";
 	cout << endl << "Number of Deposits" << setw(22) << depositsCounter<< endl;
-	int i = 0;
-	while (recieveDepositAmmount(i)>0)
+	for( int i = 0; i< depositAmmounts.size();i++)
 	{
-		cout << "Deposit #" << i + 1 << setw(20) << "Ammount Deposited $" << recieveDepositAmmount(i);
-		i++;
+		cout << "Deposit #" << i + 1 << setw(20) << "Ammount Deposited $" << depositAmmounts[i];
+	
 	}
 	
 }
@@ -197,28 +198,28 @@ void Account::displayWithdrawls()
 {
 	cout << "____________________________________________________________________________________________________________________________________________\n";
 	cout << endl << "Number of withdrawls" << setw(22) << withdrawlCounter << endl;
-	int	i = 0;
-	while (recievewithdrawlAmmount(i) > 0)
+	for (int i = 0; i < withdrawlAmmounts.size(); i++)
 	{
-		cout << "Withdrawl #" << i + 1 << setw(20) << "Ammount Withdrawed $" << recievewithdrawlAmmount(i);
-		i++;
-	} 
+		cout << "Withdrawl #" << i + 1 << setw(20) << "Ammount withdrawn $" << withdrawlAmmounts[i];
+
+	}
 }
 
 void Account::displaytransfers()
 {
+	
 	cout << "____________________________________________________________________________________________________________________________________________\n";
 	cout << endl << "Number of transfers" << setw(22) << transferCount << endl;
-	int	i = 0;
-	while (recieveTransferAmmount(i) > 0)
+	for (int i = 0; i < transferAmmounts.size(); i++)
 	{
-		cout << "Transfer #" << i + 1 << setw(20) << "Ammount Transfered $" << recieveTransferAmmount(i);
-		i++;
+		cout << "Transfer #" << i + 1 << setw(20) << "Ammount Transfered $" << transferAmmounts[i];
+
 	}
 }
 
 void Account::displayAllTransactions()
 {
+	system("cls");
 	displayDeposits();
 	displayWithdrawls();
 	displaytransfers();

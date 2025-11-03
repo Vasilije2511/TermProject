@@ -16,9 +16,9 @@ class Account
 	double totalDeposits=0;
 	double totaltransfers = 0;
 	
-	vector<double> transferAmmounts(50,0);
-	vector<double> depositAmmounts(50, 0);
-	vector<double> withdrawlAmmounts(50, 0);
+	vector<double> transferAmmounts;
+	vector<double> depositAmmounts;
+	vector<double> withdrawlAmmounts;
 	 
 
 
