@@ -66,7 +66,7 @@ public:
 	void displayDeposits();
 
 	void displayWithdrawls();
-	void displaytransfers()
+	void displaytransfers();
 
 };
 
