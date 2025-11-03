@@ -16,12 +16,7 @@ Account::Account()
 Account::Account( Customer *_accountCustomer, int _id, double _balance)
 {
 	Account::setAll( _accountCustomer, _id, _balance);
-	for (int i = 0; i < 50; i++)
-	{
-		depositAmmounts[i] = 0;
-		transferAmmounts[i] = 0;
-		withdrawlAmmounts[i] = 0;
-	}
+
 
 
 }

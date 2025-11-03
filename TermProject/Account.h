@@ -2,7 +2,7 @@
 #ifndef ACCOUNT
 #define ACCOUNT
 #include "Customer.h"
-
+#include <vector>
 
 class Account
 {
@@ -11,14 +11,15 @@ class Account
 	Customer *accountCustomer;
 	// for transaction history 
 	int transferCount = 0;
+
 	double totalWitdrawl=0;
 	double totalDeposits=0;
 	double totaltransfers = 0;
 	
-	double transferAmmounts[50];
-	double depositAmmounts[50];
-	double withdrawlAmmounts[50];
-
+	vector<double> transferAmmounts(50,0);
+	vector<double> depositAmmounts(50, 0);
+	vector<double> withdrawlAmmounts(50, 0);
+	 
 
 
 public:
