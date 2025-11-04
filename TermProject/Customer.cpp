@@ -68,6 +68,7 @@ using namespace std;
 	}
 	void Customer:: printInfo()
 	{
+
 		cout << setw(15) << "First Name:" << setw(15) << "Last Name" << setw(25) << "Address" << setw(15) << "Phone #" << setw(15) << "Email" << endl;
 		cout << setw(15) << fname << setw(15) << lname << setw(25) << address << setw(15) << phone << setw(15) << email<<endl;
 	}
