@@ -2,6 +2,7 @@
 #ifndef CUSTOMER
 #define CUSTOMER
 #include <string>
+using namespace std;
 class Customer
 {
 	string fname, lname, address, phone, email;
