@@ -21,25 +21,80 @@ int main()
 	int choice;
 	int accountCounter = 1;
 	char userType;
+	bool flagIntialAccount = false;
 
-	cout << "Are you a new user? (y/n): ";
-	cin >> userType;
 	while (true)
 	{
-		if (tolower(userType) == 'y')
+		// first we need to create an account upon first running the code if not we will get an error
+		//check the flag to decide if we need to creat an initial account to avoid users enter n as the very first option
+		if (flagIntialAccount == false)
+		{
 			showNewUserMenu();
-		else showExistingUserMenu();
-		cout << "Select an option: " << endl;
-		cin >> choice;
-		if (choice == 7)
+			cout << "Select an option: " << endl;
+			cin >> choice;
+			while ((choice > 2 && choice != 7) || choice < 0)
+			{
+				cout << "Error processing request\n";
+				showNewUserMenu();
+				cout << "Select an option: " << endl;
+				cin >> choice;
+			}
+			userType = 'y';
+			flagIntialAccount = true;
+		}
+		else //if there was an inital account made then the user can pick to either be a new user or act as a returning one
+		{
+			cout << "Are you a new user? (y/n): ";
+			cin >> userType;
+			if (tolower(userType) == 'y')
+			{
+				showNewUserMenu();
+				cout << "Select an option: " << endl;
+				cin >> choice;
+				while ((choice > 2 && choice != 7) || choice < 0)
+				{
+					cout << "Error processing request\n";
+					showNewUserMenu();
+					cout << "Select an option: " << endl;
+					cin >> choice;
+				}
+			}
+			else if (tolower(userType) == 'n')
+			{
+				string fname, lname;
+				bool foundname = false;
+				cout << "Enter customer details:" << endl;
+				cout << "First Name: ";
+				cin >> fname;
+				cout << "Last Name: ";
+				cin >> lname;
+				for (int i = 0; i < customers.size(); i++)
+				{
+					if (customers[i].getFname() == fname && customers[i].getLname() == lname) {
+
+						foundname = true;
+					}
+				}
+				if (foundname == true)
+				{
+					showExistingUserMenu();
+					cout << "Select an option: " << endl;
+					cin >> choice;
+				}
+				else
+					cout << "No existing user found\n";
+
+			}
+		}
+
+		if (choice == 7) //breaks the while true loop to exit the program
 			break;
-		if (tolower(userType) == 'y' && choice > 2)
-			cout << "Please create an account first." << endl;
 		switch (choice)
 		{
 		case 1: // creating checking account
 		{
-			if (tolower(userType) == 'n') {
+			if (tolower(userType) == 'y') //i found the error here you had n instead of y so i fixed it 
+			{
 				// New user - create new customer and account
 				string fname, lname, address, phone, email;
 				double balance, overdraftLimit;
@@ -182,6 +237,7 @@ int main()
 			{
 				if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
 					checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
+					cout << "_____________________________________________________________________________________________________________________\n";
 					cout << "Checking Account Information:" << endl;
 					cout << "Account ID: " << checkingAccounts[i].getID() << endl;
 					cout << "Balance: $" << fixed << setprecision(2) << checkingAccounts[i].getBalance() << endl;
@@ -195,6 +251,8 @@ int main()
 			for (int i = 0; i < savingAccounts.size(); i++) {
 				if (savingAccounts[i].getAccountCustomer()->getFname() == fname &&
 					savingAccounts[i].getAccountCustomer()->getLname() == lname) {
+					cout << "_____________________________________________________________________________________________________________________\n";
+
 					cout << "Saving Account Information:" << endl;
 					cout << "Account ID: " << savingAccounts[i].getID() << endl;
 					cout << "Balance: $" << fixed << setprecision(2) << savingAccounts[i].getBalance() << endl;
@@ -264,6 +322,10 @@ int main()
 							checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
 							checkingAccounts.erase(checkingAccounts.begin() + i);//this is erase function and it needs v.begin()+index
 							cout << "Checking account deleted!" << endl;
+							cout << "Do you want to delete saving acount(2) or exit (4)" << endl;
+							cout << "Enter your option (2 or 4): ";
+							cin >> opt;
+
 						}
 					}
 				}
@@ -273,6 +335,9 @@ int main()
 							savingAccounts[i].getAccountCustomer()->getLname() == lname) {
 							savingAccounts.erase(savingAccounts.begin() + i);
 							cout << "Saving account deleted! " << endl;
+							cout << "Do you want to delete checking account(1) or exit (4)" << endl;
+							cout << "Enter your option (1 or 4): ";
+							cin >> opt;
 						}
 					}
 				else if (opt == 3)
@@ -293,6 +358,7 @@ int main()
 							cout << "Saving account deleted! " << endl;
 						}
 					}
+					break; //need to exit the loop since all accounts are deleted
 				}
 			} while (opt < 4 && opt>0);
 		}
