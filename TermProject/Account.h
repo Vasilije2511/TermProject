@@ -3,6 +3,7 @@
 #define ACCOUNT
 #include "Customer.h"
 #include <vector>
+using namespace std;
 
 class Account
 {
