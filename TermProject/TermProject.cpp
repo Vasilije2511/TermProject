@@ -34,7 +34,7 @@ int main()
 		if (choice == 7)
 			break;
 		if (tolower(userType) == 'y' && choice > 2)
-			cout << "Please create an accoutnt first." << endl;
+			cout << "Please create an account first." << endl;
 		switch (choice)
 		{
 		case 1: // creating checking account
