@@ -94,6 +94,8 @@ int main()
 		{
 		case 1: // creating checking account
 		{
+			system("cls");
+			cout << "  -----Creating checking account-----"<<endl;
 			if (tolower(userType) == 'y') //i found the error here you had n instead of y so i fixed it 
 			{
 				// New user - create new customer and account
@@ -124,9 +126,12 @@ int main()
 
 				cout << "Checking account created successfully! Account ID: " << accountCounter - 1 << endl;
 				userType = 'n'; // Convert to existing user
+				system("pause");
+				system("cls");
 			}
 			else {
 
+				system("cls");
 
 				Customer* existingCustomer = nullptr;
 
@@ -146,6 +151,8 @@ int main()
 				if (existingCustomer) {//so if it is nullptr still this wont execute
 					// Create additional account for existing customer
 					double balance, overdraftLimit;
+					cout << "  -----Creating new checking account-----" << endl;
+
 					cout << "Initial Balance for new account: ";
 					cin >> balance;
 					cout << "Overdraft Limit for new account: ";
