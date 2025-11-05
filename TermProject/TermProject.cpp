@@ -29,7 +29,7 @@ int main()
 		if (tolower(userType) == 'y')
 			showNewUserMenu();
 		else showExistingUserMenu();
-		cout << "Selsect an option: " << endl;
+		cout << "Select an option: " << endl;
 		cin >> choice;
 		if (choice == 7)
 			break;
