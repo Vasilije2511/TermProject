@@ -17,7 +17,8 @@ int main()
 {
 	vector<CheckingAccount> checkingAccounts;
 	vector<SavingAccount> savingAccounts;
-	vector<Customer> customers;
+	vector<Customer> customers;	
+	//vector<unique_ptr<Customer>>customers;
 	int choice;
 	int accountCounter = 1;
 	char userType;
@@ -376,14 +377,14 @@ int main()
 }
 
 void showNewUserMenu() {
-	cout << endl<<"=== New User Menu ==="<<endl;
-	cout << "1: Create a checking account"<<endl;
-	cout << "2: Create a saving account"<<endl;
-	cout << "7: Exit Program"<<endl;
+	cout << endl << "=== New User Menu ===" << endl;
+	cout << "1: Create a checking account" << endl;
+	cout << "2: Create a saving account" << endl;
+	cout << "7: Exit Program" << endl;
 }
 
 void showExistingUserMenu() {
-	cout << endl<<"=== Banking System Menu ==="<<endl;
+	cout << endl << "=== Banking System Menu ===" << endl;
 	cout << "1: Create a checking account\n";
 	cout << "2: Create a saving account\n";
 	cout << "3: View account information\n";

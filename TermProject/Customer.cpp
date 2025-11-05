@@ -27,7 +27,7 @@ using namespace std;
 	}
 	void Customer::setAddress(string _address)
 	{
-		address + _address;
+		address = _address;
 
 	}
 	void Customer::setPhone(string _phone)
