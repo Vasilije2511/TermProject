@@ -55,6 +55,7 @@ int main()
 		{
 			cout << "Are you a new user? (y/n): ";
 			cin >> userType;
+			system("cls");
 			if (tolower(userType) == 'y')
 			{
 				showNewUserMenu();
@@ -137,41 +138,39 @@ int main()
 				system("cls");
 			}
 			else {
-
 				system("cls");
-
 				Customer* existingCustomer = nullptr;
 
-				string fname, lname;
+				/*string fname, lname;
 				cout << "Enter First Name: ";
 				cin >> fname;
 				cout << "Enter Last Name: ";
-				cin >> lname;
+				cin >> lname;*/
 
-				for (int i = 0; i < customers.size(); i++)
-				{
+				for (int i = 0; i < customers.size(); i++) {
 					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
 						existingCustomer = customers[i].get();
+						//cout << "Existing customer found!"<<endl<<endl;
+						cout << "Customer Information:"<<endl;
+						existingCustomer->printInfo();
+						cout << "\nCreating new checking account for existing customer...\n";
+
+						cout << "Initial Balance for new account: ";
+						cin >> balance;
+						cout << "Overdraft Limit for new account: ";
+						cin >> overdraftLimit;
+
+						newAccount.setAll(accountCounter++, balance, overdraftLimit, existingCustomer);
+						checkingAccounts.push_back(newAccount);
+
+						cout << "\nAdditional checking account created successfully!\n";
+						cout << "Account ID: " << accountCounter - 1 << endl;
+						system("pause");
+						system("cls");
 						break;
 					}
 				}
-				if (existingCustomer!=nullptr) {//so if it is nullptr still this wont execute
-					// Create additional account for existing customer
-					cout << "  -----Creating new checking account-----" << endl;
-
-					cout << "Initial Balance for new account: ";
-					cin >> balance;
-					cout << "Overdraft Limit for new account: ";
-					cin >> overdraftLimit;
-
-					newAccount.setAll(accountCounter++, balance, overdraftLimit, existingCustomer);
-					checkingAccounts.push_back(newAccount);
-
-					cout << "Additional checking account created successfully! Account ID: " << accountCounter - 1 << endl;
-					cout << "Account linked to customer: " << existingCustomer->getFname() << " "
-						<< existingCustomer->getLname() << endl;
-				}
-				else {
+				if (existingCustomer == nullptr) {
 					cout << "Customer not found! Please try again or create a new customer profile." << endl;
 				}
 			}
@@ -206,32 +205,44 @@ int main()
 
 				cout << "Saving account created successfully! Account ID: " << accountCounter - 1 << endl;
 				userType = 'n';
+				system("pause");
+				system("cls");
 			}
 			else {
-				string fname, lname;
+				/*string fname, lname;
 				cout << "Enter first name: ";
 				cin >> fname;
 				cout << "Enter last name: ";
-				cin >> lname;
-				Customer* existingCustomer = nullptr;
-				for (int i = 0; i < customers.size(); i++)
-				{
-					if (fname == customers[i]->getFname() && lname == customers[i]->getLname())
-						existingCustomer = customers[i].get();
-				}
-				if (existingCustomer) {
-					double balance, interestRate;
-					cout << "Initial Balance for new account: ";
-					cin >> balance;
-					cout << "Interest Rate (%): ";
-					cin >> interestRate;
-					 SavingAccount newAccount(accountCounter++, balance, interestRate, existingCustomer);
-					savingAccounts.push_back(newAccount);
+				cin >> lname;*/
 
-					cout << "Additional savings account created successfully! Account ID: " << accountCounter - 1 << endl;
+				Customer* existingCustomer = nullptr;
+				for (int i = 0; i < customers.size(); i++) {
+					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
+						existingCustomer = customers[i].get();
+					//	cout << "\nExisting customer found!\n";
+						cout << "Customer Information:\n";
+						existingCustomer->printInfo();
+						cout << "\nCreating new savings account for existing customer...\n";
+
+						cout << "Initial Balance for new account: ";
+						cin >> balance;
+						cout << "Interest Rate (%): ";
+						cin >> interestRate;
+
+						SavingAccount newAccount(accountCounter++, balance, interestRate, existingCustomer);
+						savingAccounts.push_back(newAccount);
+
+						cout << "\nAdditional savings account created successfully!\n";
+						cout << "Account ID: " << accountCounter - 1 << endl;
+						system("pause");
+						system("cls");
+						break;
+					}
 				}
-				else {
+				if (existingCustomer == nullptr) {
 					cout << "Customer not found! Please create a new account as a new user." << endl;
+					system("pause");
+					system("cls");
 				}
 			}
 			break;
@@ -239,11 +250,11 @@ int main()
 		}
 		case 3://view account information
 		{
-			string fname, lname;
+			/*string fname, lname;
 			cout << "Enter first name: ";
 			cin >> fname;
 			cout << "Enter last name: ";
-			cin >> lname;
+			cin >> lname;*/
 			bool found = false;
 			cout << "Accounts for " << fname << " " << lname << ": " << endl;
 			for (int i = 0; i < checkingAccounts.size(); i++)
@@ -251,12 +262,15 @@ int main()
 				if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
 					checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
 					cout << "_____________________________________________________________________________________________________________________\n";
+					
+					checkingAccounts[i].getAccountCustomer()->printInfo();
+					found = true;
 					cout << "Checking Account Information:" << endl;
 					cout << "Account ID: " << checkingAccounts[i].getID() << endl;
 					cout << "Balance: $" << fixed << setprecision(2) << checkingAccounts[i].getBalance() << endl;
 					cout << "Overdraft Limit: $" << checkingAccounts[i].getOverDraftLimit() << endl;
-					checkingAccounts[i].getAccountCustomer()->printInfo();
-					found = true;
+					system("pause");
+					system("cls");
 				}
 			}
 
@@ -264,13 +278,12 @@ int main()
 			for (int i = 0; i < savingAccounts.size(); i++) {
 				if (savingAccounts[i].getAccountCustomer()->getFname() == fname &&
 					savingAccounts[i].getAccountCustomer()->getLname() == lname) {
-					cout << "_____________________________________________________________________________________________________________________\n";
-
+					cout << "_____________________________________________________________________________________________________________________\n";	
+					savingAccounts[i].getAccountCustomer()->printInfo();
 					cout << "Saving Account Information:" << endl;
 					cout << "Account ID: " << savingAccounts[i].getID() << endl;
 					cout << "Balance: $" << fixed << setprecision(2) << savingAccounts[i].getBalance() << endl;
 					cout << "Interest Rate: " << savingAccounts[i].getInterestRate() << "%" << endl;
-					savingAccounts[i].getAccountCustomer()->printInfo();
 					found = true;
 				}
 			}
@@ -282,11 +295,11 @@ int main()
 		}
 		case 4://modify acc
 		{
-			string fname, lname;
+			/*string fname, lname;
 			cout << "Enter first name: ";
 			cin >> fname;
 			cout << "Enter last name: ";
-			cin >> lname;
+			cin >> lname;*/
 			bool found = false;
 			for (int i = 0; i < customers.size(); i++)
 			{
@@ -304,25 +317,29 @@ int main()
 					customers[i]->setAll(fname, lname, newAddress, newPhone, newEmail);
 					cout << "Customer information updated successfully!" << endl;
 					found = true;
+					system("pause");
+					system("cls");
 					break;
 				}
 			}
 
 			if (!found) {
 				cout << "Customer not found!" << endl;
+				system("pause");
+				system("cls");
 			}
 			break;
 		}
 		case 5: //delete acc
 		{
-			string fname, lname;
+			//string fname, lname;
 			int opt;
 
-			cout << "Enter first name: ";
+			/*cout << "Enter first name: ";
 			cin >> fname;
 			cout << "Enter last name: ";
 			cin >> lname;
-			bool found = false;
+			bool found = false;*/
 			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3)? " << endl;
 			do {
 				cout << "Enter your option (1 or 2 or 3): ";
@@ -371,6 +388,9 @@ int main()
 							cout << "Saving account deleted! " << endl;
 						}
 					}
+					cout << "All accounts have been deleted!" << endl;
+					system("pause");
+					system("cls");
 					break; //need to exit the loop since all accounts are deleted
 				}
 			} while (opt < 4 && opt>0);
