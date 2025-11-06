@@ -127,8 +127,10 @@ int main()
 				cin >> overdraftLimit;
 				
 				Customer* newCustomer = new Customer(fname, lname, address, phone, email);
-			
+				//newCustomer.setAll(fname, lname, address, phone, email);
+				//customers.push_back(newCustomer);
 				customers.push_back(*newCustomer);
+				//newAccount.setAll(accountCounter, balance, overdraftLimit, &newCustomer);//back just gets last user form customers
 				CheckingAccount* checkingAccount = new CheckingAccount(accountCounter++, balance, overdraftLimit, *&newCustomer);
 
 				checkingAccounts.push_back(*checkingAccount);
@@ -137,7 +139,6 @@ int main()
 				userType = 'n'; // Convert to existing user
 				system("pause");
 				system("cls");
-			
 			}
 			else {
 				system("cls");
@@ -181,6 +182,7 @@ int main()
 		case 2://create saving acc
 		{
 			if (tolower(userType) == 'y') {
+
 
 				cout << "Enter customer details:" << endl;
 				cout << "First Name: ";
@@ -233,8 +235,8 @@ int main()
 						cout << "Interest Rate (%): ";
 						cin >> interestRate;
 
-						SavingAccount *newAccount = new SavingAccount(accountCounter++, balance, interestRate, existingCustomer);
-						savingAccounts.push_back(*newAccount);
+						SavingAccount newAccount(accountCounter++, balance, interestRate, existingCustomer);
+						savingAccounts.push_back(newAccount);
 
 						cout << "\nAdditional savings account created successfully!\n";
 						cout << "Account ID: " << accountCounter - 1 << endl;
@@ -273,7 +275,7 @@ int main()
 					cout << "Account ID: " << checkingAccounts[i].getID() << endl;
 					cout << "Balance: $" << fixed << setprecision(2) << checkingAccounts[i].getBalance() << endl;
 					cout << "Overdraft Limit: $" << checkingAccounts[i].getOverDraftLimit() << endl;
-				
+					
 				}
 			}
 
@@ -294,8 +296,6 @@ int main()
 			if (!found) {
 				cout << "No accounts found for this customer." << endl;
 			}
-			system("pause");
-			system("cls");
 			break;
 		}
 		case 4://modify acc
