@@ -281,9 +281,9 @@ int main()
 					found = true;
 					cout << "_____________________________________________________________________________________________________________________\n";
 					cout << "Checking Account Information:" << endl;
-					cout << setw(15) << "Account ID: " << setw(5) << checkingAccounts[i].getID() << setw(15);
-					cout << "Balance: $"  << fixed << setprecision(2) << setw(6) << checkingAccounts[i].getBalance() << setw(15);
-					cout << "Overdraft Limit: $" << setw(6)<< checkingAccounts[i].getOverDraftLimit() << endl;
+					cout << setw(15) << "Account ID: " << setw(5) << checkingAccounts[i].getID() << setw(10);
+					cout << "Balance: $"  << fixed << setprecision(2) << setw(10) << checkingAccounts[i].getBalance() << setw(17);
+					cout << "Overdraft Limit: $" << setw(5)<< checkingAccounts[i].getOverDraftLimit() << endl;
 					
 				}
 			}
@@ -292,10 +292,11 @@ int main()
 			for (int i = 0; i < savingAccounts.size(); i++) {
 				if (savingAccounts[i].getAccountCustomer()->getFname() == fname &&
 					savingAccounts[i].getAccountCustomer()->getLname() == lname) {
-					
+					cout << "_____________________________________________________________________________________________________________________\n";
+
 					cout  << "Saving Account Information:" << endl;
 					cout << setw(15)<< "Account ID: " << setw(5) << savingAccounts[i].getID() << setw(10)  ;
-					cout << "Balance: $" << fixed << setprecision(2) << setw(6) << savingAccounts[i].getBalance() << setw(15);
+					cout << "Balance: $" << fixed << setprecision(2) << setw(10) << savingAccounts[i].getBalance() << setw(17);
 					cout << "Interest Rate: " << setw(5) << savingAccounts[i].getInterestRate() << "%" << endl;
 					found = true;
 				}
