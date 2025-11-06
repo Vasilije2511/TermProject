@@ -15,8 +15,7 @@ void showExistingUserMenu();
 
 int main()
 {
-	Customer newCustomer;
-	CheckingAccount newAccount;
+	
 
 
 	vector<CheckingAccount> checkingAccounts;
@@ -299,7 +298,7 @@ int main()
 			}
 			break;
 		}
-		case 4://modify acc
+		case 4://modify acc    //DOES NOT WORK CURRENTLY WONT UPDATE VALS 
 		{
 			/*string fname, lname;
 			cout << "Enter first name: ";
@@ -319,8 +318,8 @@ int main()
 					cin >> newPhone;
 					cout << "Enter new email: ";
 					cin >> newEmail;
+					customers[i].setAll(fname,lname, newAddress, newPhone, newEmail);
 
-					customers[i].setAll(fname, lname, newAddress, newPhone, newEmail);
 					cout << "Customer information updated successfully!" << endl;
 					found = true;
 					system("pause");
