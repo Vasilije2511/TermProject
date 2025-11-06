@@ -20,7 +20,7 @@ int main()
 
 	vector<CheckingAccount> checkingAccounts;
 	vector<SavingAccount> savingAccounts;
-	vector<Customer> customers;
+	vector<Customer*> customers;
 	//vector<unique_ptr<Customer>>customers;
 	int choice;
 	int accountCounter = 1;
@@ -79,7 +79,7 @@ int main()
 				cin >> lname;
 				for (int i = 0; i < customers.size(); i++)
 				{
-					if (customers[i].getFname() == fname && customers[i].getLname() == lname) {
+					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
 
 						foundname = true;
 					}
@@ -128,7 +128,7 @@ int main()
 				Customer* newCustomer = new Customer(fname, lname, address, phone, email);
 				//newCustomer.setAll(fname, lname, address, phone, email);
 				//customers.push_back(newCustomer);
-				customers.push_back(*newCustomer);
+				customers.push_back(newCustomer);
 				//newAccount.setAll(accountCounter, balance, overdraftLimit, &newCustomer);//back just gets last user form customers
 				CheckingAccount* checkingAccount = new CheckingAccount(accountCounter++, balance, overdraftLimit, *&newCustomer);
 
@@ -150,8 +150,8 @@ int main()
 				cin >> lname;*/
 
 				for (int i = 0; i < customers.size(); i++) {
-					if (customers[i].getFname() == fname && customers[i].getLname() == lname) {
-						existingCustomer = &customers[i];
+					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
+						existingCustomer = customers[i];
 						//cout << "Existing customer found!"<<endl<<endl;
 						cout << "Customer Information:"<<endl;
 						existingCustomer->printInfo();
@@ -202,7 +202,7 @@ int main()
 				cin >> interestRate;
 
 				Customer* newCustomer = new Customer(fname, lname, address, phone, email);
-				customers.push_back(*newCustomer);
+				customers.push_back(newCustomer);
 
 				//customers.push_back(newCustomer);
 				 //SavingAccount newAccount(accountCounter++, balance, interestRate, &customers.back());
@@ -223,8 +223,8 @@ int main()
 
 				Customer* existingCustomer = nullptr;
 				for (int i = 0; i < customers.size(); i++) {
-					if (customers[i].getFname() == fname && customers[i].getLname() == lname) {
-						existingCustomer = &customers[i];
+					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
+						existingCustomer = customers[i];
 					//	cout << "\nExisting customer found!\n";
 						cout << "Customer Information:\n";
 						existingCustomer->printInfo();
@@ -266,15 +266,24 @@ int main()
 			for (int i = 0; i < checkingAccounts.size(); i++)
 			{
 				if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
-					checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
+					checkingAccounts[i].getAccountCustomer()->getLname() == lname ||
+					savingAccounts[i].getAccountCustomer()->getFname() == fname &&
+					savingAccounts[i].getAccountCustomer()->getLname() == lname)
+				{
 					cout << "_____________________________________________________________________________________________________________________\n";
-					
+
 					checkingAccounts[i].getAccountCustomer()->printInfo();
+				}
+
+				if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
+					checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
+					
 					found = true;
+					cout << "_____________________________________________________________________________________________________________________\n";
 					cout << "Checking Account Information:" << endl;
-					cout << "Account ID: " << checkingAccounts[i].getID() << endl;
-					cout << "Balance: $" << fixed << setprecision(2) << checkingAccounts[i].getBalance() << endl;
-					cout << "Overdraft Limit: $" << checkingAccounts[i].getOverDraftLimit() << endl;
+					cout << setw(15) << "Account ID: " << setw(5) << checkingAccounts[i].getID() << setw(15);
+					cout << "Balance: $"  << fixed << setprecision(2) << setw(6) << checkingAccounts[i].getBalance() << setw(15);
+					cout << "Overdraft Limit: $" << setw(6)<< checkingAccounts[i].getOverDraftLimit() << endl;
 					
 				}
 			}
@@ -283,12 +292,11 @@ int main()
 			for (int i = 0; i < savingAccounts.size(); i++) {
 				if (savingAccounts[i].getAccountCustomer()->getFname() == fname &&
 					savingAccounts[i].getAccountCustomer()->getLname() == lname) {
-					cout << "_____________________________________________________________________________________________________________________\n";	
-					savingAccounts[i].getAccountCustomer()->printInfo();
-					cout << "Saving Account Information:" << endl;
-					cout << "Account ID: " << savingAccounts[i].getID() << endl;
-					cout << "Balance: $" << fixed << setprecision(2) << savingAccounts[i].getBalance() << endl;
-					cout << "Interest Rate: " << savingAccounts[i].getInterestRate() << "%" << endl;
+					
+					cout  << "Saving Account Information:" << endl;
+					cout << setw(15)<< "Account ID: " << setw(5) << savingAccounts[i].getID() << setw(10)  ;
+					cout << "Balance: $" << fixed << setprecision(2) << setw(6) << savingAccounts[i].getBalance() << setw(15);
+					cout << "Interest Rate: " << setw(5) << savingAccounts[i].getInterestRate() << "%" << endl;
 					found = true;
 				}
 			}
@@ -308,7 +316,7 @@ int main()
 			bool found = false;
 			for (int i = 0; i < customers.size(); i++)
 			{
-				if (fname == customers[i].getFname() && lname == customers[i].getLname())
+				if (fname == customers[i]->getFname() && lname == customers[i]->getLname())
 				{
 					string newAddress, newPhone, newEmail;
 					cout << "Enter new address: ";
@@ -318,7 +326,7 @@ int main()
 					cin >> newPhone;
 					cout << "Enter new email: ";
 					cin >> newEmail;
-					customers[i].setAll(fname,lname, newAddress, newPhone, newEmail);
+					customers[i]->setAll(fname,lname, newAddress, newPhone, newEmail);
 
 					cout << "Customer information updated successfully!" << endl;
 					found = true;
