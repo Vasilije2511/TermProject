@@ -163,9 +163,10 @@ int main()
 						cout << "Overdraft Limit for new account: ";
 						cin >> overdraftLimit;
 
-						newAccount.setAll(accountCounter++, balance, overdraftLimit, existingCustomer);
-						checkingAccounts.push_back(newAccount);
+						CheckingAccount* checkingAccount = new CheckingAccount(accountCounter++, balance, overdraftLimit, existingCustomer);
+						checkingAccounts.push_back(*checkingAccount);
 
+						
 						cout << "\nAdditional checking account created successfully!\n";
 						cout << "Account ID: " << accountCounter - 1 << endl;
 						system("pause");
@@ -235,8 +236,8 @@ int main()
 						cout << "Interest Rate (%): ";
 						cin >> interestRate;
 
-						SavingAccount newAccount(accountCounter++, balance, interestRate, existingCustomer);
-						savingAccounts.push_back(newAccount);
+						SavingAccount* savingsAccount = new SavingAccount(accountCounter++, balance, interestRate, existingCustomer);
+						savingAccounts.push_back(*savingsAccount);
 
 						cout << "\nAdditional savings account created successfully!\n";
 						cout << "Account ID: " << accountCounter - 1 << endl;
