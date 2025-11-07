@@ -312,14 +312,9 @@ int main()
 		}
 		case 5: //delete acc
 		{
-			//string fname, lname;
 			int opt;
 
-			/*cout << "Enter first name: ";
-			cin >> fname;
-			cout << "Enter last name: ";
-			cin >> lname;
-			bool found = false;*/
+		
 
 			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3)? " << endl;
 			do {
@@ -385,12 +380,12 @@ int main()
 		}
 	}
 }
-void displayAccountInfo(string fname, string lname, const vector<CheckingAccount> & checkingAccounts, const vector<SavingAccount> &savingAccounts, int size)
+void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts, int size)
 {
 
 	bool found = false;
 	cout << "Accounts for " << fname << " " << lname << ": " << endl;
-	for (int i = 0; i < checkingAccounts.size()+savingAccounts.size(); i++)
+	for (int i = 0; i < checkingAccounts.size() + savingAccounts.size(); i++)
 	{
 		/*if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
 			checkingAccounts[i].getAccountCustomer()->getLname() == lname ||
@@ -401,7 +396,7 @@ void displayAccountInfo(string fname, string lname, const vector<CheckingAccount
 
 		}*/
 
-		if (i< checkingAccounts.size()&&checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
+		if (i < checkingAccounts.size() && checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
 			checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
 			if (!found)
 			{
@@ -415,7 +410,7 @@ void displayAccountInfo(string fname, string lname, const vector<CheckingAccount
 			cout << "Overdraft Limit: $" << setw(5) << checkingAccounts[i].getOverDraftLimit() << endl;
 
 		}
-		if (i<savingAccounts.size()&&savingAccounts[i].getAccountCustomer()->getFname() == fname &&
+		if (i < savingAccounts.size() && savingAccounts[i].getAccountCustomer()->getFname() == fname &&
 			savingAccounts[i].getAccountCustomer()->getLname() == lname)
 		{
 			cout << "_____________________________________________________________________________________________________________________\n";
@@ -431,10 +426,11 @@ void displayAccountInfo(string fname, string lname, const vector<CheckingAccount
 			found = true;
 		}
 	}
-		if (!found) {
-			cout << "No accounts found for this customer." << endl;
-		}
+	if (!found) {
+		cout << "No accounts found for this customer." << endl;
+	}
 }
+
 
 void showNewUserMenu() 
 {
