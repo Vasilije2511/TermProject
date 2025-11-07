@@ -375,7 +375,30 @@ int main()
 		}
 		case 6: //transfer money
 		{
-			
+			int sourceAccountId, destAccountId;
+			double transferAmount;
+			bool accountsFound = false;
+
+			// Display all accounts for the customer using existing function
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, checkingAccounts.size());
+
+			// Check if customer has at least one account
+			for (int i = 0; i < checkingAccounts.size(); i++) {
+				if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
+					checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
+					accountsFound = true;
+					break;
+				}
+			}
+			if (!accountsFound) {
+				for (int i = 0; i < savingAccounts.size(); i++) {
+					if (savingAccounts[i].getAccountCustomer()->getFname() == fname &&
+						savingAccounts[i].getAccountCustomer()->getLname() == lname) {
+						accountsFound = true;
+						break;
+					}
+				}
+			}
 		}
 		
 		return 0;
