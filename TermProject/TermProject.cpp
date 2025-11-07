@@ -403,7 +403,7 @@ int main()
 			bool accountsFound = false;
 
 			// Display all accounts for the customer using existing function
-			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, checkingAccounts.size());
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
 
 			// Check if customer has at least one account
 			for (int i = 0; i < checkingAccounts.size(); i++) {
