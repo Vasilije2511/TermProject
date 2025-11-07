@@ -314,7 +314,7 @@ int main()
 		{
 			int opt;
 
-			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, checkingAccounts.size());
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
 			cout << endl;
 
 			if(checkingAccounts.size() == 0 && savingAccounts.size() == 0)
