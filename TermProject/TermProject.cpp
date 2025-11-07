@@ -11,7 +11,7 @@ using namespace std;
 
 void showNewUserMenu();
 void showExistingUserMenu();
-void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts, int size);
+void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts);
 
 
 int main()
@@ -314,8 +314,17 @@ int main()
 		{
 			int opt;
 
-			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, checkingAccounts.size());	
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, checkingAccounts.size());
+			cout << endl;
 
+			if(checkingAccounts.size() == 0 && savingAccounts.size() == 0)
+			{
+				cout << "No accounts to delete for this customer." << endl;
+				system("pause");
+				system("cls");
+				break;
+			}	
+			if()
 
 
 			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3)? " << endl;
@@ -382,7 +391,7 @@ int main()
 		}
 	}
 }
-void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts, int size)
+void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts)
 {
 
 	bool found = false;
