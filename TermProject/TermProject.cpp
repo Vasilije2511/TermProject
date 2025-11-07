@@ -264,7 +264,7 @@ int main()
 			cin >> lname;*/
 			int size = checkingAccounts.size();
 			
-			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, size);
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
 
 			
 
@@ -327,12 +327,11 @@ int main()
 			else if(checkingAccounts.size() == 0&& savingAccounts.size() > 0)
 			{
 				cout << "Only saving accounts available to delete." << endl;
-				opt = 2; // Directly set to delete saving account
+				
 			}
 			else if(savingAccounts.size() == 0&& checkingAccounts.size()>0)
 			{
 				cout << "Only checking accounts available to delete." << endl;
-				opt = 1; // Directly set to delete checking account
 			}
 			else
 			{
@@ -341,7 +340,7 @@ int main()
 			
 
 
-			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3)? " << endl;
+			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3) or exit (4)? " << endl;
 			do {
 				cout << "Enter your option (1 or 2 or 3): ";
 				cin >> opt;
