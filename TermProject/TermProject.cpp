@@ -393,6 +393,17 @@ int main()
 					system("cls");
 					break; //need to exit the loop since all accounts are deleted
 				}
+				else if(opt== 4)
+				{
+					cout << "Exiting account deletion menu." << endl;
+					system("pause");
+					system("cls");
+					break;
+				}
+				else
+				{
+					cout << "Invalid option. Please try again." << endl;
+				}
 			} while (opt < 4 && opt>0);
 		}
 		case 6: //transfer money
