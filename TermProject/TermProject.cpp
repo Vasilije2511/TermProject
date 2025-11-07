@@ -16,13 +16,9 @@ void displayAccountInfo(string fname, string lname, const vector<CheckingAccount
 
 int main()
 {
-	
-
-
 	vector<CheckingAccount> checkingAccounts;
 	vector<SavingAccount> savingAccounts;
 	vector<Customer*> customers;
-	//vector<unique_ptr<Customer>>customers;
 	int choice;
 	int accountCounter = 1;
 	char userType;
@@ -71,7 +67,6 @@ int main()
 			}
 			else if (tolower(userType) == 'n')
 			{
-
 				bool foundname = false;
 				cout << "Enter customer details:" << endl;
 				cout << "First Name: ";
@@ -93,10 +88,8 @@ int main()
 				}
 				else
 					cout << "No existing user found\n";
-
 			}
 		}
-
 		if (choice == 7) //breaks the while true loop to exit the program
 			break;
 		switch (choice)
@@ -127,10 +120,7 @@ int main()
 				cin >> overdraftLimit;
 				
 				Customer* newCustomer = new Customer(fname, lname, address, phone, email);
-				//newCustomer.setAll(fname, lname, address, phone, email);
-				//customers.push_back(newCustomer);
 				customers.push_back(newCustomer);
-				//newAccount.setAll(accountCounter, balance, overdraftLimit, &newCustomer);//back just gets last user form customers
 				CheckingAccount* checkingAccount = new CheckingAccount(accountCounter++, balance, overdraftLimit, *&newCustomer);
 
 				checkingAccounts.push_back(*checkingAccount);
@@ -143,20 +133,13 @@ int main()
 			else {
 				system("cls");
 				Customer* existingCustomer = nullptr;
-
-				/*string fname, lname;
-				cout << "Enter First Name: ";
-				cin >> fname;
-				cout << "Enter Last Name: ";
-				cin >> lname;*/
-
 				for (int i = 0; i < customers.size(); i++) {
 					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
 						existingCustomer = customers[i];
-						//cout << "Existing customer found!"<<endl<<endl;
+						cout << "\nCreating new checking account for existing customer...\n"<<endl;
+
 						cout << "Customer Information:"<<endl;
 						existingCustomer->printInfo();
-						cout << "\nCreating new checking account for existing customer...\n";
 
 						cout << "Initial Balance for new account: ";
 						cin >> balance;
@@ -182,8 +165,9 @@ int main()
 		}
 		case 2://create saving acc
 		{
+			system("cls");
+			cout << "-----Creating new saving account-----" << endl;
 			if (tolower(userType) == 'y') {
-
 
 				cout << "Enter customer details:" << endl;
 				cout << "First Name: ";
@@ -204,9 +188,6 @@ int main()
 
 				Customer* newCustomer = new Customer(fname, lname, address, phone, email);
 				customers.push_back(newCustomer);
-
-				//customers.push_back(newCustomer);
-				 //SavingAccount newAccount(accountCounter++, balance, interestRate, &customers.back());
 				SavingAccount* savingsAccount = new SavingAccount(accountCounter++, balance, interestRate, *&newCustomer);
 				savingAccounts.push_back(*savingsAccount);
 
@@ -216,12 +197,6 @@ int main()
 				system("cls");
 			}
 			else {
-				/*string fname, lname;
-				cout << "Enter first name: ";
-				cin >> fname;
-				cout << "Enter last name: ";
-				cin >> lname;*/
-
 				Customer* existingCustomer = nullptr;
 				for (int i = 0; i < customers.size(); i++) {
 					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
@@ -253,33 +228,20 @@ int main()
 				}
 			}
 			break;
-
 		}
 		case 3://view account information
 		{
-			/*string fname, lname;
-			cout << "Enter first name: ";
-			cin >> fname;
-			cout << "Enter last name: ";
-			cin >> lname;*/
-			int size = checkingAccounts.size();
-			
-			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
-
-			
-
-			
-
-			
+			system("cls");
+			cout << "-----Viewing account information-----"<<endl;
+			int size = checkingAccounts.size();			
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);			
 			break;
 		}
 		case 4://modify acc    
 		{
-			/*string fname, lname;
-			cout << "Enter first name: ";
-			cin >> fname;
-			cout << "Enter last name: ";
-			cin >> lname;*/
+			
+			system("cls");
+			cout << "-----Modifying account-----"<<endl;
 			bool found = false;
 			for (int i = 0; i < customers.size(); i++)
 			{
@@ -312,6 +274,8 @@ int main()
 		}
 		case 5: //delete acc
 		{
+			system("cls");
+			cout << "-----Deleting account-----" << endl;
 			int opt;
 
 			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
@@ -338,8 +302,6 @@ int main()
 				cout << "error has occured"<<endl;
 			}
 			
-
-
 			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3) or exit (4)? " << endl;
 			do {
 				cout << "Enter your option (1 or 2 or 3): ";
@@ -415,6 +377,7 @@ int main()
 		}
 	}
 }
+
 void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts)
 {
 
