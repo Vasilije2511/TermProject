@@ -422,7 +422,7 @@ void displayAccountInfo(string fname, string lname, const vector<CheckingAccount
 				found = true;
 			}
 			cout << "Saving Account Information:" << endl;
-			cout << setw(15) << "Account ID: " <<left<< setw(5) << savingAccounts[i].getID() << setw(10);
+			cout <<left<< setw(15) << "Account ID: " left<< setw(5) << savingAccounts[i].getID() << setw(10);
 			cout << "Balance: $" << fixed << setprecision(2) << left<<setw(10) << savingAccounts[i].getBalance() << setw(17);
 			cout << "Interest Rate: " << left<<setw(5) << savingAccounts[i].getInterestRate() << "%" << endl;
 			found = true;
