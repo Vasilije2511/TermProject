@@ -314,7 +314,9 @@ int main()
 		{
 			int opt;
 
-		
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, checkingAccounts.size());	
+
+
 
 			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3)? " << endl;
 			do {
@@ -405,9 +407,9 @@ void displayAccountInfo(string fname, string lname, const vector<CheckingAccount
 			}
 			cout << "_____________________________________________________________________________________________________________________\n";
 			cout << "Checking Account Information:" << endl;
-			cout << setw(15) << "Account ID: " << setw(5) << checkingAccounts[i].getID() << setw(10);
-			cout << "Balance: $" << fixed << setprecision(2) << setw(10) << checkingAccounts[i].getBalance() << setw(17);
-			cout << "Overdraft Limit: $" << setw(5) << checkingAccounts[i].getOverDraftLimit() << endl;
+			cout << left<<setw(15) << "Account ID: " << setw(5) << checkingAccounts[i].getID() << setw(10);
+			cout << "Balance: $" << fixed << setprecision(2) <<left<<setw(10) << checkingAccounts[i].getBalance() << setw(17);
+			cout << "Overdraft Limit: $" <<left<< setw(5) << checkingAccounts[i].getOverDraftLimit() << endl;
 
 		}
 		if (i < savingAccounts.size() && savingAccounts[i].getAccountCustomer()->getFname() == fname &&
@@ -420,9 +422,9 @@ void displayAccountInfo(string fname, string lname, const vector<CheckingAccount
 				found = true;
 			}
 			cout << "Saving Account Information:" << endl;
-			cout << setw(15) << "Account ID: " << setw(5) << savingAccounts[i].getID() << setw(10);
-			cout << "Balance: $" << fixed << setprecision(2) << setw(10) << savingAccounts[i].getBalance() << setw(17);
-			cout << "Interest Rate: " << setw(5) << savingAccounts[i].getInterestRate() << "%" << endl;
+			cout << setw(15) << "Account ID: " <<left<< setw(5) << savingAccounts[i].getID() << setw(10);
+			cout << "Balance: $" << fixed << setprecision(2) << left<<setw(10) << savingAccounts[i].getBalance() << setw(17);
+			cout << "Interest Rate: " << left<<setw(5) << savingAccounts[i].getInterestRate() << "%" << endl;
 			found = true;
 		}
 	}
