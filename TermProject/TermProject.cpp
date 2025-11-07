@@ -11,7 +11,7 @@ using namespace std;
 
 void showNewUserMenu();
 void showExistingUserMenu();
-void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts, int size);
+void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts);
 
 
 int main()
@@ -314,8 +314,31 @@ int main()
 		{
 			int opt;
 
-			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, checkingAccounts.size());	
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
+			cout << endl;
 
+			if(checkingAccounts.size() == 0 && savingAccounts.size() == 0)
+			{
+				cout << "No accounts to delete for this customer." << endl;
+				system("pause");
+				system("cls");
+				break;
+			}	
+			else if(checkingAccounts.size() == 0&& savingAccounts.size() > 0)
+			{
+				cout << "Only saving accounts available to delete." << endl;
+				opt = 2; // Directly set to delete saving account
+			}
+			else if(savingAccounts.size() == 0&& checkingAccounts.size()>0)
+			{
+				cout << "Only checking accounts available to delete." << endl;
+				opt = 1; // Directly set to delete checking account
+			}
+			else
+			{
+				cout << "error has occured"<<endl;
+			}
+			
 
 
 			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3)? " << endl;
@@ -405,21 +428,14 @@ int main()
 		}
 	}
 }
-void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts, int size)
+void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts)
 {
 
 	bool found = false;
 	cout << "Accounts for " << fname << " " << lname << ": " << endl;
 	for (int i = 0; i < checkingAccounts.size() + savingAccounts.size(); i++)
 	{
-		/*if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
-			checkingAccounts[i].getAccountCustomer()->getLname() == lname ||
-			savingAccounts[i].getAccountCustomer()->getFname() == fname &&
-			savingAccounts[i].getAccountCustomer()->getLname() == lname)
-		{
-			cout << "_____________________________________________________________________________________________________________________\n";
-
-		}*/
+		
 
 		if (i < checkingAccounts.size() && checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
 			checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
