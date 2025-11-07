@@ -11,6 +11,7 @@ using namespace std;
 
 void showNewUserMenu();
 void showExistingUserMenu();
+void displayAccountInfo(string fname, string lname, const vector<CheckingAccount>& checkingAccounts, const vector<SavingAccount>& savingAccounts, int size);
 
 
 int main()
@@ -261,53 +262,18 @@ int main()
 			cin >> fname;
 			cout << "Enter last name: ";
 			cin >> lname;*/
-			bool found = false;
-			cout << "Accounts for " << fname << " " << lname << ": " << endl;
-			for (int i = 0; i < checkingAccounts.size(); i++)
-			{
-				if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
-					checkingAccounts[i].getAccountCustomer()->getLname() == lname ||
-					savingAccounts[i].getAccountCustomer()->getFname() == fname &&
-					savingAccounts[i].getAccountCustomer()->getLname() == lname)
-				{
-					cout << "_____________________________________________________________________________________________________________________\n";
+			int size = checkingAccounts.size();
+			
+			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts, size);
 
-					checkingAccounts[i].getAccountCustomer()->printInfo();
-				}
+			
 
-				if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
-					checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
-					
-					found = true;
-					cout << "_____________________________________________________________________________________________________________________\n";
-					cout << "Checking Account Information:" << endl;
-					cout << setw(15) << "Account ID: " << setw(5) << checkingAccounts[i].getID() << setw(10);
-					cout << "Balance: $"  << fixed << setprecision(2) << setw(10) << checkingAccounts[i].getBalance() << setw(17);
-					cout << "Overdraft Limit: $" << setw(5)<< checkingAccounts[i].getOverDraftLimit() << endl;
-					
-				}
-			}
+			
 
-			// Check savings accounts
-			for (int i = 0; i < savingAccounts.size(); i++) {
-				if (savingAccounts[i].getAccountCustomer()->getFname() == fname &&
-					savingAccounts[i].getAccountCustomer()->getLname() == lname) {
-					cout << "_____________________________________________________________________________________________________________________\n";
-
-					cout  << "Saving Account Information:" << endl;
-					cout << setw(15)<< "Account ID: " << setw(5) << savingAccounts[i].getID() << setw(10)  ;
-					cout << "Balance: $" << fixed << setprecision(2) << setw(10) << savingAccounts[i].getBalance() << setw(17);
-					cout << "Interest Rate: " << setw(5) << savingAccounts[i].getInterestRate() << "%" << endl;
-					found = true;
-				}
-			}
-
-			if (!found) {
-				cout << "No accounts found for this customer." << endl;
-			}
+			
 			break;
 		}
-		case 4://modify acc    //DOES NOT WORK CURRENTLY WONT UPDATE VALS 
+		case 4://modify acc    
 		{
 			/*string fname, lname;
 			cout << "Enter first name: ";
@@ -354,6 +320,7 @@ int main()
 			cout << "Enter last name: ";
 			cin >> lname;
 			bool found = false;*/
+
 			cout << "Do you want to delete checking account(1), saving acount(2) or all of them(3)? " << endl;
 			do {
 				cout << "Enter your option (1 or 2 or 3): ";
@@ -422,8 +389,53 @@ int main()
 		}
 	}
 }
+void displayAccountInfo(string fname, string lname, const vector<CheckingAccount> & checkingAccounts, const vector<SavingAccount> &savingAccounts, int size)
+{
 
-void showNewUserMenu() {
+	bool found = false;
+	cout << "Accounts for " << fname << " " << lname << ": " << endl;
+	for (int i = 0; i < size; i++)
+	{
+		if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
+			checkingAccounts[i].getAccountCustomer()->getLname() == lname ||
+			savingAccounts[i].getAccountCustomer()->getFname() == fname &&
+			savingAccounts[i].getAccountCustomer()->getLname() == lname)
+		{
+			cout << "_____________________________________________________________________________________________________________________\n";
+
+			checkingAccounts[i].getAccountCustomer()->printInfo();
+		}
+
+		if (checkingAccounts[i].getAccountCustomer()->getFname() == fname &&
+			checkingAccounts[i].getAccountCustomer()->getLname() == lname) {
+
+			found = true;
+			cout << "_____________________________________________________________________________________________________________________\n";
+			cout << "Checking Account Information:" << endl;
+			cout << setw(15) << "Account ID: " << setw(5) << checkingAccounts[i].getID() << setw(10);
+			cout << "Balance: $" << fixed << setprecision(2) << setw(10) << checkingAccounts[i].getBalance() << setw(17);
+			cout << "Overdraft Limit: $" << setw(5) << checkingAccounts[i].getOverDraftLimit() << endl;
+
+		}
+		if (savingAccounts[i].getAccountCustomer()->getFname() == fname &&
+			savingAccounts[i].getAccountCustomer()->getLname() == lname)
+		{
+			cout << "_____________________________________________________________________________________________________________________\n";
+
+			cout << "Saving Account Information:" << endl;
+			cout << setw(15) << "Account ID: " << setw(5) << savingAccounts[i].getID() << setw(10);
+			cout << "Balance: $" << fixed << setprecision(2) << setw(10) << savingAccounts[i].getBalance() << setw(17);
+			cout << "Interest Rate: " << setw(5) << savingAccounts[i].getInterestRate() << "%" << endl;
+			found = true;
+		}
+	}
+		if (!found) {
+			cout << "No accounts found for this customer." << endl;
+		}
+}
+
+void showNewUserMenu() 
+{
 	cout << endl << "=== New User Menu ===" << endl;
 	cout << "1: Create a checking account" << endl;
 	cout << "2: Create a saving account" << endl;
