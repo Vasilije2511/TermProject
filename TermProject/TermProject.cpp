@@ -394,6 +394,13 @@ int main()
 					}
 				}
 			}
+			cout << endl<<"Please enter transfer details:" << endl;
+			cout << "Enter source account ID: ";
+			cin >> sourceAccountId;
+			cout << "Enter destination account ID: ";
+			cin >> destAccountId;
+			cout << "Enter transfer amount: $";
+			cin >> transferAmount;
 		}
 		
 		return 0;
