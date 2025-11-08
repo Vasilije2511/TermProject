@@ -143,6 +143,13 @@ int main()
 			else {
 				system("cls");
 				Customer* existingCustomer = nullptr;
+
+				/*string fname, lname;
+				cout << "Enter First Name: ";
+				cin >> fname;
+				cout << "Enter Last Name: ";
+				cin >> lname;*/
+
 				for (int i = 0; i < customers.size(); i++) {
 					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
 						existingCustomer = customers[i];
@@ -209,7 +216,12 @@ int main()
 				system("cls");
 			}
 			else {
-				
+				/*string fname, lname;
+				cout << "Enter first name: ";
+				cin >> fname;
+				cout << "Enter last name: ";
+				cin >> lname;*/
+
 				Customer* existingCustomer = nullptr;
 				for (int i = 0; i < customers.size(); i++) {
 					if (customers[i]->getFname() == fname && customers[i]->getLname() == lname) {
@@ -245,7 +257,11 @@ int main()
 		}
 		case 3://view account information
 		{
-			
+			/*string fname, lname;
+			cout << "Enter first name: ";
+			cin >> fname;
+			cout << "Enter last name: ";
+			cin >> lname;*/
 			int size = checkingAccounts.size();
 			
 			displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
@@ -259,7 +275,11 @@ int main()
 		}
 		case 4://modify acc    
 		{
-			
+			/*string fname, lname;
+			cout << "Enter first name: ";
+			cin >> fname;
+			cout << "Enter last name: ";
+			cin >> lname;*/
 			bool found = false;
 			for (int i = 0; i < customers.size(); i++)
 			{
@@ -401,40 +421,6 @@ int main()
 					}
 				}
 			}
-			// Get transfer details
-			cout << "Please enter transfer details:" << endl;
-			cout << "Enter source account ID: ";
-			cin >> sourceAccountId;
-			cout << "Enter destination account ID: ";
-			cin >> destAccountId;
-			cout << "Enter transfer amount: $";
-			cin >> transferAmount;
-
-			Account* sourceAccount = nullptr;
-			Account* destAccount = nullptr;
-
-			// Search in checking accounts
-			for (int i = 0; i < checkingAccounts.size(); i++) {
-				if (checkingAccounts[i].getID() == sourceAccountId) {
-					sourceAccount = &checkingAccounts[i];
-				}
-				if (checkingAccounts[i].getID() == destAccountId) {
-					destAccount = &checkingAccounts[i];
-				}
-			}
-
-			// Search in saving accounts
-			for (int i = 0; i < savingAccounts.size(); i++) {
-				if (savingAccounts[i].getID() == sourceAccountId) {
-					sourceAccount = &savingAccounts[i];
-				}
-				if (savingAccounts[i].getID() == destAccountId) {
-					destAccount = &savingAccounts[i];
-				}
-			}
-
-
-
 		}
 		
 		return 0;
