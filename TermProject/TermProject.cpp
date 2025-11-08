@@ -401,6 +401,58 @@ int main()
 			cin >> destAccountId;
 			cout << "Enter transfer amount: $";
 			cin >> transferAmount;
+
+			// Find source and destination accounts
+			Account* sourceAccount = nullptr;
+			Account* destAccount = nullptr;
+
+			// Search in checking accounts
+			for (int i = 0; i < checkingAccounts.size(); i++) {
+				if (checkingAccounts[i].getID() == sourceAccountId) {
+					sourceAccount = &checkingAccounts[i];
+				}
+				if (checkingAccounts[i].getID() == destAccountId) {
+					destAccount = &checkingAccounts[i];
+				}
+			}
+
+			// Search in saving accounts
+			for (int i = 0; i < savingAccounts.size(); i++) {
+				if (savingAccounts[i].getID() == sourceAccountId) {
+					sourceAccount = &savingAccounts[i];
+				}
+				if (savingAccounts[i].getID() == destAccountId) {
+					destAccount = &savingAccounts[i];
+				}
+			}
+
+			
+			if (sourceAccount && destAccount) {//checking to see if info was correct
+				if (sourceAccount->getBalance() >= transferAmount) {
+					// perform transfer
+					sourceAccount->withdrawMoney(transferAmount);
+					destAccount->depositMoney(transferAmount);
+
+					// update transfer records
+					sourceAccount->settransferAmmounts(transferAmount);
+					sourceAccount->setTotalTransfers(transferAmount);
+
+					cout << "Transfer successful!" << endl;
+					cout << "Updated account information:" << endl;
+					cout << "_____________________________________________________________________________________________________________________\n";
+					displayAccountInfo(fname, lname, checkingAccounts, savingAccounts);
+				}
+				else {
+					cout << endl<<"Error: Insufficient funds in source account." << endl;
+				}
+			}
+			else {
+				cout << endl<<"Error: One or both account IDs are invalid. Please check and try again." << endl;
+			}
+
+			system("pause");
+			system("cls");
+			break;
 		}
 		
 		return 0;
