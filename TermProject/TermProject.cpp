@@ -26,21 +26,56 @@ int nextAccountId = 1000;
 int main() {
     int mainChoice;
     customers.reserve(1000);
-    checkingAccounts.reserve(500);
-    savingAccounts.reserve(500);
+
 
     do {
         system("cls");
+
+        cout << "+===========================================================+" << endl;
+        cout << "+                    Bank Information                       +" << endl;
+        cout << "+-----------------------------------------------------------+" << endl;
+        cout << "+ Nicole & Vasilije Savings was established in 2025.          +" << endl;
+        cout << "+ Our mission is to provide secure and easy banking         +" << endl;
+        cout << "+ for everyone.                                             +" << endl;
+        cout << "+===========================================================+" << endl;
+
+
+        system("pause");
+        system("cls");
+
         cout << "+===========================================================+" << endl;
         cout << "+            Welcome to Bank - Main Menu                    +" << endl;
         cout << "+-----------------------------------------------------------+" << endl;
         cout << "+ Press 1 - For Customer Portal                             +" << endl;
         cout << "+ Press 2 - For Administrator Portal                        +" << endl;
-        cout << "+ Press 3 - For Bank Information                            +" << endl;
-        cout << "+ Press 4 - Exit the Banking System                         +" << endl;
+        cout << "+ Press 3 - Exit the Banking System                         +" << endl;
         cout << "+===========================================================+" << endl;
         cout << "Enter an option: ";
         cin >> mainChoice;
+        while (mainChoice != 1 && mainChoice != 2 && mainChoice != 3)
+        {
+			system("cls");
+            cin.clear();
+            cin.ignore();
+            cout << "+===========================================================+" << endl;
+            cout << "+                       Error                               +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ Invalid option. Please try again.                         +" << endl;
+            cout << "+===========================================================+" << endl;
+
+            system("pause");
+            system("cls");
+            cout << "+===========================================================+" << endl;
+            cout << "+            Welcome to Bank - Main Menu                    +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ Press 1 - For Customer Portal                             +" << endl;
+            cout << "+ Press 2 - For Administrator Portal                        +" << endl;
+            cout << "+ Press 3 - Exit the Banking System                         +" << endl;
+            cout << "+===========================================================+" << endl;
+
+            cout << "Enter an option: ";
+            cin >> mainChoice;
+        }
 
         system("cls");
         switch (mainChoice) {
@@ -50,17 +85,8 @@ int main() {
         case 2:
             adminPortal();
             break;
+
         case 3:
-            cout << "+===========================================================+" << endl;
-            cout << "+                    Bank Information                       +" << endl;
-            cout << "+-----------------------------------------------------------+" << endl;
-            cout << "+ Nicole&Vasilije Savings was established in 2025.          +" << endl;
-            cout << "+ Our mission is to provide secure and easy banking         +" << endl;
-            cout << "+ for everyone.                                             +" << endl;
-            cout << "+===========================================================+" << endl;
-            system("pause");
-            break;
-        case 4:
             cout << "+===========================================================+" << endl;
             cout << "+                System Exit                                +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -68,19 +94,14 @@ int main() {
             cout << "+===========================================================+" << endl;
             system("pause");
             break;
-        default:
-            cout << "+===========================================================+" << endl;
-            cout << "+                       Error                               +" << endl;
-            cout << "+-----------------------------------------------------------+" << endl;
-            cout << "+ Invalid option. Please try again.                         +" << endl;
-            cout << "+===========================================================+" << endl;
-            system("pause");
+        
         }
-    } while (mainChoice != 4);
+    } while (mainChoice != 3);
 
     return 0;
 }
-int findCheckingAccount(const vector<CheckingAccount>& accounts, int id) {
+int findCheckingAccount(const vector<CheckingAccount>& accounts, int id)
+{
     for (int i = 0; i < accounts.size(); i++) {
         if (accounts[i].getID() == id) {
             return i;
@@ -89,25 +110,33 @@ int findCheckingAccount(const vector<CheckingAccount>& accounts, int id) {
     return -1;
 }
 
-int findSavingAccount(const vector<SavingAccount>& accounts, int id) {
-    for (int i = 0; i < accounts.size(); i++) {
-        if (accounts[i].getID() == id) {
+int findSavingAccount(const vector<SavingAccount>& accounts, int id)
+{
+    for (int i = 0; i < accounts.size(); i++)
+    {
+        if (accounts[i].getID() == id)
+        {
             return i;
         }
     }
     return -1;
 }
 
-int findCustomer(const vector<Customer>& customers, string fname, string lname) {
+int findCustomer(const vector<Customer>& customers, string fname, string lname)
+{
     for (int i = 0; i < customers.size(); i++) {
-        if (customers[i].getFname() == fname && customers[i].getLname() == lname) {
+        if (customers[i].getFname() == fname && customers[i].getLname() == lname)
+        {
             return i;
         }
     }
     return -1;
 }
 
-void createAccount(int customerIndex) {
+void createAccount(int customerIndex)
+{
+    int accountType;
+    double initialBalance;
     system("cls");
     cout << "+===========================================================+" << endl;
     cout << "+                   Create New Account                      +" << endl;
@@ -115,24 +144,81 @@ void createAccount(int customerIndex) {
     cout << "+ Select Account Type:                                      +" << endl;
     cout << "+ 1 - Checking Account                                      +" << endl;
     cout << "+ 2 - Savings Account                                       +" << endl;
+    cout << "+ 3 - Quit                                                  +" << endl;
     cout << "+===========================================================+" << endl;
     cout << "Enter choice: ";
-
-    int accountType;
     cin >> accountType;
+
+
+    while ((accountType != 1 && accountType != 2) || cin.fail())
+    {
+        cout << "+===========================================================+" << endl;
+        cout << "+                       Error                               +" << endl;
+        cout << "+-----------------------------------------------------------+" << endl;
+        cout << "+ Invalid account type selected please re-enter information +" << endl;
+        cout << "+ or 3 to quit!                                             +" << endl;
+        cout << "+===========================================================+" << endl;
+        system("pause"); //display menu again to the user and option to quit;
+        system("cls");
+        cout << "+===========================================================+" << endl;
+        cout << "+                   Create New Account                      +" << endl;
+        cout << "+-----------------------------------------------------------+" << endl;
+        cout << "+ Select Account Type:                                      +" << endl;
+        cout << "+ 1 - Checking Account                                      +" << endl;
+        cout << "+ 2 - Savings Account                                       +" << endl;
+        cout << "+ 3 - Quit                                                  +" << endl;
+        cout << "+===========================================================+" << endl;
+        cout << "Enter choice: ";
+        cin >> accountType;
+        if (accountType == 3)
+        {
+            return;
+        }
+    }
 
     system("cls");
     cout << "+===========================================================+" << endl;
     cout << "+                   Account Creation                        +" << endl;
     cout << "+-----------------------------------------------------------+" << endl;
     cout << "Enter initial balance: $";
-    double initialBalance;
     cin >> initialBalance;
+    while (initialBalance < 0)
+    {
+        cout << "+===========================================================+" << endl;
+        cout << "+                       Error                               +" << endl;
+        cout << "+-----------------------------------------------------------+" << endl;
+        cout << "+ Invalid ammount entered please re-enter initial balance   +" << endl;
+        cout << "+ or 0.01 to quit                                           +" << endl;
+        cout << "+===========================================================+" << endl;
+        cout << "Enter initial balance: $";
+        cin >> initialBalance;
+        if (initialBalance == 0.01)
+        {
+            return;
+        }
 
-    if (accountType == 1) {
-        cout << "Enter overdraft limit: $";
+    }
+    if (accountType == 1)
+    {
         double overdraftLimit;
+        cout << "Enter overdraft limit: $";
         cin >> overdraftLimit;
+        while (overdraftLimit < 0)
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                       Error                               +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ Invalid ammount entered please re-enter overdraft limit   +" << endl;
+            cout << "+ or 0.01 to quit                                           +" << endl;
+            cout << "+===========================================================+" << endl;
+            cout << "Enter initial balance: $";
+            cin >> overdraftLimit;
+            if (overdraftLimit == 0.01)
+            {
+                return;
+            }
+
+        }
         CheckingAccount newAccount(nextAccountId, initialBalance, overdraftLimit, &customers[customerIndex]);
         checkingAccounts.push_back(newAccount);
         cout << "+-----------------------------------------------------------+" << endl;
@@ -141,10 +227,28 @@ void createAccount(int customerIndex) {
         cout << "+===========================================================+" << endl;
         nextAccountId++;
     }
-    else if (accountType == 2) {
-        cout << "Enter interest rate: ";
+    else if (accountType == 2)
+    {
         double interestRate;
+        cout << "Enter interest rate: ";
         cin >> interestRate;
+        while (interestRate < 0 || interestRate>100)
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                       Error                               +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ Invalid ammount entered please re-enter interest rate     +" << endl;
+            cout << "+ or 999 to quit                                           +" << endl;
+            cout << "+===========================================================+" << endl;
+            cout << "Enter interest rate: ";
+            cin >> interestRate;
+            if (interestRate == 999)
+            {
+                return;
+            }
+
+        }
+
         SavingAccount newAccount(nextAccountId, initialBalance, interestRate, &customers[customerIndex]);
         savingAccounts.push_back(newAccount);
         cout << "+-----------------------------------------------------------+" << endl;
@@ -156,7 +260,8 @@ void createAccount(int customerIndex) {
     system("pause");
 }
 
-void customerPortal() {
+void customerPortal()
+{
     int choice;
     do {
         system("cls");
@@ -171,22 +276,26 @@ void customerPortal() {
         cin >> choice;
 
         system("cls");
-        switch (choice) {
-        case 1: {
+        switch (choice)
+        {
+        case 1:
+        {
+            string fname, lname, address, phone, email;
+            int customerIndex;
             cout << "+===========================================================+" << endl;
             cout << "+                  New Account Creation                     +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
             cout << "+ Enter customer details:                                   +" << endl;
             cout << "+===========================================================+" << endl;
 
-            string fname, lname, address, phone, email;
             cout << "First Name: ";
             cin >> fname;
             cout << "Last Name: ";
             cin >> lname;
 
-            int customerIndex = findCustomer(customers, fname, lname);
-            if (customerIndex != -1) {
+            customerIndex = findCustomer(customers, fname, lname);
+            if (customerIndex != -1)
+            {
                 cout << "+===========================================================+" << endl;
                 cout << "+                 Existing Customer Found                   +" << endl;
                 cout << "+-----------------------------------------------------------+" << endl;
@@ -195,7 +304,8 @@ void customerPortal() {
                 system("pause");
                 createAccount(customerIndex);
             }
-            else {
+            else
+            {
                 cin.ignore();
                 cout << "Address: ";
                 getline(cin, address);
@@ -210,29 +320,49 @@ void customerPortal() {
             }
             break;
         }
-        case 2: {
+        case 2:
+        {
             int accountId;
+            int checkingIndex;
+            int savingIndex;
             cout << "+===========================================================+" << endl;
             cout << "+                   Account Access                          +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
             cout << "Enter your Account ID: ";
             cin >> accountId;
 
-            int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
-            int savingIndex = findSavingAccount(savingAccounts, accountId);
+            checkingIndex = findCheckingAccount(checkingAccounts, accountId);
+            savingIndex = findSavingAccount(savingAccounts, accountId);
 
-            if (checkingIndex == -1 && savingIndex == -1) {
+            while (checkingIndex == -1 && savingIndex == -1)
+            {
                 cout << "+===========================================================+" << endl;
                 cout << "+                       Error                               +" << endl;
                 cout << "+-----------------------------------------------------------+" << endl;
                 cout << "+ Account not found!                                        +" << endl;
                 cout << "+===========================================================+" << endl;
+
                 system("pause");
-                break;
+                system("cls");
+                cout << "+===========================================================+" << endl;
+                cout << "+                   Account Access                          +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "Enter your Account ID or 0 to quit: ";
+                cin >> accountId;
+                if (accountId == 0)
+                {
+                    return;
+                }
+                checkingIndex = findCheckingAccount(checkingAccounts, accountId);
+                savingIndex = findSavingAccount(savingAccounts, accountId);
+
+
             }
+            
 
             int subChoice;
-            do {
+            do
+            {
                 system("cls");
                 cout << "+===========================================================+" << endl;
                 cout << "+            Customer Portal - Account Menu                 +" << endl;
@@ -252,88 +382,146 @@ void customerPortal() {
                     cout << "+===========================================================+" << endl;
                     cout << "+                   Account Balance                         +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
-                    if (checkingIndex != -1) {
+                    if (checkingIndex != -1)
+                    {
                         cout << "+ Checking Account Balance: $" << fixed << setprecision(2)
                             << checkingAccounts[checkingIndex].getBalance() << endl;
                     }
-                    else {
+                    else if (savingIndex != -1)
+                    {
                         cout << "+ Savings Account Balance: $" << fixed << setprecision(2)
                             << savingAccounts[savingIndex].getBalance() << endl;
+                    }
+                    else
+                    {
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Account not found!                                        +" << endl;
+                        cout << "+===========================================================+" << endl;
+                        return;
                     }
                     cout << "+===========================================================+" << endl;
                     system("pause");
                     break;
                 }
-                case 2: {
+                case 2:
+                {
+                    double amount;
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                     Deposit Money                         +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
                     cout << "Enter amount to deposit: $";
-                    double amount;
-                    cin >> amount;
-                    if (amount > 0) {
-                        if (checkingIndex != -1) {
+					cin >> amount;  
+                    while (amount <= 0)
+                    {
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Invalid amount! Please re-enter amount to deposit         +" <<
+                            "+ or 0 to quit                                              + " << endl;
+                        cout << "+===========================================================+" << endl;
+                        cout << "Enter amount to deposit: $";
+                        cin >> amount;
+                        if (amount == 0)
+                        {
+                            return;
+                        }
+                    }
+                    if (amount > 0)
+                    {
+                        if (checkingIndex != -1)
+                        {
                             checkingAccounts[checkingIndex].depositMoney(amount);
                         }
-                        else {
+                        else if (savingIndex != -1)
+                        {
                             savingAccounts[savingIndex].depositMoney(amount);
                         }
                         cout << "+-----------------------------------------------------------+" << endl;
                         cout << "+ Deposit successful!                                       +" << endl;
                         cout << "+===========================================================+" << endl;
                     }
-                    else {
-                        cout << "+-----------------------------------------------------------+" << endl;
-                        cout << "+ Invalid amount!                                           +" << endl;
-                        cout << "+===========================================================+" << endl;
-                    }
+
                     system("pause");
                     break;
-                }
-                case 3: {
+                } //ALSO NEED TO FIX if user enters someting that cuases cin to fail like a letter.
+				case 3: //wothdraw money ***NEED TO FIX TO SHOWERROR IF INSUFFICIENT FUNDS and the over draft limit/fees
+                {
+                    double amount;
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                    Withdraw Money                         +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
                     cout << "Enter amount to withdraw: $";
-                    double amount;
                     cin >> amount;
-                    if (amount > 0) {
-                        if (checkingIndex != -1) {
+
+                    while (amount < 0)
+                    {
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Invalid amount! Please re-enter amount to withdraw        +" <<
+                            "+ or 0 to quit                                              + " << endl;
+                        cout << "+===========================================================+" << endl;
+                        cout << "Enter amount to withdraw: $";
+                        cin >> amount;
+                        if (amount == 0)
+                        {
+                            return;
+                        }
+                    }
+					if (amount > 0) //need to add check for sufficient funds and overdraft limit
+                    {
+                        if (checkingIndex != -1)
+                        {
                             checkingAccounts[checkingIndex].withdrawMoney(amount);
                         }
-                        else {
+                        else if (savingIndex != -1)
+                        {
                             savingAccounts[savingIndex].withdrawMoney(amount);
                         }
                         cout << "+-----------------------------------------------------------+" << endl;
                         cout << "+ Withdrawal successful!                                    +" << endl;
                         cout << "+===========================================================+" << endl;
                     }
-                    else {
-                        cout << "+-----------------------------------------------------------+" << endl;
-                        cout << "+ Invalid amount!                                           +" << endl;
-                        cout << "+===========================================================+" << endl;
-                    }
+
                     system("pause");
                     break;
                 }
-                case 4: {
+                case 4: //need to fix formatting and add the time stamps
+                {
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                 Transaction History                       +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
-                    if (checkingIndex != -1) {
+                    if (checkingIndex != -1)
+                    {
                         checkingAccounts[checkingIndex].displayAllTransactions();
+                        cout << "+===========================================================+" << endl;
+
                     }
-                    else {
+                    else if (savingIndex != -1)
+                    {
                         savingAccounts[savingIndex].displayAllTransactions();
+                        cout << "+===========================================================+" << endl;
+
                     }
-                    cout << "+===========================================================+" << endl;
+                    else
+                    {
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Account not found!                                        +" << endl;
+                        cout << "+===========================================================+" << endl;
+                        return;
+                    }
                     system("pause");
                     break;
                 }
-                case 5: {
+                case 5:
+                {
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                 Returning to Portal                       +" << endl;
@@ -343,7 +531,8 @@ void customerPortal() {
                     system("pause");
                     break;
                 }
-                default: {
+                default:
+                {
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                       Error                               +" << endl;
@@ -354,9 +543,10 @@ void customerPortal() {
                 }
                 }
             } while (subChoice != 5);
-                  break;
+            break;
         }
-        case 3: {
+        case 3:
+        {
             system("cls");
             cout << "+===========================================================+" << endl;
             cout << "+                 Returning to Main Menu                    +" << endl;
@@ -366,7 +556,8 @@ void customerPortal() {
             system("pause");
             break;
         }
-        default: {
+        default:
+        {
             system("cls");
             cout << "+===========================================================+" << endl;
             cout << "+                       Error                               +" << endl;
@@ -379,13 +570,15 @@ void customerPortal() {
     } while (choice != 3);
 }
 
-          
 
 
 
-void adminPortal() {
+
+void adminPortal()
+{
     int choice;
-    do {
+    do
+    {
         system("cls");
         cout << "+===========================================================+" << endl;
         cout << "+                      Admin Portal                         +" << endl;
@@ -403,7 +596,8 @@ void adminPortal() {
         cin >> choice;
 
         system("cls");
-        switch (choice) {
+        switch (choice)
+        {
         case 1:
             break;
         case 2:
