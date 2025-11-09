@@ -599,20 +599,229 @@ void adminPortal()
         switch (choice)
         {
         case 1:
+
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                  Create New Account                       +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            string fname, lname;
+            cout << "Enter customer first name: ";
+            cin >> fname;
+            cout << "Enter customer last name: ";
+            cin >> lname;
+
+            int customerIndex = findCustomer(customers, fname, lname);
+            if (customerIndex != -1) {
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Existing customer found!                                  +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                createAccount(customerIndex);
+            }
+            else {
+                string address, phone, email;
+                cin.ignore();
+                cout << "Enter address: ";
+                getline(cin, address);
+                cout << "Enter phone: ";
+                getline(cin, phone);
+                cout << "Enter email: ";
+                getline(cin, email);
+
+                Customer newCustomer(fname, lname, address, phone, email);
+                customers.push_back(newCustomer);
+                createAccount(customers.size() - 1);
+            }
             break;
+        }
         case 2:
-            break;
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                   Modify Account                          +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "Enter Account ID: ";
+            int accountId;
+            cin >> accountId;
+
+            int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
+            int savingIndex = findSavingAccount(savingAccounts, accountId);
+
+            if (checkingIndex == -1 && savingIndex == -1) {
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Account not found!                                        +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                break;
+            }
+
+            if (checkingIndex != -1) 
+            {
+				string newfname, newlname, newaddress, newphone, newemail;
+				cout << "Enter new first name: ";
+				cin >> newfname;
+				cout << "Enter new last name: ";
+				cin >> newlname;
+				cin.ignore();
+				cout << "Enter new address: ";
+				getline(cin, newaddress);
+                cout << "Enter new phone: ";
+				cin >> newphone;
+				cout << "Enter new email: ";
+				cin >> newemail;
+				checkingAccounts[checkingIndex].getAccountCustomer()->setAll(newfname, newlname, newaddress, newphone, newemail);
+            }
+            else 
+            {
+				string newfname, newlname, newaddress, newphone, newemail;
+				cout << "Enter new first name: ";
+				cin >> newfname;
+				cout << "Enter new last name: ";
+				cin >> newlname;
+				cin.ignore();
+				cout << "Enter new address: ";
+                getline(cin, newaddress);
+				cout << "Enter new phone: ";
+				cin >> newphone;
+				cout << "Enter new email: ";
+				cin >> newemail;
+				savingAccounts[savingIndex].getAccountCustomer()->setAll(newfname, newlname, newaddress, newphone, newemail);
+                    
+            }
+        }
         case 3:
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                   Delete Account                          +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "Enter Account ID: ";
+            int accountId;
+            cin >> accountId;
+
+            int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
+            int savingIndex = findSavingAccount(savingAccounts, accountId);
+
+            if (checkingIndex != -1) {
+                checkingAccounts.erase(checkingAccounts.begin() + checkingIndex);
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Account deleted successfully!                             +" << endl;
+                cout << "+===========================================================+" << endl;
+            }
+            else if (savingIndex != -1) {
+                savingAccounts.erase(savingAccounts.begin() + savingIndex);
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Account deleted successfully!                             +" << endl;
+                cout << "+===========================================================+" << endl;
+            }
+            else {
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Account not found!                                        +" << endl;
+                cout << "+===========================================================+" << endl;
+            }
+            system("pause");
             break;
+        }
         case 4:
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                    All Accounts                          +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "Checking Accounts:" << endl;
+            for (int i = 0; i < checkingAccounts.size(); i++) {
+                Customer* cust = checkingAccounts[i].getAccountCustomer();
+                checkingAccounts[i].printInfo();
+                cout << "Overdraft Limit: $" << checkingAccounts[i].getOverDraftLimit() << endl;
+                cout << "-----------------------------------------------------------" << endl;
+            }
+
+            cout << "\nSavings Accounts:" << endl;
+            for (int i = 0; i < savingAccounts.size(); i++) {
+                Customer* cust = savingAccounts[i].getAccountCustomer();
+                savingAccounts[i].printInfo();
+                cout << "Interest Rate: " << (savingAccounts[i].getInterestRate() * 100) << "%" << endl;
+                cout << "-----------------------------------------------------------" << endl;
+            }
+            system("pause");
             break;
+        }
         case 5:
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                   Account Lookup                          +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "Enter Account ID: ";
+            int accountId;
+            cin >> accountId;
+
+            int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
+            int savingIndex = findSavingAccount(savingAccounts, accountId);
+
+            if (checkingIndex != -1) {
+                checkingAccounts[checkingIndex].printInfo();
+                cout << "Overdraft Limit: $" << checkingAccounts[checkingIndex].getOverDraftLimit() << endl;
+            }
+            else if (savingIndex != -1) {
+                savingAccounts[savingIndex].printInfo();
+                cout << "Interest Rate: " << (savingAccounts[savingIndex].getInterestRate() * 100) << "%" << endl;
+            }
+            else {
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Account not found!                                        +" << endl;
+                cout << "+===========================================================+" << endl;
+            }
+            system("pause");
             break;
+        }
         case 6:
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+                   Add Interest                            +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "Enter Savings Account ID: ";
+            int accountId;
+            cin >> accountId;
+
+            int savingIndex = findSavingAccount(savingAccounts, accountId);
+            if (savingIndex != -1) {
+                savingAccounts[savingIndex].payInterest();
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Interest added successfully!                              +" << endl;
+                cout << "+===========================================================+" << endl;
+            }
+            else {
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Savings account not found!                                +" << endl;
+                cout << "+===========================================================+" << endl;
+            }
+            system("pause");
             break;
+        }
         case 7:
+        {
+            cout << "+===========================================================+" << endl;
+            cout << "+               Transaction History                         +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "Enter Account ID: ";
+            int accountId;
+            cin >> accountId;
+
+            int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
+            int savingIndex = findSavingAccount(savingAccounts, accountId);
+
+            if (checkingIndex != -1) {
+                checkingAccounts[checkingIndex].displayAllTransactions();
+            }
+            else if (savingIndex != -1) {
+                savingAccounts[savingIndex].displayAllTransactions();
+            }
+            else {
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Account not found!                                        +" << endl;
+                cout << "+===========================================================+" << endl;
+            }
+            system("pause");
             break;
-        case 8:
+        }
+        case 8: {
             cout << "+===========================================================+" << endl;
             cout << "+              Returning to Main Menu                       +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -620,13 +829,15 @@ void adminPortal()
             cout << "+===========================================================+" << endl;
             system("pause");
             break;
-        default:
+        }
+        default: {
             cout << "+===========================================================+" << endl;
             cout << "+                       Error                               +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
             cout << "+ Invalid option. Please try again.                         +" << endl;
             cout << "+===========================================================+" << endl;
             system("pause");
+        }
         }
     } while (choice != 8);
 }
