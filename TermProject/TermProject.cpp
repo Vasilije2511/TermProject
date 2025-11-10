@@ -58,9 +58,9 @@ int main() {
         cout << "+===========================================================+" << endl;
         cout << "Enter an option: ";
         cin >> mainChoice;
-		while (mainChoice != 1 && mainChoice != 2 && mainChoice != 3) //error handling for invalid menu option
+        while (mainChoice != 1 && mainChoice != 2 && mainChoice != 3) //error handling for invalid menu option
         {
-			system("cls");
+            system("cls");
             cin.clear();
             cin.ignore();
             cout << "+===========================================================+" << endl;
@@ -88,40 +88,40 @@ int main() {
         case 1://Press 1 - For Customer Portal 
             customerPortal();
             break;
-        case 2: 
+        case 2:
             //Press 2 - For Administrator Portal 
         {
-			string adminUser, adminPass;
+            string adminUser, adminPass;
             char ch;
-			cout << "+===========================================================+" << endl;
-			cout << "+                Administrator Login                        +" << endl;
-			cout << "+-----------------------------------------------------------+" << endl;
-			cout << "Enter Admin Username: ";
-			cin >> adminUser;
-			cout << "Enter Admin Password: ";
+            cout << "+===========================================================+" << endl;
+            cout << "+                Administrator Login                        +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "Enter Admin Username: ";
+            cin >> adminUser;
+            cout << "Enter Admin Password: ";
             while (adminPass.size() < 10)
             {
-				ch = _getch();
-				adminPass.push_back(ch);
-				cout << '*';
+                ch = _getch();
+                adminPass.push_back(ch);
+                cout << '*';
             }
-			if (adminUser != "admin" || adminPass != "admin123") 
-			{
+            if (adminUser != "admin" || adminPass != "admin123")
+            {
                 system("cls");
-				cout << "+===========================================================+" << endl;
-				cout << "+                       Error                               +" << endl;
-				cout << "+-----------------------------------------------------------+" << endl;
-				cout << "+ Invalid admin credentials!                                +" << endl;
-				cout << "+===========================================================+" << endl;
-				system("pause");
-				break;
-			}
-        adminPortal();
+                cout << "+===========================================================+" << endl;
+                cout << "+                       Error                               +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Invalid admin credentials!                                +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                break;
+            }
+            adminPortal();
             break;
 
         }
-           
-		case 3: //Press 3 - Exit the Banking System
+
+        case 3: //Press 3 - Exit the Banking System
             cout << "+===========================================================+" << endl;
             cout << "+                System Exit                                +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -129,7 +129,7 @@ int main() {
             cout << "+===========================================================+" << endl;
             system("pause");
             break;
-        
+
         }
     } while (mainChoice != 3);
 
@@ -153,7 +153,7 @@ void createAccount(int customerIndex)
     cin >> accountType;
 
 
-    while ((accountType != 1 && accountType != 2 && accountType != 3) )
+    while ((accountType != 1 && accountType != 2 && accountType != 3))
     {
         system("cls");
         cin.clear();
@@ -188,7 +188,7 @@ void createAccount(int customerIndex)
     cout << "+-----------------------------------------------------------+" << endl;
     cout << "Enter initial balance: $";
     cin >> initialBalance;
-    while (initialBalance < 0 ||cin.fail())
+    while (initialBalance < 0 || cin.fail())
     {
         cin.clear();
         cin.ignore();
@@ -213,7 +213,7 @@ void createAccount(int customerIndex)
         double overdraftLimit;
         cout << "Enter overdraft limit: $";
         cin >> overdraftLimit;
-        while (overdraftLimit < 0||cin.fail())
+        while (overdraftLimit < 0 || cin.fail())
         {
             cin.clear();
             cin.ignore();
@@ -246,7 +246,7 @@ void createAccount(int customerIndex)
         double interestRate;
         cout << "Enter interest rate: ";
         cin >> interestRate;
-        while (interestRate < 0 || interestRate>100 ||cin.fail())
+        while (interestRate < 0 || interestRate>100 || cin.fail())
         {
             system("cls");
             cin.clear();
@@ -277,7 +277,7 @@ void createAccount(int customerIndex)
     system("pause");
 }
 
-void customerPortal() 
+void customerPortal()
 {
     int choice;
     do {
@@ -292,7 +292,7 @@ void customerPortal()
         cout << "Enter an option: ";
         cin >> choice;
 
-     
+
 
         while (choice != 1 && choice != 2 && choice != 3) //error handling for invalid menu option
         {
@@ -322,7 +322,7 @@ void customerPortal()
         system("cls");
         switch (choice)
         {
-		case 1: //Open a New Account
+        case 1: //Open a New Account
         {
             string fname, lname, address, phone, email;
             int customerIndex;
@@ -364,7 +364,7 @@ void customerPortal()
             }
             break;
         }
-		case 2: //Access an Existing Account
+        case 2: //Access an Existing Account
         {
             int accountId;
             int checkingIndex;
@@ -405,24 +405,26 @@ void customerPortal()
 
 
             }
-            
+
 
             do
             {
                 system("cls");
                 cout << "+===========================================================+" << endl;
-                cout << "+            Customer Portal -  Existing Account Menu       +" << endl;
+                cout << "+            Customer Portal - Account Menu                 +" << endl;
                 cout << "+-----------------------------------------------------------+" << endl;
                 cout << "+ 1 - View Balance                                          +" << endl;
                 cout << "+ 2 - Deposit Money                                         +" << endl;
                 cout << "+ 3 - Withdraw Money                                        +" << endl;
                 cout << "+ 4 - View Transaction History                              +" << endl;
-                cout << "+ 5 - Return to Customer Portal                             +" << endl;
+                cout << "+ 5 - Edit Account Info                                     +" << endl;
+                cout << "+ 6 - Return to Customer Portal                             +" << endl;
                 cout << "+===========================================================+" << endl;
                 cout << "Enter an option: ";
+
                 cin >> subChoice;
 
-                while (subChoice != 1 && subChoice != 2 && subChoice != 3 && subChoice != 4 && subChoice != 5 ||cin.fail()) //error handling for invalid menu option
+                while (subChoice != 1 && subChoice != 2 && subChoice != 3 && subChoice != 4 && subChoice != 5 && subChoice != 6 || cin.fail()) //error handling for invalid menu option
                 {
                     system("cls");
                     cin.clear();
@@ -442,7 +444,8 @@ void customerPortal()
                     cout << "+ 2 - Deposit Money                                         +" << endl;
                     cout << "+ 3 - Withdraw Money                                        +" << endl;
                     cout << "+ 4 - View Transaction History                              +" << endl;
-                    cout << "+ 5 - Return to Customer Portal                             +" << endl;
+                    cout << "+ 5 - Edit Account Info                                     +" << endl;
+                    cout << "+ 6 - Return to Customer Portal                             +" << endl;
                     cout << "+===========================================================+" << endl;
                     cout << "Enter an option: ";
                     cin >> subChoice;
@@ -486,7 +489,7 @@ void customerPortal()
                     cout << "+                     Deposit Money                         +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
                     cout << "Enter amount to deposit: $";
-					cin >> amount;  
+                    cin >> amount;
                     while (amount <= 0)
                     {
                         cout << "+===========================================================+" << endl;
@@ -520,7 +523,7 @@ void customerPortal()
                     system("pause");
                     break;
                 } //ALSO NEED TO FIX if user enters someting that cuases cin to fail like a letter.
-				case 3: //wothdraw money ***NEED TO FIX TO SHOWERROR IF INSUFFICIENT FUNDS and the over draft limit/fees
+                case 3: //wothdraw money ***NEED TO FIX TO SHOWERROR IF INSUFFICIENT FUNDS and the over draft limit/fees
                 {
                     double amount;
                     system("cls");
@@ -545,7 +548,7 @@ void customerPortal()
                             return;
                         }
                     }
-					if (amount > 0) //need to add check for sufficient funds and overdraft limit
+                    if (amount > 0) //need to add check for sufficient funds and overdraft limit
                     {
                         if (checkingIndex != -1)
                         {
@@ -566,34 +569,35 @@ void customerPortal()
                 case 4: //need to add the time stamps also need to ask user if they want to see a specific tansaction // dislay the individual info addresss 
                 {
                     string fname, lname, accountType;
-                    for(int i = 0; i < checkingAccounts.size(); i++)
+                    for (int i = 0; i < checkingAccounts.size(); i++)
                     {
-                        if ( checkingAccounts[i].getID() == accountId )
+                        if (checkingAccounts[i].getID() == accountId)
                         {
                             fname = checkingAccounts[i].getAccountCustomer()->getFname();
                             lname = checkingAccounts[i].getAccountCustomer()->getLname();
-							accountType = "Checking Account";   
+                            accountType = "Checking Account";
                         }
-					}
+                    }
                     for (int i = 0; i < savingAccounts.size(); i++)
                     {
                         if (savingAccounts[i].getID() == accountId)
                         {
                             fname = savingAccounts[i].getAccountCustomer()->getFname();
                             lname = savingAccounts[i].getAccountCustomer()->getLname();
-							accountType = "Saving Account";
+                            accountType = "Saving Account";
                         }
                     }
 
-                    
-                   
+
+
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                 Transaction History                       +" << endl;
-					cout << "+           " << fname << " " << lname<< "'s " << accountType << "                +" << endl;
+                    cout << "+           " << right << setw(15) << fname << " " << left << setw(15) << lname << "                 +" << endl;
+                    cout << "+                   " << accountType << "                        +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
-				
-              
+
+
                     //changes
 
                     if (checkingIndex != -1)
@@ -620,7 +624,298 @@ void customerPortal()
                     system("pause");
                     break;
                 }
-                case 5:
+                case 5://modify account
+
+                {
+                    string fname, lname, address, phone, email;
+                    int option, index, optMakeChanges;
+                    bool isChecking = true, makeChanges = true;
+
+                    for (int i = 0; i < checkingAccounts.size(); i++)
+                    {
+                        if (checkingAccounts[i].getID() == accountId)
+                        {
+                            isChecking = true;
+                            index = i;
+                        }
+                    }
+                    for (int i = 0; i < savingAccounts.size(); i++)
+                    {
+                        if (savingAccounts[i].getID() == accountId)
+                        {
+                            isChecking = false;
+                            index = i;
+                        }
+                    }
+                    while (makeChanges == true)
+                    {
+                        system("cls");
+                        cout << "+=========================================================================================================+" << endl;
+                        cout << "+                                      Edit Account Information                                           +" << endl;
+                        cout << "+---------------------------------------------------------------------------------------------------------+" << endl;
+                        if (isChecking == true)
+                            checkingAccounts[index].getAccountCustomer()->printInfo();
+                        else
+                            savingAccounts[index].getAccountCustomer()->printInfo();
+                        cout << "+ 1 - Change First Name                                                                                   +" << endl;
+                        cout << "+ 2 - Change Last Name                                                                                    +" << endl;
+                        cout << "+ 3 - Change Address                                                                                      +" << endl;
+                        cout << "+ 4 - Change Phone #                                                                                      +" << endl;
+                        cout << "+ 5 - Change Email                                                                                        +" << endl;
+						cout << "+ 6 - Return to Account Menu                                                                              +" << endl;
+                        cout << "+---------------------------------------------------------------------------------------------------------+" << endl;
+                        cout << "Enter an option to edit: ";
+                        cin >> option;
+                        if (option == 6)
+                        {
+                            break;
+						}
+                        while (option < 1 || option > 6 || cin.fail())
+                        {
+                            cout << "+ Invalid option! Please enter a valid option to edit: ";
+                            cin.clear();
+                            cin.ignore();
+                            cin >> option;
+                        }
+                        if (isChecking == true)
+                        {
+                            if (option == 1)
+                            {
+                                cout << "Enter new first name: ";
+                                cin >> fname;
+                                checkingAccounts[index].getAccountCustomer()->setFname(fname);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ First name updated successfully!                                                               +" << endl;
+                                checkingAccounts[index].getAccountCustomer()->printInfo();
+
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+
+
+
+                            }
+                            else if (option == 2)
+                            {
+                                cout << "Enter new last name: ";
+                                cin >> lname;
+                                checkingAccounts[index].getAccountCustomer()->setLname(lname);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Last name updated successfully!                                                               +" << endl;
+                                checkingAccounts[index].getAccountCustomer()->printInfo();
+
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+                            }
+                            else if (option == 3)
+                            {
+                                cin.ignore();
+                                cout << "Enter new Address: ";
+                                cin >> address;
+                                checkingAccounts[index].getAccountCustomer()->setAddress(address);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Address updated successfully!                                                               +" << endl;
+                                checkingAccounts[index].getAccountCustomer()->printInfo();
+
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+                            }
+
+                            else if (option == 4)
+                            {
+                                cin.ignore();
+                                cout << "Enter new Phone #: ";
+                                cin >> phone;
+                                checkingAccounts[index].getAccountCustomer()->setPhone(phone);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Address updated successfully!                                                               +" << endl;
+                                checkingAccounts[index].getAccountCustomer()->printInfo();
+
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+                            }
+                            else if (option == 5)
+                            {
+                                cin.ignore();
+                                cout << "Enter new Email: ";
+                                cin >> email;
+                                checkingAccounts[index].getAccountCustomer()->setemail(email);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Email updated successfully!                                                               +" << endl;
+                                checkingAccounts[index].getAccountCustomer()->printInfo();
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+                            }
+                        }
+                        else
+                        {
+                            if (option == 1)
+                            {
+                                cout << "Enter new first name: ";
+                                cin >> fname;
+                                savingAccounts[index].getAccountCustomer()->setFname(fname);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ First name updated successfully!                                                               +" << endl;
+                                savingAccounts[index].getAccountCustomer()->printInfo();
+
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while (optMakeChanges != 1 && optMakeChanges != 0)
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin.clear();
+                                    cin.ignore();
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+                            }
+                            else if (option == 2)
+                            {
+                                cout << "Enter new last name: ";
+                                cin >> lname;
+                                savingAccounts[index].getAccountCustomer()->setLname(lname);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Last name updated successfully!                                                               +" << endl;
+                                savingAccounts[index].getAccountCustomer()->printInfo();
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin.clear();
+                                    cin.ignore();
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+                            }
+                            else if (option == 3)
+                            {
+                                cin.ignore();
+                                cout << "Enter new Address: ";
+                                cin >> address;
+                                savingAccounts[index].getAccountCustomer()->setAddress(address);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Address updated successfully!                                                               +" << endl;
+                                savingAccounts[index].getAccountCustomer()->printInfo();
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin.clear();
+                                    cin.ignore();
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+									makeChanges = true;
+                            }
+                            else if (option == 4)
+                            {
+                                cin.ignore();
+								cout << "Enter new Phone #: ";
+                                cin >> phone;
+                                savingAccounts[index].getAccountCustomer()->setPhone(phone);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Address updated successfully!                                                               +" << endl;
+                                savingAccounts[index].getAccountCustomer()->printInfo();
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin.clear();
+                                    cin.ignore();
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+									makeChanges = true;
+                            }
+                            else if (option == 5)
+                            {
+                                cin.ignore();
+                                cout << "Enter new email: ";
+                                cin >> email;
+                                savingAccounts[index].getAccountCustomer()->setemail(email);
+                                cout << "+------------------------------------------------------------------------------------------------+" << endl;
+                                cout << "+ Address updated successfully!                                                               +" << endl;
+                                savingAccounts[index].getAccountCustomer()->printInfo();
+                                cout << " Edit another field? (1 - Yes, 0 - No): ";
+                                cin >> optMakeChanges;
+                                while ((optMakeChanges != 1 && optMakeChanges != 0) || cin.fail())
+                                {
+                                    cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
+                                    cin.clear();
+                                    cin.ignore();
+                                    cin >> optMakeChanges;
+                                }
+                                if (optMakeChanges == 0)
+                                    makeChanges = false;
+                                else
+                                    makeChanges = true;
+                            }
+                        }
+
+
+
+
+                    }
+                    break;
+                }
+                case 6:
                 {
                     system("cls");
                     cout << "+===========================================================+" << endl;
@@ -642,7 +937,7 @@ void customerPortal()
                     system("pause");
                 }
                 }
-            } while (subChoice != 5);
+            } while (subChoice != 6);
             break;
         }
         case 3: //Return to Main Menu
@@ -718,7 +1013,8 @@ void adminPortal()
                 system("pause");
                 createAccount(customerIndex);
             }
-            else {
+            else 
+            {
                 string address, phone, email;
                 cin.ignore();
                 cout << "Enter address: ";
@@ -733,6 +1029,7 @@ void adminPortal()
                 createAccount(customers.size() - 1);
             }
             break;
+        
         }
         case 2:
         {
@@ -754,38 +1051,38 @@ void adminPortal()
                 break;
             }
 
-            if (checkingIndex != -1) 
+            if (checkingIndex != -1)
             {
-				string newfname, newlname, newaddress, newphone, newemail;
-				cout << "Enter new first name: ";
-				cin >> newfname;
-				cout << "Enter new last name: ";
-				cin >> newlname;
-				cin.ignore();
-				cout << "Enter new address: ";
-				getline(cin, newaddress);
-                cout << "Enter new phone: ";
-				cin >> newphone;
-				cout << "Enter new email: ";
-				cin >> newemail;
-				checkingAccounts[checkingIndex].getAccountCustomer()->setAll(newfname, newlname, newaddress, newphone, newemail);
-            }
-            else 
-            {
-				string newfname, newlname, newaddress, newphone, newemail;
-				cout << "Enter new first name: ";
-				cin >> newfname;
-				cout << "Enter new last name: ";
-				cin >> newlname;
-				cin.ignore();
-				cout << "Enter new address: ";
+                string newfname, newlname, newaddress, newphone, newemail;
+                cout << "Enter new first name: ";
+                cin >> newfname;
+                cout << "Enter new last name: ";
+                cin >> newlname;
+                cin.ignore();
+                cout << "Enter new address: ";
                 getline(cin, newaddress);
-				cout << "Enter new phone: ";
-				cin >> newphone;
-				cout << "Enter new email: ";
-				cin >> newemail;
-				savingAccounts[savingIndex].getAccountCustomer()->setAll(newfname, newlname, newaddress, newphone, newemail);
-                    
+                cout << "Enter new phone: ";
+                cin >> newphone;
+                cout << "Enter new email: ";
+                cin >> newemail;
+                checkingAccounts[checkingIndex].getAccountCustomer()->setAll(newfname, newlname, newaddress, newphone, newemail);
+            }
+            else
+            {
+                string newfname, newlname, newaddress, newphone, newemail;
+                cout << "Enter new first name: ";
+                cin >> newfname;
+                cout << "Enter new last name: ";
+                cin >> newlname;
+                cin.ignore();
+                cout << "Enter new address: ";
+                getline(cin, newaddress);
+                cout << "Enter new phone: ";
+                cin >> newphone;
+                cout << "Enter new email: ";
+                cin >> newemail;
+                savingAccounts[savingIndex].getAccountCustomer()->setAll(newfname, newlname, newaddress, newphone, newemail);
+
             }
         }
         case 3:

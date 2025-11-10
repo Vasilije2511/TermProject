@@ -213,10 +213,12 @@ void Account::displaytransfers()
 {
 	
 	cout << "+===========================================================+\n";
-	cout << endl <<left<<setw(22)<< "Number of transfers" << setw(20) << transferCount << endl;
+	cout << endl <<left<<setw(22)<< "Number of transfers" << setw(26) << transferCount << endl<<endl;
+	cout << left << setw(22) << "Transfer #" << right << setw(35) << "Ammount Transfered " << endl;
+
 	for (int i = 0; i < transferAmmounts.size(); i++)
 	{
-		cout << "Transfer #" << i + 1 << setw(20) << "Ammount Transfered $" << transferAmmounts[i]<<endl;
+		cout <<left<<setw(22) << i + 1 << right << setw(25) << "$" << transferAmmounts[i]<<endl;
 
 	}
 }
