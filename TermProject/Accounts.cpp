@@ -185,11 +185,13 @@ void Account::printInfo()
 void Account::displayDeposits()
 {
 	cout << "+===========================================================+\n";
-	cout << setw(40) << "Deposits";
-	cout << endl << "Number of Deposits" << setw(22) << depositsCounter<< endl;
+	
+	cout << endl << left << setw(22) << "Number of Deposits" << right << setw(26) << depositsCounter << endl << endl;
+	cout << left<<setw(22) <<"Deposit #" <<right<< setw(35) << "Ammount Deposited " << endl;
+
 	for( int i = 0; i< depositAmmounts.size();i++)
 	{
-		cout << "Deposit #" << i + 1 << setw(20) << "Ammount Deposited $" << depositAmmounts[i]<<endl;
+		cout << left <<setw(22)<<i + 1 << right <<setw(25) <<  "$"<<depositAmmounts[i] << endl;
 	
 	}
 	
@@ -197,10 +199,12 @@ void Account::displayDeposits()
 void Account::displayWithdrawls()
 {
 	cout << "+===========================================================+\n";
-	cout << endl << "Number of withdrawls" << setw(22) << withdrawlCounter << endl;
+	cout << endl <<left<< setw(22) << "Number of withdrawls" <<right<< setw(26)  << withdrawlCounter << endl<<endl;
+	cout << left << setw(22) << "Withdrawl #" << right << setw(35) << "Ammount Withdrawn " << endl;
+
 	for (int i = 0; i < withdrawlAmmounts.size(); i++)
 	{
-		cout << "Withdrawl #" << i + 1 << setw(20) << "Ammount withdrawn $" << withdrawlAmmounts[i] << endl;
+		cout << left << setw(22) << i + 1 << right << setw(25) << "$" << withdrawlAmmounts[i] << endl;
 
 	}
 }
@@ -209,7 +213,7 @@ void Account::displaytransfers()
 {
 	
 	cout << "+===========================================================+\n";
-	cout << endl << "Number of transfers" << setw(22) << transferCount << endl;
+	cout << endl <<left<<setw(22)<< "Number of transfers" << setw(20) << transferCount << endl;
 	for (int i = 0; i < transferAmmounts.size(); i++)
 	{
 		cout << "Transfer #" << i + 1 << setw(20) << "Ammount Transfered $" << transferAmmounts[i]<<endl;
