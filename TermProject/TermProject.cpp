@@ -321,6 +321,7 @@ void customerPortal()
             int checkingIndex;
             int savingIndex;
             int subChoice;
+
             cout << "+===========================================================+" << endl;
             cout << "+                   Account Access                          +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -332,6 +333,7 @@ void customerPortal()
 
             while (checkingIndex == -1 && savingIndex == -1)
             {
+                system("cls");
                 cout << "+===========================================================+" << endl;
                 cout << "+                       Error                               +" << endl;
                 cout << "+-----------------------------------------------------------+" << endl;
