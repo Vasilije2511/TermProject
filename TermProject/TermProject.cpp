@@ -555,7 +555,7 @@ void customerPortal()
                     system("pause");
                     break;
                 }
-                case 4: //need to fix formatting and add the time stamps
+                case 4: //need to add the time stamps also need to ask user if they want to see a specific tansaction
                 {
                     system("cls");
                     cout << "+===========================================================+" << endl;

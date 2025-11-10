@@ -219,7 +219,7 @@ void Account::displaytransfers()
 
 void Account::displayAllTransactions()
 {
-	system("cls");
+
 	displayDeposits();
 	displayWithdrawls();
 	displaytransfers();
