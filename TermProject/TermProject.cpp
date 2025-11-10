@@ -672,12 +672,10 @@ void customerPortal()
                     }
                     if (amount > 0 && amount <= savingAccounts[originSavingIndex].getBalance())
                     {
-                        cout << "+-----------------------------------------------------------+" << endl;
-                        cout << "+                  Transfer successful!                     +" << endl;
-                        cout << "+===========================================================+" << endl;
-                        cout << "Previous Balance: $" << savingAccounts[destSavingIndex].getBalance() << endl;
-                        savingAccounts[savingIndex].transfer(amount, &savingAccounts[destSavingIndex]);
-                        cout << "Updated Balance: $" << savingAccounts[destSavingIndex].getBalance() << endl;
+                        // print previous balance, perform transfer on the origin account, then display updated balance.
+                        cout << "Previous Balance (destination): $" << fixed << setprecision(2) << savingAccounts[destSavingIndex].getBalance() << endl;
+                        savingAccounts[originSavingIndex].transfer(amount, &savingAccounts[destSavingIndex]);
+                        cout << "Updated Balance (destination): $" << fixed << setprecision(2) << savingAccounts[destSavingIndex].getBalance() << endl;
                     }
                     else
                     {
@@ -1086,6 +1084,10 @@ void customerPortal()
         }
     } while (choice != 3);
 }
+
+
+
+
 
 
 

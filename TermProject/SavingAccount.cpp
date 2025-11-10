@@ -46,10 +46,16 @@ void SavingAccount::transfer(double _amount, SavingAccount* _destinationAccount)
 		(*_destinationAccount).depositMoney(_amount);
 		setTransferCounter(1);
 		settransferAmmounts(_amount);
-		
+
+		// success confirmation and updated balances
+		cout << "+-----------------------------------------------------------+" << endl;
+		cout << "+                  Transfer completed                        +" << endl;
+		cout << "+-----------------------------------------------------------+" << endl;
+		cout << "Source Account (ID " << getID() << ") New Balance: $" << fixed << setprecision(2) << getBalance() << endl;
+		cout << "Destination Account (ID " << _destinationAccount->getID() << ") New Balance: $" << fixed << setprecision(2) << _destinationAccount->getBalance() << endl;
 	}
 	else
 	{
-		cout << "Transfer failed: Insufficient funds ." << endl;
+		cout << "Transfer failed: Insufficient funds." << endl;
 	}
 }
