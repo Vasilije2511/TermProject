@@ -153,8 +153,10 @@ void createAccount(int customerIndex)
     cout << "+-----------------------------------------------------------+" << endl;
     cout << "Enter initial balance: $";
     cin >> initialBalance;
-    while (initialBalance < 0)
+    while (initialBalance < 0 ||cin.fail())
     {
+        cin.clear();
+        cin.ignore();
         cout << "+===========================================================+" << endl;
         cout << "+                       Error                               +" << endl;
         cout << "+-----------------------------------------------------------+" << endl;
@@ -174,9 +176,10 @@ void createAccount(int customerIndex)
         double overdraftLimit;
         cout << "Enter overdraft limit: $";
         cin >> overdraftLimit;
-        while (overdraftLimit < 0)
+        while (overdraftLimit < 0||cin.fail())
         {
-            
+            cin.clear();
+            cin.ignore();
             cout << "+===========================================================+" << endl;
             cout << "+                       Error                               +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
