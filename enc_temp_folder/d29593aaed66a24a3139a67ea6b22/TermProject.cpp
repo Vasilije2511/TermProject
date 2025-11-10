@@ -9,10 +9,6 @@
 #include <cstdlib>
 using namespace std;
 
-//Admin username: admin
-// Admin password: admin123
-
-
 // Function declarations
 void customerPortal();
 void adminPortal();
@@ -38,7 +34,7 @@ int main() {
         cout << "+===========================================================+" << endl;
         cout << "+                    Bank Information                       +" << endl;
         cout << "+-----------------------------------------------------------+" << endl;
-        cout << "+ Nicole & Vasilije Savings was established in 2025.        +" << endl;
+        cout << "+ Nicole & Vasilije Savings was established in 2025.          +" << endl;
         cout << "+ Our mission is to provide secure and easy banking         +" << endl;
         cout << "+ for everyone.                                             +" << endl;
         cout << "+===========================================================+" << endl;
@@ -86,33 +82,10 @@ int main() {
         case 1://Press 1 - For Customer Portal 
             customerPortal();
             break;
-        case 2: 
-            //Press 2 - For Administrator Portal 
-        {
-			string adminUser, adminPass;
-			cout << "+===========================================================+" << endl;
-			cout << "+                Administrator Login                        +" << endl;
-			cout << "+-----------------------------------------------------------+" << endl;
-			cout << "Enter Admin Username: ";
-			cin >> adminUser;
-			cout << "Enter Admin Password: ";
-			cin >> adminPass;
-			if (adminUser != "admin" || adminPass != "admin123") 
-			{
-                system("cls");
-				cout << "+===========================================================+" << endl;
-				cout << "+                       Error                               +" << endl;
-				cout << "+-----------------------------------------------------------+" << endl;
-				cout << "+ Invalid admin credentials!                                +" << endl;
-				cout << "+===========================================================+" << endl;
-				system("pause");
-				break;
-			}
-        adminPortal();
+        case 2: //Press 2 - For Administrator Portal 
+            adminPortal();
             break;
 
-        }
-           
 		case 3: //Press 3 - Exit the Banking System
             cout << "+===========================================================+" << endl;
             cout << "+                System Exit                                +" << endl;
@@ -127,7 +100,7 @@ int main() {
 
     return 0;
 }
-
+//should move account portal to this line 
 void createAccount(int customerIndex)
 {
     int accountType;
@@ -186,11 +159,11 @@ void createAccount(int customerIndex)
         cout << "+                       Error                               +" << endl;
         cout << "+-----------------------------------------------------------+" << endl;
         cout << "+ Invalid ammount entered please re-enter initial balance   +" << endl;
-        cout << "+ or 0 to quit                                           +" << endl;
+        cout << "+ or 0.01 to quit                                           +" << endl;
         cout << "+===========================================================+" << endl;
         cout << "Enter initial balance: $";
         cin >> initialBalance;
-        if (initialBalance == 0)
+        if (initialBalance == 0.01)
         {
             return;
         }
@@ -203,16 +176,15 @@ void createAccount(int customerIndex)
         cin >> overdraftLimit;
         while (overdraftLimit < 0)
         {
-            
             cout << "+===========================================================+" << endl;
             cout << "+                       Error                               +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
             cout << "+ Invalid ammount entered please re-enter overdraft limit   +" << endl;
-            cout << "+ or 0 to quit                                           +" << endl;
+            cout << "+ or 0.01 to quit                                           +" << endl;
             cout << "+===========================================================+" << endl;
-            cout << "Enter overdraft limit: $";
+            cout << "Enter initial balance: $";
             cin >> overdraftLimit;
-            if (overdraftLimit == 0)
+            if (overdraftLimit == 0.01)
             {
                 return;
             }
@@ -233,9 +205,6 @@ void createAccount(int customerIndex)
         cin >> interestRate;
         while (interestRate < 0 || interestRate>100)
         {
-            system("cls");
-            cin.clear();
-            cin.ignore();
             cout << "+===========================================================+" << endl;
             cout << "+                       Error                               +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
