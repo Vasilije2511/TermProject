@@ -28,7 +28,7 @@ int main() {
     customers.reserve(1000);
 
 
-    do {
+    do { //display menu an introduction
         system("cls");
 
         cout << "+===========================================================+" << endl;
@@ -52,7 +52,7 @@ int main() {
         cout << "+===========================================================+" << endl;
         cout << "Enter an option: ";
         cin >> mainChoice;
-        while (mainChoice != 1 && mainChoice != 2 && mainChoice != 3)
+		while (mainChoice != 1 && mainChoice != 2 && mainChoice != 3) //error handling for invalid menu option
         {
 			system("cls");
             cin.clear();
@@ -79,14 +79,14 @@ int main() {
 
         system("cls");
         switch (mainChoice) {
-        case 1:
+        case 1://Press 1 - For Customer Portal 
             customerPortal();
             break;
-        case 2:
+        case 2: //Press 2 - For Administrator Portal 
             adminPortal();
             break;
 
-        case 3:
+		case 3: //Press 3 - Exit the Banking System
             cout << "+===========================================================+" << endl;
             cout << "+                System Exit                                +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -99,38 +99,6 @@ int main() {
     } while (mainChoice != 3);
 
     return 0;
-}
-int findCheckingAccount(const vector<CheckingAccount>& accounts, int id)
-{
-    for (int i = 0; i < accounts.size(); i++) {
-        if (accounts[i].getID() == id) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-int findSavingAccount(const vector<SavingAccount>& accounts, int id)
-{
-    for (int i = 0; i < accounts.size(); i++)
-    {
-        if (accounts[i].getID() == id)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-int findCustomer(const vector<Customer>& customers, string fname, string lname)
-{
-    for (int i = 0; i < customers.size(); i++) {
-        if (customers[i].getFname() == fname && customers[i].getLname() == lname)
-        {
-            return i;
-        }
-    }
-    return -1;
 }
 
 void createAccount(int customerIndex)
@@ -260,7 +228,7 @@ void createAccount(int customerIndex)
     system("pause");
 }
 
-void customerPortal()
+void customerPortal() 
 {
     int choice;
     do {
@@ -275,10 +243,37 @@ void customerPortal()
         cout << "Enter an option: ";
         cin >> choice;
 
+     
+
+        while (choice != 1 && choice != 2 && choice != 3) //error handling for invalid menu option
+        {
+            system("cls");
+            cin.clear();
+            cin.ignore();
+            cout << "+===========================================================+" << endl;
+            cout << "+                       Error                               +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ Invalid option. Please try again.                         +" << endl;
+            cout << "+===========================================================+" << endl;
+            system("pause");
+
+            system("cls");
+
+            cout << "+===========================================================+" << endl;
+            cout << "+                     Customer Portal                       +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ 1 - Open a New Account                                    +" << endl;
+            cout << "+ 2 - Access an Existing Account                            +" << endl;
+            cout << "+ 3 - Return to Main Menu                                   +" << endl;
+            cout << "+===========================================================+" << endl;
+            cout << "Enter an option: ";
+            cin >> choice;
+        }
+
         system("cls");
         switch (choice)
         {
-        case 1:
+		case 1: //Open a New Account
         {
             string fname, lname, address, phone, email;
             int customerIndex;
@@ -320,11 +315,12 @@ void customerPortal()
             }
             break;
         }
-        case 2:
+		case 2: //Access an Existing Account
         {
             int accountId;
             int checkingIndex;
             int savingIndex;
+            int subChoice;
             cout << "+===========================================================+" << endl;
             cout << "+                   Account Access                          +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -360,7 +356,6 @@ void customerPortal()
             }
             
 
-            int subChoice;
             do
             {
                 system("cls");
@@ -375,6 +370,33 @@ void customerPortal()
                 cout << "+===========================================================+" << endl;
                 cout << "Enter an option: ";
                 cin >> subChoice;
+
+                while (subChoice != 1 && subChoice != 2 && subChoice != 3) //error handling for invalid menu option
+                {
+                    system("cls");
+                    cin.clear();
+                    cin.ignore();
+                    cout << "+===========================================================+" << endl;
+                    cout << "+                       Error                               +" << endl;
+                    cout << "+-----------------------------------------------------------+" << endl;
+                    cout << "+ Invalid option. Please try again.                         +" << endl;
+                    cout << "+===========================================================+" << endl;
+                    system("pause");
+                    system("cls");
+
+                    cout << "+===========================================================+" << endl;
+                    cout << "+            Customer Portal - Account Menu                 +" << endl;
+                    cout << "+-----------------------------------------------------------+" << endl;
+                    cout << "+ 1 - View Balance                                          +" << endl;
+                    cout << "+ 2 - Deposit Money                                         +" << endl;
+                    cout << "+ 3 - Withdraw Money                                        +" << endl;
+                    cout << "+ 4 - View Transaction History                              +" << endl;
+                    cout << "+ 5 - Return to Customer Portal                             +" << endl;
+                    cout << "+===========================================================+" << endl;
+                    cout << "Enter an option: ";
+                    cin >> subChoice;
+
+                }
 
                 system("cls");
                 switch (subChoice) {
@@ -545,7 +567,7 @@ void customerPortal()
             } while (subChoice != 5);
             break;
         }
-        case 3:
+        case 3: //Return to Main Menu
         {
             system("cls");
             cout << "+===========================================================+" << endl;
@@ -840,4 +862,37 @@ void adminPortal()
         }
         }
     } while (choice != 8);
+}
+
+int findCheckingAccount(const vector<CheckingAccount>& accounts, int id) //use the id to find the checking account
+{
+    for (int i = 0; i < accounts.size(); i++) {
+        if (accounts[i].getID() == id) {
+            return i; //returns the id if found
+        }
+    }
+    return -1; //returns -1 if not found
+}
+
+int findSavingAccount(const vector<SavingAccount>& accounts, int id)//use the id to find the saving account 
+{
+    for (int i = 0; i < accounts.size(); i++)
+    {
+        if (accounts[i].getID() == id)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int findCustomer(const vector<Customer>& customers, string fname, string lname) //uses the cuustomers name to find their account info
+{
+    for (int i = 0; i < customers.size(); i++) {
+        if (customers[i].getFname() == fname && customers[i].getLname() == lname)
+        {
+            return i; //returns the customer index 
+        }
+    }
+    return -1; //if not found return -1
 }
