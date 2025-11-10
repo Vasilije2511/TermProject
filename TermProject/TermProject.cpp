@@ -568,6 +568,7 @@ void customerPortal()
 					cout << "+  Transaction History for Account ID#: " << accountId<<"          +" << endl;
                     cout << "+ Name: " <<fname << " "<<lname  << endl;
                     cout << "+===========================================================+" << endl;
+                    //changes
 
                     if (checkingIndex != -1)
                     {
