@@ -177,14 +177,14 @@ void Account::withdrawMoney(double _ammount)
 }
 void Account::printInfo()
 {
-	cout << "+===========================================================+\n";
+	cout << "____________________________________________________________________________________________________________________________________________\n";
 	(*accountCustomer).printInfo();
 	cout << endl << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22)<<"Number of Deposits"<<endl;
 	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << endl;
 }
 void Account::displayDeposits()
 {
-	cout << "+===========================================================+\n";
+	cout << "____________________________________________________________________________________________________________________________________________\n";
 	cout << setw(40) << "Deposits";
 	cout << endl << "Number of Deposits" << setw(22) << depositsCounter<< endl;
 	for( int i = 0; i< depositAmmounts.size();i++)
@@ -196,7 +196,7 @@ void Account::displayDeposits()
 }
 void Account::displayWithdrawls()
 {
-	cout << "+===========================================================+\n";
+	cout << "____________________________________________________________________________________________________________________________________________\n";
 	cout << endl << "Number of withdrawls" << setw(22) << withdrawlCounter << endl;
 	for (int i = 0; i < withdrawlAmmounts.size(); i++)
 	{
@@ -208,7 +208,7 @@ void Account::displayWithdrawls()
 void Account::displaytransfers()
 {
 	
-	cout << "+===========================================================+\n";
+	cout << "____________________________________________________________________________________________________________________________________________\n";
 	cout << endl << "Number of transfers" << setw(22) << transferCount << endl;
 	for (int i = 0; i < transferAmmounts.size(); i++)
 	{

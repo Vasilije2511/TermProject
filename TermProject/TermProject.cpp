@@ -184,6 +184,8 @@ void createAccount(int customerIndex)
     {
         cin.clear();
         cin.ignore();
+        system("cls");
+
         cout << "+===========================================================+" << endl;
         cout << "+                       Error                               +" << endl;
         cout << "+-----------------------------------------------------------+" << endl;
@@ -207,6 +209,8 @@ void createAccount(int customerIndex)
         {
             cin.clear();
             cin.ignore();
+            system("cls");
+
             cout << "+===========================================================+" << endl;
             cout << "+                       Error                               +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -234,7 +238,7 @@ void createAccount(int customerIndex)
         double interestRate;
         cout << "Enter interest rate: ";
         cin >> interestRate;
-        while (interestRate < 0 || interestRate>100)
+        while (interestRate < 0 || interestRate>100 ||cin.fail())
         {
             system("cls");
             cin.clear();
@@ -243,11 +247,11 @@ void createAccount(int customerIndex)
             cout << "+                       Error                               +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
             cout << "+ Invalid ammount entered please re-enter interest rate     +" << endl;
-            cout << "+ or 999 to quit                                           +" << endl;
+            cout << "+ or 0 to quit                                              +" << endl;
             cout << "+===========================================================+" << endl;
             cout << "Enter interest rate: ";
             cin >> interestRate;
-            if (interestRate == 999)
+            if (interestRate == 0)
             {
                 return;
             }
@@ -258,7 +262,7 @@ void createAccount(int customerIndex)
         savingAccounts.push_back(newAccount);
         cout << "+-----------------------------------------------------------+" << endl;
         cout << "+ Savings Account created successfully!                      +" << endl;
-        cout << "+ Your Account ID is: " << nextAccountId << "                        +" << endl;
+        cout << "+ Your Account ID is: " << nextAccountId << "                               +" << endl;
         cout << "+===========================================================+" << endl;
         nextAccountId++;
     }
@@ -399,7 +403,7 @@ void customerPortal()
             {
                 system("cls");
                 cout << "+===========================================================+" << endl;
-                cout << "+            Customer Portal - Account Menu                 +" << endl;
+                cout << "+            Customer Portal -  Existing Account Menu       +" << endl;
                 cout << "+-----------------------------------------------------------+" << endl;
                 cout << "+ 1 - View Balance                                          +" << endl;
                 cout << "+ 2 - Deposit Money                                         +" << endl;
@@ -410,7 +414,7 @@ void customerPortal()
                 cout << "Enter an option: ";
                 cin >> subChoice;
 
-                while (subChoice != 1 && subChoice != 2 && subChoice != 3) //error handling for invalid menu option
+                while (subChoice != 1 && subChoice != 2 && subChoice != 3 && subChoice != 4 && subChoice != 5 ||cin.fail()) //error handling for invalid menu option
                 {
                     system("cls");
                     cin.clear();
