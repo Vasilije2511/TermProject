@@ -416,15 +416,16 @@ void customerPortal()
                 cout << "+ 1 - View Balance                                          +" << endl;
                 cout << "+ 2 - Deposit Money                                         +" << endl;
                 cout << "+ 3 - Withdraw Money                                        +" << endl;
-                cout << "+ 4 - View Transaction History                              +" << endl;
-                cout << "+ 5 - Edit Account Info                                     +" << endl;
-                cout << "+ 6 - Return to Customer Portal                             +" << endl;
+                cout << "+ 4 - Transfer Money                                        +" << endl;
+                cout << "+ 5 - View Transaction History                              +" << endl;
+                cout << "+ 6 - Edit Account Info                                     +" << endl;
+                cout << "+ 7 - Return to Customer Portal                             +" << endl;
                 cout << "+===========================================================+" << endl;
                 cout << "Enter an option: ";
 
                 cin >> subChoice;
 
-                while (subChoice != 1 && subChoice != 2 && subChoice != 3 && subChoice != 4 && subChoice != 5 && subChoice != 6 || cin.fail()) //error handling for invalid menu option
+                while (subChoice < 0 && subChoice > 6 || cin.fail()) //error handling for invalid menu option
                 {
                     system("cls");
                     cin.clear();
@@ -443,9 +444,10 @@ void customerPortal()
                     cout << "+ 1 - View Balance                                          +" << endl;
                     cout << "+ 2 - Deposit Money                                         +" << endl;
                     cout << "+ 3 - Withdraw Money                                        +" << endl;
-                    cout << "+ 4 - View Transaction History                              +" << endl;
-                    cout << "+ 5 - Edit Account Info                                     +" << endl;
-                    cout << "+ 6 - Return to Customer Portal                             +" << endl;
+                    cout << "+ 4 - Transfer Money                                        +" << endl;
+                    cout << "+ 5 - View Transaction History                              +" << endl;
+                    cout << "+ 6 - Edit Account Info                                     +" << endl;
+                    cout << "+ 7 - Return to Customer Portal                             +" << endl;
                     cout << "+===========================================================+" << endl;
                     cout << "Enter an option: ";
                     cin >> subChoice;
@@ -566,7 +568,128 @@ void customerPortal()
                     system("pause");
                     break;
                 }
-                case 4: //need to add the time stamps also need to ask user if they want to see a specific tansaction // dislay the individual info addresss 
+                case 4: //transfer money
+                {
+                    double amount;
+                    int destAccountId;
+                    int destSavingIndex, originSavingIndex;
+                    originSavingIndex = findSavingAccount(savingAccounts, accountId);
+                    if (originSavingIndex == -1)
+                    {
+                        system("cls");
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Transfers can only be made from Savings Accounts!        +" << endl;
+                        cout << "+===========================================================+" << endl;
+                        system("pause");
+                        return;
+                    }
+                    system("cls");
+                    cout << "+===========================================================+" << endl;
+                    cout << "+                     Transfer Money                        +" << endl;
+                    cout << "+-----------------------------------------------------------+" << endl;
+                    cout << "+ Note: Transfers can only be made between Savings Accounts.+" << endl;
+                    cout << "Enter destination Savings Account ID or 0 to quit: ";
+                    cin >> destAccountId;
+                    if (destAccountId == 0)
+                    {
+                        return;
+                    }
+                    while (destAccountId < 0 || cin.fail())
+                    {
+                        cin.clear();
+                        cin.ignore();
+                        system("cls");
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Invalid Account ID entered!                               +" << endl;
+                        cout << "+===========================================================+" << endl;
+                        system("pause");
+                        system("cls");
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                     Transfer Money                        +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "Enter destination Savings Account ID or 0 to exit: ";
+                        cin >> destAccountId;
+                        if (destAccountId == 0)
+                        {
+                            return;
+                        }
+                    }
+                    if(destAccountId == accountId)
+                    {
+                        system("cls");
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Cannot transfer to the same account!                      +" << endl;
+                        cout << "+===========================================================+" << endl;
+                        system("pause");
+                        return;
+					}
+                    destSavingIndex = findSavingAccount(savingAccounts, destAccountId);
+                    while (destSavingIndex == -1)
+                    {
+                        system("cls");
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Destination account not found!                            +" << endl;
+                        cout << "+===========================================================+" << endl;
+                        system("pause");
+                        system("cls");
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                     Transfer Money                        +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "Enter destination Savings Account ID or 0 to quit: ";
+                        cin >> destAccountId;
+                        if (destAccountId == 0)
+                        {
+                            return;
+                        }
+                    }
+                    cout << "Enter amount to transfer: $";
+                    cin >> amount;
+                    while (amount <= 0 || cin.fail())
+                    {
+                        cin.clear();
+                        cin.ignore();
+
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                       Error                               +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+ Invalid amount! Please re-enter amount to transfer        +" << endl;
+                        cout << "+ or 0 to quit                                              + " << endl;
+                        cout << "+===========================================================+" << endl;
+                        cout << "Enter amount to transfer: $";
+                        cin >> amount;
+                        if (amount == 0)
+                        {
+                            return;
+                        }
+                    }
+                    if (amount > 0 && amount <= savingAccounts[originSavingIndex].getBalance())
+                    {
+                        cout << "+-----------------------------------------------------------+" << endl;
+                        cout << "+                  Transfer successful!                     +" << endl;
+                        cout << "+===========================================================+" << endl;
+                        cout << "Previous Balance: $" << savingAccounts[destSavingIndex].getBalance() << endl;
+                        savingAccounts[savingIndex].transfer(amount, &savingAccounts[destSavingIndex]);
+                        cout << "Updated Balance: $" << savingAccounts[destSavingIndex].getBalance() << endl;
+                    }
+                    else
+                    {
+                        cout << "+===========================================================+" << endl;
+                        cout << "+                 Error  insufficent funds                  +" << endl;
+                        cout << "+-----------------------------------------------------------+" << endl;
+                    }
+
+                    break;
+                }
+
+                case 5: //need to add the time stamps also need to ask user if they want to see a specific tansaction // dislay the individual info addresss 
                 {
                     string fname, lname, accountType;
                     for (int i = 0; i < checkingAccounts.size(); i++)
@@ -598,7 +721,6 @@ void customerPortal()
                     cout << "+-----------------------------------------------------------+" << endl;
 
 
-                    //changes
 
                     if (checkingIndex != -1)
                     {
@@ -624,7 +746,7 @@ void customerPortal()
                     system("pause");
                     break;
                 }
-                case 5://modify account
+                case 6://modify account
 
                 {
                     string fname, lname, address, phone, email;
@@ -662,14 +784,14 @@ void customerPortal()
                         cout << "+ 3 - Change Address                                                                                      +" << endl;
                         cout << "+ 4 - Change Phone #                                                                                      +" << endl;
                         cout << "+ 5 - Change Email                                                                                        +" << endl;
-						cout << "+ 6 - Return to Account Menu                                                                              +" << endl;
+                        cout << "+ 6 - Return to Account Menu                                                                              +" << endl;
                         cout << "+---------------------------------------------------------------------------------------------------------+" << endl;
                         cout << "Enter an option to edit: ";
                         cin >> option;
                         if (option == 6)
                         {
                             break;
-						}
+                        }
                         while (option < 1 || option > 6 || cin.fail())
                         {
                             cout << "+ Invalid option! Please enter a valid option to edit: ";
@@ -859,12 +981,12 @@ void customerPortal()
                                 if (optMakeChanges == 0)
                                     makeChanges = false;
                                 else
-									makeChanges = true;
+                                    makeChanges = true;
                             }
                             else if (option == 4)
                             {
                                 cin.ignore();
-								cout << "Enter new Phone #: ";
+                                cout << "Enter new Phone #: ";
                                 cin >> phone;
                                 savingAccounts[index].getAccountCustomer()->setPhone(phone);
                                 cout << "+------------------------------------------------------------------------------------------------+" << endl;
@@ -882,7 +1004,7 @@ void customerPortal()
                                 if (optMakeChanges == 0)
                                     makeChanges = false;
                                 else
-									makeChanges = true;
+                                    makeChanges = true;
                             }
                             else if (option == 5)
                             {
@@ -915,7 +1037,7 @@ void customerPortal()
                     }
                     break;
                 }
-                case 6:
+                case 7:
                 {
                     system("cls");
                     cout << "+===========================================================+" << endl;
@@ -937,7 +1059,7 @@ void customerPortal()
                     system("pause");
                 }
                 }
-            } while (subChoice != 6);
+            } while (subChoice != 7);
             break;
         }
         case 3: //Return to Main Menu
@@ -1013,7 +1135,7 @@ void adminPortal()
                 system("pause");
                 createAccount(customerIndex);
             }
-            else 
+            else
             {
                 string address, phone, email;
                 cin.ignore();
@@ -1029,7 +1151,7 @@ void adminPortal()
                 createAccount(customers.size() - 1);
             }
             break;
-        
+
         }
         case 2:
         {
