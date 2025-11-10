@@ -7,6 +7,8 @@
 #include <vector>
 #include <iomanip>
 #include <cstdlib>
+#include <conio.h>//for _getch() -password masking
+
 using namespace std;
 
 //Admin username: admin
@@ -90,13 +92,19 @@ int main() {
             //Press 2 - For Administrator Portal 
         {
 			string adminUser, adminPass;
+            char ch;
 			cout << "+===========================================================+" << endl;
 			cout << "+                Administrator Login                        +" << endl;
 			cout << "+-----------------------------------------------------------+" << endl;
 			cout << "Enter Admin Username: ";
 			cin >> adminUser;
 			cout << "Enter Admin Password: ";
-			cin >> adminPass;
+            while (adminPass.size() < 10)
+            {
+				ch = _getch();
+				adminPass.push_back(ch);
+				cout << '*';
+            }
 			if (adminUser != "admin" || adminPass != "admin123") 
 			{
                 system("cls");
