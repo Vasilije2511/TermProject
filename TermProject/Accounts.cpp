@@ -189,7 +189,7 @@ void Account::displayDeposits()
 	cout << endl << "Number of Deposits" << setw(22) << depositsCounter<< endl;
 	for( int i = 0; i< depositAmmounts.size();i++)
 	{
-		cout << "Deposit #" << i + 1 << setw(20) << "Ammount Deposited $" << depositAmmounts[i];
+		cout << "Deposit #" << i + 1 << setw(20) << "Ammount Deposited $" << depositAmmounts[i]<<endl;
 	
 	}
 	
@@ -200,7 +200,7 @@ void Account::displayWithdrawls()
 	cout << endl << "Number of withdrawls" << setw(22) << withdrawlCounter << endl;
 	for (int i = 0; i < withdrawlAmmounts.size(); i++)
 	{
-		cout << "Withdrawl #" << i + 1 << setw(20) << "Ammount withdrawn $" << withdrawlAmmounts[i];
+		cout << "Withdrawl #" << i + 1 << setw(20) << "Ammount withdrawn $" << withdrawlAmmounts[i] << endl;
 
 	}
 }
@@ -212,7 +212,7 @@ void Account::displaytransfers()
 	cout << endl << "Number of transfers" << setw(22) << transferCount << endl;
 	for (int i = 0; i < transferAmmounts.size(); i++)
 	{
-		cout << "Transfer #" << i + 1 << setw(20) << "Ammount Transfered $" << transferAmmounts[i];
+		cout << "Transfer #" << i + 1 << setw(20) << "Ammount Transfered $" << transferAmmounts[i]<<endl;
 
 	}
 }

@@ -555,12 +555,20 @@ void customerPortal()
                     system("pause");
                     break;
                 }
-                case 4: //need to add the time stamps also need to ask user if they want to see a specific tansaction
+                case 4: //need to add the time stamps also need to ask user if they want to see a specific tansaction // dislay the individual info addresss 
                 {
+                    string fname;
+					fname= customers[accountId].getFname();
+                    string lname;
+                    lname = customers[accountId].getLname();
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                 Transaction History                       +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
+					cout << "+  Transaction History for Account ID#: " << accountId<<"          +" << endl;
+                    cout << "+ Name: " <<fname << " "<<lname  << endl;
+                    cout << "+===========================================================+" << endl;
+
                     if (checkingIndex != -1)
                     {
                         checkingAccounts[checkingIndex].displayAllTransactions();
