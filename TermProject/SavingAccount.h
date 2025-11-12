@@ -17,7 +17,7 @@ public:
     void setInterestRate(double _rate);
     void setAll(int _id, double _balance, double _interestRate, Customer* _customerInfo);
     void payInterest();
-    void transfer(double _amount, SavingAccount* _destinationAccount);
+    void transfer(double _amount, SavingAccount &_destinationAccount);
 };
 
 #endif

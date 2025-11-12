@@ -677,6 +677,7 @@ void customerPortal()
                         {
                             return;
                         }
+                        destSavingIndex = findSavingAccount(savingAccounts, destAccountId);
                     }
                     cout << "Enter amount to transfer: $";
                     cin >> amount;
@@ -698,12 +699,10 @@ void customerPortal()
                             return;
                         }
                     }
-                    if (amount > 0 && amount <= savingAccounts[originSavingIndex].getBalance())
+                    if ( amount <= savingAccounts[originSavingIndex].getBalance())
                     {
                         // print previous balance, perform transfer on the origin account, then display updated balance.
-                        cout << "Previous Balance (destination): $" << fixed << setprecision(2) << savingAccounts[destSavingIndex].getBalance() << endl;
-                        savingAccounts[originSavingIndex].transfer(amount, &savingAccounts[destSavingIndex]);
-                        cout << "Updated Balance (destination): $" << fixed << setprecision(2) << savingAccounts[destSavingIndex].getBalance() << endl;
+                        savingAccounts[originSavingIndex].transfer(amount, savingAccounts[destSavingIndex]);
                     }
                     else
                     {
@@ -711,7 +710,7 @@ void customerPortal()
                         cout << "+                 Error  insufficent funds                  +" << endl;
                         cout << "+-----------------------------------------------------------+" << endl;
                     }
-
+                    system("pause");
                     break;
                 }
 
@@ -1085,7 +1084,7 @@ void customerPortal()
                     system("pause");
                 }
                 }
-            } while (subChoice != 7);
+            } while (subChoice != 8);
             break;
         }
         case 3: //Return to Main Menu

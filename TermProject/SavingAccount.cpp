@@ -38,12 +38,15 @@ void SavingAccount::payInterest()
 	depositMoney(interest);
 	setDepositAmmounts(interest);
 }
-void SavingAccount::transfer(double _amount, SavingAccount* _destinationAccount)
+void SavingAccount::transfer(double _amount, SavingAccount& _destinationAccount)
 {
+	double prevSrc, prevDest;
+	prevSrc = getBalance();
+	prevDest = _destinationAccount.getBalance();
 	if (_amount > 0 && _amount <= getBalance())
 	{
-		withdrawMoney(_amount);
-		(*_destinationAccount).depositMoney(_amount);
+		setBalance((getBalance() - _amount));
+		(_destinationAccount).setBalance(_amount);
 		setTransferCounter(1);
 		settransferAmmounts(_amount);
 
@@ -51,8 +54,15 @@ void SavingAccount::transfer(double _amount, SavingAccount* _destinationAccount)
 		cout << "+-----------------------------------------------------------+" << endl;
 		cout << "+                  Transfer completed                        +" << endl;
 		cout << "+-----------------------------------------------------------+" << endl;
+		cout << "Source Account (ID " << getID() << ") Prevoius Balance: $" << fixed << setprecision(2) << prevSrc << endl;
 		cout << "Source Account (ID " << getID() << ") New Balance: $" << fixed << setprecision(2) << getBalance() << endl;
-		cout << "Destination Account (ID " << _destinationAccount->getID() << ") New Balance: $" << fixed << setprecision(2) << _destinationAccount->getBalance() << endl;
+
+
+		cout << "Destination Account (ID " << _destinationAccount.getID() << ") Previous Balance: $" << fixed << setprecision(2) << prevDest << endl;
+
+		cout << "Destination Account (ID " << _destinationAccount.getID() << ") New Balance: $" << fixed << setprecision(2) << _destinationAccount.getBalance() << endl;
+	
+		
 	}
 	else
 	{
