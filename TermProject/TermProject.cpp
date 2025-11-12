@@ -535,13 +535,13 @@ void customerPortal()
                     cout << "Enter amount to withdraw: $";
                     cin >> amount;
 
-                    while (amount < 0)
+                    while (amount <= 0)
                     {
                         cout << "+===========================================================+" << endl;
                         cout << "+                       Error                               +" << endl;
                         cout << "+-----------------------------------------------------------+" << endl;
                         cout << "+ Invalid amount! Please re-enter amount to withdraw        +" <<
-                            "+ or 0 to quit                                              + " << endl;
+                                "+ or 0 to quit                                              + " << endl;
                         cout << "+===========================================================+" << endl;
                         cout << "Enter amount to withdraw: $";
                         cin >> amount;
@@ -552,17 +552,48 @@ void customerPortal()
                     }
                     if (amount > 0) //need to add check for sufficient funds and overdraft limit
                     {
-                        if (checkingIndex != -1)
-                        {
-                            checkingAccounts[checkingIndex].withdrawMoney(amount);
+
+                        bool ok = false;
+                        if (checkingIndex != -1) {
+                            double available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
+                            if (amount <= available) {
+                                checkingAccounts[checkingIndex].withdrawMoney(amount);
+                                ok = true;
+                            }
+                            else {
+                                cout << "+===========================================================+" << endl;
+                                cout << "+                       Error                               +" << endl;
+                                cout << "+-----------------------------------------------------------+" << endl;
+                                cout << "+ Insufficient funds. Would exceed overdraft limit.         +" << endl;
+                                cout << "+===========================================================+" << endl;
+                            }
                         }
-                        else if (savingIndex != -1)
-                        {
-                            savingAccounts[savingIndex].withdrawMoney(amount);
+                        else if (savingIndex != -1) {
+                            if (amount <= savingAccounts[savingIndex].getBalance()) {
+                                savingAccounts[savingIndex].withdrawMoney(amount);
+                                ok = true;
+                            }
+                            else {
+                                cout << "+===========================================================+" << endl;
+                                cout << "+                       Error                               +" << endl;
+                                cout << "+-----------------------------------------------------------+" << endl;
+                                cout << "+ Insufficient funds in savings account.                    +" << endl;
+                                cout << "+===========================================================+" << endl;
+                            }
                         }
-                        cout << "+-----------------------------------------------------------+" << endl;
-                        cout << "+ Withdrawal successful!                                    +" << endl;
-                        cout << "+===========================================================+" << endl;
+                        else {
+                            cout << "+===========================================================+" << endl;
+                            cout << "+                       Error                               +" << endl;
+                            cout << "+-----------------------------------------------------------+" << endl;
+                            cout << "+ Account not found.                                        +" << endl;
+                            cout << "+===========================================================+" << endl;
+                        }
+
+                        if (ok) {
+                            cout << "+-----------------------------------------------------------+" << endl;
+                            cout << "+ Withdrawal successful!                                    +" << endl;
+                            cout << "+===========================================================+" << endl;
+                        }
                     }
 
                     system("pause");
