@@ -519,7 +519,7 @@ void customerPortal()
                     system("pause");
                     break;
                 } //ALSO NEED TO FIX if user enters someting that cuases cin to fail like a letter.
-                case 3: //wothdraw money ***NEED TO FIX TO SHOWERROR IF INSUFFICIENT FUNDS and the over draft limit/fees
+                case 3: 
                 {
                     double amount;
                     system("cls");
