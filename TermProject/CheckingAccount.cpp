@@ -48,7 +48,7 @@ void CheckingAccount::withdrawMoney(double _wAmmount)
 		}
 		else
 		{
-			if (abs(getBalance() - _wAmmount) >= overDraftLimit)
+			if (abs(getBalance() - _wAmmount) <= overDraftLimit)
 			{
 				double newbal = getBalance() - _wAmmount - 20;
 				setBalance(newbal);
@@ -58,7 +58,7 @@ void CheckingAccount::withdrawMoney(double _wAmmount)
 			}
 			else
 			{
-				cout << "Cannot allow withdrawl.Overdraft limit exceeded" << endl;
+				cout << "Cannot allow withdrawl. Overdraft limit exceeded" << endl;
 			}
 		}
 	}
