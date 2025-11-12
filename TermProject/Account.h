@@ -17,10 +17,16 @@ class Account
 	double totalDeposits=0;
 	double totaltransfers = 0;
 	
+	int wDatecount = 0;
+	int tDatecount = 0;
+	int dDatecount = 0;
 	vector<double> transferAmmounts;
 	vector<double> depositAmmounts;
 	vector<double> withdrawlAmmounts;
-	 
+	vector<string> withdrawlDates;
+	vector<string>transferDates;
+	vector<string>depositDates;
+
 
 
 public:
@@ -39,6 +45,14 @@ public:
 	double getTotaldeposits() const;
 	void setTotalWithdrawls(double _withdrawlAmmount);
 	double getTotalWithdrawls() const;
+	
+	void setwithdrawlDates();
+	void setTransferDates();
+	void setdepositDates();
+	string getTransferDates(int index);
+	string getDepositDates(int index);
+	string getWithdrawlDates(int index);
+
 
 
 
@@ -63,7 +77,8 @@ public:
 	void setDepositAmmounts(double _depositAmmount);
 	double recieveDepositAmmount(int i);
 
-	void displayAllTransactions();
+	void displaySavingTransactions();
+	void displayCheckingTransactions();
 
 	void displayDeposits();
 

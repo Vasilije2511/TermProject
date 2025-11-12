@@ -46,9 +46,11 @@ void SavingAccount::transfer(double _amount, SavingAccount& _destinationAccount)
 	if (_amount > 0 && _amount <= getBalance())
 	{
 		setBalance((getBalance() - _amount));
-		(_destinationAccount).setBalance(_amount);
+		(_destinationAccount).setBalance((prevDest+_amount));
 		setTransferCounter(1);
 		settransferAmmounts(_amount);
+		setTransferDates();
+		
 
 		// success confirmation and updated balances
 		cout << "+-----------------------------------------------------------+" << endl;

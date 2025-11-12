@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <time.h>
 using namespace std;
 Account::Account()
 {
@@ -158,6 +159,8 @@ void Account ::depositMoney(double _ammount)
 		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1
 		setTotaldeposits( _ammount);
 		setDepositAmmounts(_ammount);
+		setdepositDates();
+	
 	}
 	
 	else
@@ -171,40 +174,39 @@ void Account::withdrawMoney(double _ammount)
 			setWithdrawlCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
 			setTotalWithdrawls(_ammount);
 			setwithdrawlAmmounts(_ammount);
+			setwithdrawlDates();
 	}
 	else
 		cout << "An Error has occured with the balance or ammount" << endl;
 }
 void Account::printInfo()
 {
-	cout << "+===========================================================+\n";
+	cout << "+========================================================================================+" << endl;
 	(*accountCustomer).printInfo();
-	cout << endl << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22)<<"Number of Deposits"<<endl;
-	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << endl;
+	cout << endl  << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22) << "Number of Deposits" <<setw(22) << "Number of Transfers" << setw(15) << "balance" << endl;
+	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << setw(22) << transferCount<< setw(15) << balance <<endl;
 }
 void Account::displayDeposits()
 {
-	cout << "+===========================================================+\n";
-	
-	cout << endl << left << setw(22) << "Number of Deposits" << right << setw(26) << depositsCounter << endl << endl;
-	cout << left<<setw(22) <<"Deposit #" <<right<< setw(35) << "Ammount Deposited " << endl;
+	cout << "+----------------------------------------------------------------------------------------+" << endl;
 
-	for( int i = 0; i< depositAmmounts.size();i++)
+	cout << setw(15) << " "<<left<<setw(22) <<"Deposit #" << left << setw(10) << "Date"<< right<<setw(25) << "Ammount Deposited " << endl;
+
+	for( int i = 0; i< depositAmmounts.size()&& i < depositDates.size();i++)
 	{
-		cout << left <<setw(22)<<i + 1 << right <<setw(25) <<  "$"<<depositAmmounts[i] << endl;
+		cout << setw(15) << " "<<left <<setw(22)<<i + 1 << right << setw(10) << depositDates[i] << right<<setw(15) <<  "$"<<depositAmmounts[i] << endl;
 	
 	}
 	
 }
 void Account::displayWithdrawls()
 {
-	cout << "+===========================================================+\n";
-	cout << endl <<left<< setw(22) << "Number of withdrawls" <<right<< setw(26)  << withdrawlCounter << endl<<endl;
-	cout << left << setw(22) << "Withdrawl #" << right << setw(35) << "Ammount Withdrawn " << endl;
+	cout << "+----------------------------------------------------------------------------------------+" << endl;
+	cout << setw(15) << " "<<left << setw(22) << "Withdrawl #" << left << setw(10) << "Date" << right << setw(25) << "Ammount Withdrawn " << endl;
 
-	for (int i = 0; i < withdrawlAmmounts.size(); i++)
+	for (int i = 0; i < withdrawlAmmounts.size() && i < withdrawlDates.size(); i++)
 	{
-		cout << left << setw(22) << i + 1 << right << setw(25) << "$" << withdrawlAmmounts[i] << endl;
+		cout << setw(15) << " "<< left << setw(22) << i + 1 << right << setw(10) << withdrawlDates[i] << right << setw(15) << "$" << withdrawlAmmounts[i] << endl;
 
 	}
 }
@@ -212,21 +214,73 @@ void Account::displayWithdrawls()
 void Account::displaytransfers()
 {
 	
-	cout << "+===========================================================+\n";
-	cout << endl <<left<<setw(22)<< "Number of transfers" << setw(26) << transferCount << endl<<endl;
-	cout << left << setw(22) << "Transfer #" << right << setw(35) << "Ammount Transfered " << endl;
+	cout << "+----------------------------------------------------------------------------------------+" << endl;
+	cout << setw(15) << " " << left << setw(22) << "Transfer #" << left << setw(10) << "Date" << right << setw(25) << "Ammount Transfered " << endl;
 
-	for (int i = 0; i < transferAmmounts.size(); i++)
+	for (int i = 0; i < transferAmmounts.size()&&i<transferDates.size(); i++)
 	{
-		cout <<left<<setw(22) << i + 1 << right << setw(25) << "$" << transferAmmounts[i]<<endl;
+		cout << setw(15) << " " << left << setw(22) << i + 1 << right << setw(10) << transferDates[i] << right << setw(15) << "$" << transferAmmounts[i] << endl;
+
 
 	}
 }
 
-void Account::displayAllTransactions()
+void Account::displaySavingTransactions()
 {
-
+	printInfo();
 	displayDeposits();
 	displayWithdrawls();
 	displaytransfers();
+}
+void Account::displayCheckingTransactions()
+{
+	cout << "+========================================================================================+" << endl;
+	(*accountCustomer).printInfo();
+	cout <<  endl << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22) << "Number of Deposits" << setw(15)<<"Balance" << endl;
+	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << setw(15) << balance << endl;
+	displayDeposits();
+	displayWithdrawls();
+}
+
+void Account:: setwithdrawlDates()
+{
+	time_t now = time(0);
+	string datetime;
+	tm localtime;
+	localtime_s(&localtime, &now);
+	datetime = to_string(localtime.tm_mon + 1) + "/" + to_string(localtime.tm_mday) + "/" + to_string(localtime.tm_year + 1900);
+	withdrawlDates.push_back(datetime);
+	wDatecount++;
+}
+void Account::setTransferDates()
+{
+	time_t now = time(0);
+	string datetime;
+	tm localtime;
+	localtime_s(&localtime, &now);
+	datetime = to_string(localtime.tm_mon + 1) + "/" + to_string(localtime.tm_mday) + "/" + to_string(localtime.tm_year + 1900);
+	transferDates.push_back(datetime);
+	tDatecount++;
+}
+void Account::setdepositDates()
+{
+	time_t now = time(0);
+	string datetime;
+	tm localtime;
+	localtime_s(&localtime, &now);
+	datetime = to_string(localtime.tm_mon + 1) + "/" + to_string(localtime.tm_mday) + "/" + to_string(localtime.tm_year + 1900);
+	depositDates.push_back(datetime);
+	dDatecount++;
+}
+string Account::getTransferDates(int index)
+{
+	return transferDates[index-1];
+}
+string Account::getDepositDates(int index)
+{
+	return depositDates[index-1];
+}
+string Account::getWithdrawlDates(int index)
+{
+	return withdrawlDates[index-1];
 }

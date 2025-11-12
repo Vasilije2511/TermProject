@@ -8,6 +8,7 @@
 #include <vector>
 #include <iomanip>
 #include <cstdlib>
+#include "time.h"
 
 using namespace std;
 
@@ -739,24 +740,24 @@ void customerPortal()
 
 
                     system("cls");
-                    cout << "+===========================================================+" << endl;
-                    cout << "+                 Transaction History                       +" << endl;
-                    cout << "+           " << right << setw(15) << fname << " " << left << setw(15) << lname << "                 +" << endl;
-                    cout << "+                   " << accountType << "                        +" << endl;
-                    cout << "+-----------------------------------------------------------+" << endl;
+                    cout << "+========================================================================================+" << endl;
+                    cout << "                               Transaction History                                       " << endl;
+                    cout << "                         " << right << setw(15) << fname << " " << left << setw(15) << lname << "                             " << endl;
+                    cout << "                                 " << accountType << "                                                   " << endl;
+                    cout << "+----------------------------------------------------------------------------------------+" << endl;
 
 
 
                     if (checkingIndex != -1)
                     {
-                        checkingAccounts[checkingIndex].displayAllTransactions();
-                        cout << "+===========================================================+" << endl;
+                        checkingAccounts[checkingIndex].displayCheckingTransactions();
+                        cout << "+========================================================================================+" << endl;
 
                     }
                     else if (savingIndex != -1)
                     {
-                        savingAccounts[savingIndex].displayAllTransactions();
-                        cout << "+===========================================================+" << endl;
+                        savingAccounts[savingIndex].displaySavingTransactions();
+                        cout << "+========================================================================================+" << endl;
 
                     }
                     else
@@ -1071,6 +1072,7 @@ void customerPortal()
                     cout << "+ Thank you for using our services!                         +" << endl;
                     cout << "+===========================================================+" << endl;
                     system("pause");
+                    return;
                     break;
                 }
                 default:
@@ -1356,10 +1358,10 @@ void adminPortal()
             int savingIndex = findSavingAccount(savingAccounts, accountId);
 
             if (checkingIndex != -1) {
-                checkingAccounts[checkingIndex].displayAllTransactions();
+                checkingAccounts[checkingIndex].displayCheckingTransactions();
             }
             else if (savingIndex != -1) {
-                savingAccounts[savingIndex].displayAllTransactions();
+                savingAccounts[savingIndex].displaySavingTransactions();
             }
             else {
                 cout << "+-----------------------------------------------------------+" << endl;
