@@ -177,7 +177,7 @@ void Account::withdrawMoney(double _ammount)
 }
 void Account::printInfo()
 {
-	cout << "+===========================================================+\n";
+	cout << endl;
 	(*accountCustomer).printInfo();
 	cout << endl << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22)<<"Number of Deposits"<<endl;
 	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << endl;
