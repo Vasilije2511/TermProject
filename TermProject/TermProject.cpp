@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include<string>
 #include "Account.h"
@@ -98,7 +99,7 @@ int main() {
             cout << "Enter Admin Username: ";
             cin >> adminUser;
             cout << "Enter Admin Password: ";
-			cin >> adminPass;
+            cin >> adminPass;
             if (adminUser != "admin" || adminPass != "admin123")
             {
                 system("cls");
@@ -519,7 +520,7 @@ void customerPortal()
                     system("pause");
                     break;
                 } //ALSO NEED TO FIX if user enters someting that cuases cin to fail like a letter.
-                case 3: 
+                case 3:
                 {
                     double amount;
                     system("cls");
@@ -529,13 +530,15 @@ void customerPortal()
                     cout << "Enter amount to withdraw: $";
                     cin >> amount;
 
-                    while (amount <= 0)
+                    while (amount <= 0 ||cin.fail())
                     {
+						cin.clear();
+						cin.ignore();
                         cout << "+===========================================================+" << endl;
                         cout << "+                       Error                               +" << endl;
                         cout << "+-----------------------------------------------------------+" << endl;
                         cout << "+ Invalid amount! Please re-enter amount to withdraw        +" <<
-                                "+ or 0 to quit                                              + " << endl;
+                            "+ or 0 to quit                                              + " << endl;
                         cout << "+===========================================================+" << endl;
                         cout << "Enter amount to withdraw: $";
                         cin >> amount;
@@ -643,7 +646,7 @@ void customerPortal()
                             return;
                         }
                     }
-                    if(destAccountId == accountId)
+                    if (destAccountId == accountId)
                     {
                         system("cls");
                         cout << "+===========================================================+" << endl;
@@ -653,7 +656,7 @@ void customerPortal()
                         cout << "+===========================================================+" << endl;
                         system("pause");
                         return;
-					}
+                    }
                     destSavingIndex = findSavingAccount(savingAccounts, destAccountId);
                     while (destSavingIndex == -1)
                     {
