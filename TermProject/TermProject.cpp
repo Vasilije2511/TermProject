@@ -1577,10 +1577,6 @@ void modifyAccount(int accountId)
                     makeChanges = true;
             }
         }
-
-
-
-
     }
  
 }
