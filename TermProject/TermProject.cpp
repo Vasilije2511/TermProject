@@ -95,7 +95,7 @@ int main() {
             //Press 2 - For Administrator Portal 
         {
             string adminUser, adminPass;
-            char ch;
+            
             cout << "+===========================================================+" << endl;
             cout << "+                Administrator Login                        +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
