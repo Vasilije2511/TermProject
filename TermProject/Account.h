@@ -7,15 +7,12 @@ using namespace std;
 
 class Account
 {
-	int ID, withdrawlCounter=0, depositsCounter=0;
+	int ID, withdrawlCounter=0, depositsCounter=0, transferCount = 0;
 	double balance;
 	Customer *accountCustomer;
 	// for transaction history 
-	int transferCount = 0;
+	
 
-	double totalWitdrawl=0;
-	double totalDeposits=0;
-	double totaltransfers = 0;
 	
 	int wDatecount = 0;
 	int tDatecount = 0;

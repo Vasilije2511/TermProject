@@ -13,8 +13,7 @@ Account::Account()
 	withdrawlCounter = 0;
 	depositsCounter = 0;
 	balance=0;
-	totalDeposits = 0;
-	totalWitdrawl = 0;
+	
 }
 Account::Account( Customer *_accountCustomer, int _id, double _balance)
 {
@@ -58,36 +57,12 @@ void Account::setBalance(double _balance) //set the total balance for the accoun
 	else
 		balance = 0; //to prevent negative balances
 }
-void Account::setTotalTransfers(double _transferAmmount) //increment the transfer ammount counter
-{
-	if (_transferAmmount > 0)
-		totaltransfers = totaltransfers + _transferAmmount;
-}
-double Account::getTotalTransfers() const //return the total ammount transfered
-{
-	return totaltransfers;
-}
-
-void Account::setTotaldeposits(double _depositAmmount) //increment the total deposits counter
-{
-	if (_depositAmmount > 0)
-		totalDeposits = totalDeposits + _depositAmmount;
-}
-double Account::getTotaldeposits() const //returnt he total deposits ammount
-{
-	return totalDeposits;
-}
 
 
-void Account::setTotalWithdrawls(double _withdrawlAmmount) //increment the withdrawl counter
-{
-	if (_withdrawlAmmount > 0)
-		totalWitdrawl = totalWitdrawl + _withdrawlAmmount;
-}
-double Account::getTotalWithdrawls() const //return the total ammount withdrawn 
-{
-	return totalWitdrawl;
-}
+
+
+
+
 
 Customer* Account::getAccountCustomer() const //return the account customer object
 {
@@ -157,7 +132,6 @@ void Account ::depositMoney(double _ammount)
 	{
 		balance = balance + _ammount;
 		setDepositCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1
-		setTotaldeposits( _ammount);
 		setDepositAmmounts(_ammount);
 		setdepositDates();
 	
@@ -172,7 +146,6 @@ void Account::withdrawMoney(double _ammount)
 	{
 			balance = balance - _ammount;
 			setWithdrawlCounter(1); // this might be slow instead we can also write depositsCounter = depositsCounter +1 
-			setTotalWithdrawls(_ammount);
 			setwithdrawlAmmounts(_ammount);
 			setwithdrawlDates();
 	}
@@ -271,16 +244,4 @@ void Account::setdepositDates()
 	datetime = to_string(localtime.tm_mon + 1) + "/" + to_string(localtime.tm_mday) + "/" + to_string(localtime.tm_year + 1900);
 	depositDates.push_back(datetime);
 	dDatecount++;
-}
-string Account::getTransferDates(int index)
-{
-	return transferDates[index-1];
-}
-string Account::getDepositDates(int index)
-{
-	return depositDates[index-1];
-}
-string Account::getWithdrawlDates(int index)
-{
-	return withdrawlDates[index-1];
 }
