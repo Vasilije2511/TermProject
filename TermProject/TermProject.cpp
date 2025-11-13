@@ -818,6 +818,23 @@ void adminPortal()
             cout << "Enter Account ID: ";
             int accountId;
             cin >> accountId;
+            while (cin.fail())
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "+===========================================================+" << endl;
+                cout << "+                       Error                               +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Invalid Account ID entered!                               +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                system("cls");
+                cout << "+===========================================================+" << endl;
+                cout << "+                   Modify Account                          +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "Enter Account ID: ";
+				cin >> accountId;
+            }
             modifyAccount(accountId);
             system("pause");
             system("cls");
@@ -831,7 +848,23 @@ void adminPortal()
             cout << "Enter Account ID: ";
             int accountId;
             cin >> accountId;
-
+            while (cin.fail())
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "+===========================================================+" << endl;
+                cout << "+                       Error                               +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Invalid Account ID entered!                               +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                system("cls");
+                cout << "+===========================================================+" << endl;
+                cout << "+                   Delete Account                          +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "Enter Account ID: ";
+                cin >> accountId;
+            }
             int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
             int savingIndex = findSavingAccount(savingAccounts, accountId);
 
@@ -855,7 +888,7 @@ void adminPortal()
             system("pause");
             break;
         }
-        case 4:
+		case 4://list all accounts
         {
             cout << "+======================================================================================================================+" << endl;
             cout << "+                                                      All Accounts                                                    +" << endl;
@@ -877,8 +910,8 @@ void adminPortal()
             }
             system("pause");
             break;
-        }//
-        case 5:
+        }
+		case 5://look up by ID
         {
             cout << "+======================================================================================================================+" << endl;
             cout << "+                                                  Account Lookup                                                      +" << endl;
@@ -886,7 +919,23 @@ void adminPortal()
             cout << "Enter Account ID: ";
             int accountId;
             cin >> accountId;
-
+            while (cin.fail())
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "+===========================================================+" << endl;
+                cout << "+                       Error                               +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Invalid Account ID entered!                               +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                system("cls");
+                cout << "+===========================================================+" << endl;
+                cout << "+                    Account Lookup                         +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "Enter Account ID: ";
+                cin >> accountId;
+            }
             int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
             int savingIndex = findSavingAccount(savingAccounts, accountId);
 
@@ -956,7 +1005,7 @@ void adminPortal()
 			break;
 
         }
-        case 7:
+		case 7://add interest
         {
             cout << "+===========================================================+" << endl;
             cout << "+                   Add Interest                            +" << endl;
@@ -964,7 +1013,23 @@ void adminPortal()
             cout << "Enter Savings Account ID: ";
             int accountId;
             cin >> accountId;
-
+            while (cin.fail())
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "+===========================================================+" << endl;
+                cout << "+                       Error                               +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Invalid Account ID entered!                               +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                system("cls");
+                cout << "+===========================================================+" << endl;
+                cout << "+                   Add Interest                            +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "Enter Account ID: ";
+                cin >> accountId;
+            }
             int savingIndex = findSavingAccount(savingAccounts, accountId);
             if (savingIndex != -1) {
                 savingAccounts[savingIndex].payInterest();
@@ -980,7 +1045,7 @@ void adminPortal()
             system("pause");
             break;
         }
-        case 8:
+		case 8://view transaction history
         {
             cout << "+===========================================================+" << endl;
             cout << "+               Transaction History                         +" << endl;
@@ -988,17 +1053,35 @@ void adminPortal()
             cout << "Enter Account ID: ";
             int accountId;
             cin >> accountId;
-
+            while (cin.fail())
+            {
+                cin.clear();
+                cin.ignore();
+                cout << "+===========================================================+" << endl;
+                cout << "+                       Error                               +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "+ Invalid Account ID entered!                               +" << endl;
+                cout << "+===========================================================+" << endl;
+                system("pause");
+                system("cls");
+                cout << "+===========================================================+" << endl;
+                cout << "+               Transaction History                         +" << endl;
+                cout << "+-----------------------------------------------------------+" << endl;
+                cout << "Enter Account ID: ";
+                cin >> accountId;
+            }
             int checkingIndex = findCheckingAccount(checkingAccounts, accountId);
             int savingIndex = findSavingAccount(savingAccounts, accountId);
 
             if (checkingIndex != -1) {
                 checkingAccounts[checkingIndex].displayCheckingTransactions();
             }
-            else if (savingIndex != -1) {
+            else if (savingIndex != -1)
+            {
                 savingAccounts[savingIndex].displaySavingTransactions();
             }
-            else {
+            else
+            {
                 cout << "+-----------------------------------------------------------+" << endl;
                 cout << "+ Account not found!                                        +" << endl;
                 cout << "+===========================================================+" << endl;
