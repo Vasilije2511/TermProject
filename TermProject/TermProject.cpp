@@ -775,7 +775,7 @@ void adminPortal()
         }
         switch (choice)
         {
-        case 1:
+		case 1://create account
         {
             cout << "+===========================================================+" << endl;
             cout << "+                  Create New Account                       +" << endl;
@@ -804,13 +804,11 @@ void adminPortal()
                 getline(cin, phone);
                 cout << "Enter email: ";
                 getline(cin, email);
-
                 Customer newCustomer(fname, lname, address, phone, email);
                 customers.push_back(newCustomer);
                 createAccount(customers.size() - 1);
             }
             break;
-
         }
         case 2:
         {
