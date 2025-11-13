@@ -819,7 +819,7 @@ void adminPortal()
             }
             break;
         }
-        case 2:
+		case 2://modify account
         {
             cout << "+===========================================================+" << endl;
             cout << "+                   Modify Account                          +" << endl;
@@ -849,7 +849,7 @@ void adminPortal()
             system("cls");
             break;
         }
-        case 3:
+        case 3://delete account
         {
             cout << "+===========================================================+" << endl;
             cout << "+                   Delete Account                          +" << endl;
@@ -1098,7 +1098,8 @@ void adminPortal()
             system("pause");
             break;
         }
-        case 9: {
+		case 9: //return to main menu
+        {
             cout << "+===========================================================+" << endl;
             cout << "+              Returning to Main Menu                       +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
