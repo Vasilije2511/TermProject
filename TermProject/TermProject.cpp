@@ -7,7 +7,7 @@
 #include "SavingAccount.h"
 #include <vector>
 #include <iomanip>
-#include <cstdlib>
+#include <cstdlib>// for system("cls");
 #include "time.h"
 
 using namespace std;
@@ -32,11 +32,10 @@ vector<SavingAccount> savingAccounts;
 vector<Customer> customers;
 int nextAccountId = 1000;
 
-int main() {
+int main()
+{
     int mainChoice;
     customers.reserve(1000);
-
-
     do { //display menu an introduction
         system("cls");
 
@@ -87,12 +86,14 @@ int main() {
         }
 
         system("cls");
-        switch (mainChoice) {
+        switch (mainChoice)
+        {
         case 1://Press 1 - For Customer Portal 
+        {
             customerPortal();
             break;
-        case 2:
-            //Press 2 - For Administrator Portal 
+        }
+        case 2: //Press 2 - For Administrator Portal 
         {
             string adminUser, adminPass;
             
@@ -118,8 +119,8 @@ int main() {
             break;
 
         }
-
         case 3: //Press 3 - Exit the Banking System
+        {
             cout << "+===========================================================+" << endl;
             cout << "+                System Exit                                +" << endl;
             cout << "+-----------------------------------------------------------+" << endl;
@@ -128,6 +129,7 @@ int main() {
             system("pause");
             break;
 
+        }
         }
     } while (mainChoice != 3);
 
@@ -148,9 +150,6 @@ void customerPortal()
         cout << "+===========================================================+" << endl;
         cout << "Enter an option: ";
         cin >> choice;
-
-
-
         while (choice != 1 && choice != 2 && choice != 3) //error handling for invalid menu option
         {
             system("cls");
@@ -175,7 +174,6 @@ void customerPortal()
             cout << "Enter an option: ";
             cin >> choice;
         }
-
         system("cls");
         switch (choice)
         {
@@ -259,11 +257,7 @@ void customerPortal()
                 }
                 checkingIndex = findCheckingAccount(checkingAccounts, accountId);
                 savingIndex = findSavingAccount(savingAccounts, accountId);
-
-
             }
-
-
             do
             {
                 system("cls");
@@ -315,7 +309,8 @@ void customerPortal()
 
                 system("cls");
                 switch (subChoice) {
-                case 1: {
+				case 1: //View Balance
+                {
                     cout << "+===========================================================+" << endl;
                     cout << "+                   Account Balance                         +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
@@ -342,7 +337,7 @@ void customerPortal()
                     system("pause");
                     break;
                 }
-                case 2:
+				case 2://Deposit Money
                 {
                     double amount;
                     system("cls");
@@ -384,13 +379,21 @@ void customerPortal()
                     system("pause");
                     break;
                 } //ALSO NEED TO FIX if user enters someting that cuases cin to fail like a letter.
-                case 3:
+				case 3://Withdraw Money
                 {
                     double amount;
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                    Withdraw Money                         +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
+					cout << "Available funds: $";
+                    if (checkingIndex != -1) {
+                        double available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
+                        cout << fixed << setprecision(2) << available << endl;
+                    }
+                    else if (savingIndex != -1) {
+                        cout << fixed << setprecision(2) << savingAccounts[savingIndex].getBalance() << endl;
+					}
                     cout << "Enter amount to withdraw: $";
                     cin >> amount;
 
@@ -411,17 +414,20 @@ void customerPortal()
                             return;
                         }
                     }
-                    if (amount > 0) //need to add check for sufficient funds and overdraft limit
+                    if (amount > 0) 
                     {
 
                         bool ok = false;
-                        if (checkingIndex != -1) {
+                        if (checkingIndex != -1)
+                        {
                             double available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
-                            if (amount <= available) {
+                            if (amount <= available)
+                            {
                                 checkingAccounts[checkingIndex].withdrawMoney(amount);
                                 ok = true;
                             }
-                            else {
+                            else 
+                            {
                                 cout << "+===========================================================+" << endl;
                                 cout << "+                       Error                               +" << endl;
                                 cout << "+-----------------------------------------------------------+" << endl;
@@ -429,12 +435,15 @@ void customerPortal()
                                 cout << "+===========================================================+" << endl;
                             }
                         }
-                        else if (savingIndex != -1) {
-                            if (amount <= savingAccounts[savingIndex].getBalance()) {
+                        else if (savingIndex != -1)
+                        {
+                            if (amount <= savingAccounts[savingIndex].getBalance()) 
+                            {
                                 savingAccounts[savingIndex].withdrawMoney(amount);
                                 ok = true;
                             }
-                            else {
+                            else 
+                            {
                                 cout << "+===========================================================+" << endl;
                                 cout << "+                       Error                               +" << endl;
                                 cout << "+-----------------------------------------------------------+" << endl;
@@ -442,7 +451,8 @@ void customerPortal()
                                 cout << "+===========================================================+" << endl;
                             }
                         }
-                        else {
+                        else 
+                        {
                             cout << "+===========================================================+" << endl;
                             cout << "+                       Error                               +" << endl;
                             cout << "+-----------------------------------------------------------+" << endl;
@@ -450,7 +460,8 @@ void customerPortal()
                             cout << "+===========================================================+" << endl;
                         }
 
-                        if (ok) {
+                        if (ok)
+                        {
                             cout << "+-----------------------------------------------------------+" << endl;
                             cout << "+ Withdrawal successful!                                    +" << endl;
                             cout << "+===========================================================+" << endl;
@@ -577,7 +588,7 @@ void customerPortal()
                     system("pause");
                     break;
                 }
-                case 5: //need to add the time stamps also need to ask user if they want to see a specific tansaction // dislay the individual info addresss 
+                case 5: //view transaction history 
                 {
                     string fname, lname, accountType;
                     for (int i = 0; i < checkingAccounts.size(); i++)
@@ -735,6 +746,33 @@ void adminPortal()
         cin >> choice;
 
         system("cls");
+        while (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            cout << "+===========================================================+" << endl;
+            cout << "+                       Error                               +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ Invalid option. Please try again.                         +" << endl;
+            cout << "+===========================================================+" << endl;
+            system("pause");
+            system("cls");
+            cout << "+===========================================================+" << endl;
+            cout << "+                      Admin Portal                         +" << endl;
+            cout << "+-----------------------------------------------------------+" << endl;
+            cout << "+ 1 - Create an Account                                     +" << endl;
+            cout << "+ 2 - Modify an Account                                     +" << endl;
+            cout << "+ 3 - Delete an Account                                     +" << endl;
+            cout << "+ 4 - List ALL Accounts                                     +" << endl;
+            cout << "+ 5 - Look Up Account By ID#                                +" << endl;
+            cout << "+ 6 - Look Up User By Name                                  +" << endl;
+            cout << "+ 7 - Add Interest to Account                               +" << endl;
+            cout << "+ 8 - View Transaction History of Account                   +" << endl;
+            cout << "+ 9 - Return to Main Menu                                   +" << endl;
+            cout << "+===========================================================+" << endl;
+            cout << "Enter an option: ";
+			cin >> choice;
+        }
         switch (choice)
         {
         case 1:
@@ -1219,7 +1257,7 @@ void modifyAccount(int accountId)
         }
         if (isChecking == true)
         {
-            if (option == 1)
+			if (option == 1)//change first name
             {
                 cout << "Enter new first name: ";
                 cin >> fname;
@@ -1243,7 +1281,7 @@ void modifyAccount(int accountId)
 
 
             }
-            else if (option == 2)
+            else if (option == 2)//change last name
             {
                 cout << "Enter new last name: ";
                 cin >> lname;
@@ -1264,7 +1302,7 @@ void modifyAccount(int accountId)
                 else
                     makeChanges = true;
             }
-            else if (option == 3)
+            else if (option == 3)//change adress
             {
                 cin.ignore();
                 cout << "Enter new Address: ";
@@ -1286,8 +1324,7 @@ void modifyAccount(int accountId)
                 else
                     makeChanges = true;
             }
-
-            else if (option == 4)
+            else if (option == 4)//change phone
             {
                 cin.ignore();
                 cout << "Enter new Phone #: ";
@@ -1309,7 +1346,7 @@ void modifyAccount(int accountId)
                 else
                     makeChanges = true;
             }
-            else if (option == 5)
+            else if (option == 5)//change email
             {
                 cin.ignore();
                 cout << "Enter new Email: ";
