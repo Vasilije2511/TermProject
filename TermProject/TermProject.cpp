@@ -1024,6 +1024,7 @@ void adminPortal()
             cout << "+ Invalid option. Please try again.                         +" << endl;
             cout << "+===========================================================+" << endl;
             system("pause");
+            break;
         }
         }
     } while (choice != 9);
