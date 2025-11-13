@@ -1128,7 +1128,7 @@ void createAccount(int customerIndex)
     cin >> accountType;
 
 
-    while ((accountType != 1 && accountType != 2 && accountType != 3))
+    while ((accountType != 1 && accountType != 2 && accountType != 3 ) || cin.fail())
     {
         system("cls");
         cin.clear();
