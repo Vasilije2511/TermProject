@@ -1463,7 +1463,7 @@ void modifyAccount(int accountId)
 
                 cout << " Edit another field? (1 - Yes, 0 - No): ";
                 cin >> optMakeChanges;
-                while (optMakeChanges != 1 && optMakeChanges != 0)
+                while ((optMakeChanges != 1 && optMakeChanges != 0)||cin.fail())
                 {
                     cout << "+ Invalid option! Please enter 1 for Yes or 0 for No: ";
                     cin.clear();
