@@ -378,17 +378,18 @@ void customerPortal()
 
                     system("pause");
                     break;
-                } //ALSO NEED TO FIX if user enters someting that cuases cin to fail like a letter.
+                } 
 				case 3://Withdraw Money
                 {
                     double amount;
+                    double available;
                     system("cls");
                     cout << "+===========================================================+" << endl;
                     cout << "+                    Withdraw Money                         +" << endl;
                     cout << "+-----------------------------------------------------------+" << endl;
 					cout << "Available funds: $";
                     if (checkingIndex != -1) {
-                        double available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
+                        available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
                         cout << fixed << setprecision(2) << available << endl;
                     }
                     else if (savingIndex != -1) {
@@ -420,7 +421,7 @@ void customerPortal()
                         bool ok = false;
                         if (checkingIndex != -1)
                         {
-                            double available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
+                            available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
                             if (amount <= available)
                             {
                                 checkingAccounts[checkingIndex].withdrawMoney(amount);
@@ -464,6 +465,14 @@ void customerPortal()
                         {
                             cout << "+-----------------------------------------------------------+" << endl;
                             cout << "+ Withdrawal successful!                                    +" << endl;
+							cout << "Available funds after withdrawal: $";
+                            if (checkingIndex != -1) {
+                                available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
+                                cout << fixed << setprecision(2) << available << endl;
+                            }
+                            else if (savingIndex != -1) {
+                                cout << fixed << setprecision(2) << savingAccounts[savingIndex].getBalance() << endl;
+                            }
                             cout << "+===========================================================+" << endl;
                         }
                     }
