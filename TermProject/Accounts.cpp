@@ -52,10 +52,11 @@ void Account::setDepositCounter(int _depositCounter) //increment the deposit cou
 }
 void Account::setBalance(double _balance) //set the total balance for the account
 {
-	if (_balance > 0)
-		balance =  _balance;
-	else
-		balance = 0; //to prevent negative balances
+	//if (_balance > 0)
+	//	balance =  _balance;
+	//else
+	//	balance = 0; //to prevent negative balances
+	balance = _balance;
 }
 
 
@@ -154,10 +155,10 @@ void Account::withdrawMoney(double _ammount)
 }
 void Account::printInfo()
 {
-	cout << "+========================================================================================+" << endl;
+	cout << "+======================================================================================================================+" << endl;
 	(*accountCustomer).printInfo();
 	cout << endl  << setw(15) << "ID" << setw(25) << "Number of Withdrawls" << setw(22) << "Number of Deposits" <<setw(22) << "Number of Transfers" << setw(15) << "balance" << endl;
-	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << setw(22) << transferCount<< setw(15) << balance <<endl;
+	cout << setw(15) << ID << setw(25) << withdrawlCounter << setw(22) << depositsCounter << setw(22) << transferCount << "$" << setw(15) <<balance << endl;
 }
 void Account::displayDeposits()
 {
@@ -167,7 +168,7 @@ void Account::displayDeposits()
 
 	for( int i = 0; i< depositAmmounts.size()&& i < depositDates.size();i++)
 	{
-		cout << setw(15) << " "<<left <<setw(22)<<i + 1 << right << setw(10) << depositDates[i] << right<<setw(15) <<  "$"<<depositAmmounts[i] << endl;
+		cout << setw(15) << " "<<left <<setw(22)<<i + 1 << right << setw(10) << depositDates[i] << right<<  "$"<< setw(15) << depositAmmounts[i] << endl;
 	
 	}
 	
@@ -177,9 +178,9 @@ void Account::displayWithdrawls()
 	cout << "+----------------------------------------------------------------------------------------+" << endl;
 	cout << setw(15) << " "<<left << setw(22) << "Withdrawl #" << left << setw(10) << "Date" << right << setw(25) << "Ammount Withdrawn " << endl;
 
-	for (int i = 0; i < withdrawlAmmounts.size() && i < withdrawlDates.size(); i++)
+	for (int i = 0; i < withdrawlCounter  && i < wDatecount; i++)
 	{
-		cout << setw(15) << " "<< left << setw(22) << i + 1 << right << setw(10) << withdrawlDates[i] << right << setw(15) << "$" << withdrawlAmmounts[i] << endl;
+		cout << setw(15) << " "<< left << setw(22) << i + 1 << right << setw(10) << withdrawlDates[i] << right  << "$" << setw(15) << withdrawlAmmounts[i] << endl;
 
 	}
 }

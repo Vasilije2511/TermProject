@@ -374,6 +374,15 @@ void customerPortal()
                         cout << "+-----------------------------------------------------------+" << endl;
                         cout << "+ Deposit successful!                                       +" << endl;
                         cout << "+===========================================================+" << endl;
+                        cout << "Available funds after withdrawal: $";
+                        if (checkingIndex != -1) {
+                            cout << fixed << setprecision(2) << checkingAccounts[checkingIndex].getBalance() << endl;
+                            cout << "Available over draft limit: $" << fixed << setprecision(2) << checkingAccounts[checkingIndex].getOverDraftLimit() << endl;
+                        }
+                        else if (savingIndex != -1) {
+                            cout << fixed << setprecision(2) << savingAccounts[savingIndex].getBalance() << endl;
+                        }
+                        cout << "+===========================================================+" << endl;
                     }
 
                     system("pause");

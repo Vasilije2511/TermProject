@@ -56,7 +56,7 @@ void CheckingAccount::withdrawMoney(double _wAmmount)
 				setBalance(newbal);
 				setWithdrawlCounter(1);
 				setwithdrawlAmmounts(_wAmmount);
-				setOverDraftLimit(_wAmmount - overDraftLimit);
+				setwithdrawlDates();
 			}
 			else
 			{
