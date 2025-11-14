@@ -52,6 +52,7 @@ void CheckingAccount::withdrawMoney(double _wAmmount)
 			if (abs(getBalance() - _wAmmount) <= overDraftLimit)
 			{
 				double newbal = getBalance() - _wAmmount - 20;
+				cout << "Withdrawl exceeds current balance. A $20 overdraft fee has been applied." << endl;
 				setBalance(newbal);
 				setWithdrawlCounter(1);
 				setwithdrawlAmmounts(_wAmmount);

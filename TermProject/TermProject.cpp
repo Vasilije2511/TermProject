@@ -390,7 +390,8 @@ void customerPortal()
 					cout << "Available funds: $";
                     if (checkingIndex != -1) {
                         available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
-                        cout << fixed << setprecision(2) << available << endl;
+                        cout << fixed << setprecision(2) << checkingAccounts[checkingIndex].getBalance() << endl;
+                        cout<<"Available over draft limit: $" << fixed << setprecision(2) << checkingAccounts[checkingIndex].getOverDraftLimit()<<endl;
                     }
                     else if (savingIndex != -1) {
                         cout << fixed << setprecision(2) << savingAccounts[savingIndex].getBalance() << endl;
@@ -468,7 +469,8 @@ void customerPortal()
 							cout << "Available funds after withdrawal: $";
                             if (checkingIndex != -1) {
                                 available = checkingAccounts[checkingIndex].getBalance() + checkingAccounts[checkingIndex].getOverDraftLimit();
-                                cout << fixed << setprecision(2) << available << endl;
+                                cout << fixed << setprecision(2) << checkingAccounts[checkingIndex].getBalance() << endl;
+                                cout << "Available over draft limit: $" << fixed << setprecision(2) << checkingAccounts[checkingIndex].getOverDraftLimit() << endl;
                             }
                             else if (savingIndex != -1) {
                                 cout << fixed << setprecision(2) << savingAccounts[savingIndex].getBalance() << endl;
